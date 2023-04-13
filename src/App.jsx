@@ -9,6 +9,7 @@ import EditProfile from "./pages/ProfilePage/EditProfile";
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+import PetProfilePage from "./pages/PetPages/PetProfilePage";
 
 function App() {
   return (
@@ -17,12 +18,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-
         <Route
           path="/profile"
           element={
             <IsPrivate>
-              <ProfilePage />
+              {" "}
+              <ProfilePage />{" "}
             </IsPrivate>
           }
         />
@@ -30,16 +31,17 @@ function App() {
           path="/profile/edit"
           element={
             <IsPrivate>
-              <EditProfile />
+              {" "}
+              <EditProfile />{" "}
             </IsPrivate>
           }
         />
-
         <Route
           path="/signup"
           element={
             <IsAnon>
-              <SignupPage />
+              {" "}
+              <SignupPage />{" "}
             </IsAnon>
           }
         />
@@ -47,10 +49,12 @@ function App() {
           path="/login"
           element={
             <IsAnon>
-              <LoginPage />
+              {" "}
+              <LoginPage />{" "}
             </IsAnon>
           }
         />
+        <Route path="/pets/:petId" element={<PetProfilePage />} />
       </Routes>
     </div>
   );
