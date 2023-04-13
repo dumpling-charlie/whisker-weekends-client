@@ -6,21 +6,33 @@ import AddPet from '../../components/AddPet/AddPet';
 function PetList() {
   const [petList, setPetList] = useState(null);
 
+  const userId = localStorage.getItem('authToken');
+
   const loadData = () => {
     axios
-      .get(`http://localhost:5005/api/pets/`)
+      .get(`http://localhost:5005/api/pets/?owner=${userId}`, { headers: {Authorization: `Bearer ${userId}`}})
       .then((response) => {
-        console.log(response);
-        setPetList(response.data);
+        const data = response.data;
+        setPetList(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   };
 
   const renderList = () => {
+    console.log(petList);
     return (
       <section>
-        <h1>this is the pet list page</h1>
-      </section>
+      <h1>this is the pet list page</h1>
+      {petList.map((pet, index) => {
+        return (
+          <div key={index}>
+            <h3>{pet.name}</h3>
+            <Link to={`/api/pets/${pet._id}`}> View Profile </Link>
+          </div>
+        );
+      })}
+    </section>
+
     );
   };
 

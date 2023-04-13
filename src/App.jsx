@@ -23,74 +23,16 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/profile"
-          element={
-            <IsPrivate>
-              {" "}
-              <ProfilePage />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/profile/edit"
-          element={
-            <IsPrivate>
-              {" "}
-              <EditProfile />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              {" "}
-              <SignupPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              {" "}
-              <LoginPage />{" "}
-            </IsAnon>
-          }
-        />
+        <Route path="/profile"element={<IsPrivate>{" "}<ProfilePage />{" "} </IsPrivate>}/>
+        <Route path="/profile/edit"element={<IsPrivate>{" "}<EditProfile />{" "}</IsPrivate>} />
+        <Route path="/signup"element={<IsAnon>{" "}<SignupPage />{" "}</IsAnon>}/>
+        <Route path="/login" element={ <IsAnon>{" "} <LoginPage />{" "}</IsAnon>}/>
         <Route path="/api/pets/" element={<PetList />} />
-        <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route
-          path="/api/playdates"
-          element={
-            <IsAnon>
-              {" "}
-              <PlaydatesPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/api/playdates/create"
-          element=<IsPrivate>
-            {" "}
-            <CreatePlaydatePage />{" "}
-          </IsPrivate>
-        />
-        <Route
-          path="/api/playdates/:playdateId"
-          element=<IsPrivate>
-            {" "}
-            <PlaydateDetailsPage />{" "}
-          </IsPrivate>
-        />
-        <Route
-          path="/api/playdates/:playdateId/edit"
-          element=<IsPrivate>
-            {" "}
-            <EditPlaydatePage />{" "}
-          </IsPrivate>
-        />
+        <Route path="/api/pets/:petId" element={<PetProfilePage />} />
+        <Route path="/api/playdates" element={<PlaydatesPage />} />
+        <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
+        <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
+        <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
       </Routes>
     </div>
   );

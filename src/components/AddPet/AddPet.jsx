@@ -38,8 +38,24 @@ function AddPet() {
             <label> Age:
               <input type="number" name="age" value={newPet.age} onChange={(event)=>{changeHandler(event.target)}}/>
             </label>
-            <label> Species:
-              <input type="text" name="species" value={newPet.species} onChange={(event)=>{changeHandler(event.target)}}/>
+            <label>Species:
+                <select name="species" value={newPet.species} onChange={(event)=>{changeHandler(event.target)}}>
+                    <option value="">select...</option>
+                        {['cat', 'dog'].map((species) => (
+                    <option key={species} value={species}>{species}</option>
+                        ))}
+                </select>
+            </label>
+            <label> Breed:
+              <input type="text" name="breed" value={newPet.breed} onChange={(event)=>{changeHandler(event.target)}}/>
+            </label>
+            <label> Personality:
+                <select name="personality" value={newPet.personality} onChange={(event)=>{changeHandler(event.target)}}>
+                    <option value="">select...</option>
+                        {['introvert', 'outgoing', 'playful'].map((personality) => (
+                    <option key={personality} value={personality}>{personality}</option>
+                        ))}
+                </select>
             </label>
             <button type="submit">Create</button>
           </form>

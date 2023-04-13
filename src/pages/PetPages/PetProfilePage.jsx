@@ -15,18 +15,27 @@ function PetProfilePage() {
             .get(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
             .then(response => {
                 console.log(response.data)
+                setPet(response.data);
             })
             .catch((error) => console.log(error));
     }
 
     useEffect(() => {
         getPetDetails();
-    }, [])
+    }, [petId])
+
+    const renderPetDetails = () => {
+        return (
+            <div>
+              <h1>{pet.name}</h1>
+            </div>
+          )
+    }
 
     return (
-        <div className = "PetDetails">
-            <h1>{pet}</h1>
-        </div>
+        <>
+            {pet ? renderPetDetails() : <h1>still loading</h1>}
+        </>
     )
 }
 
