@@ -10,15 +10,14 @@ function PetProfilePage() {
 
     const storedToken = localStorage.getItem('authToken');
 
+
     const getPetDetails = () => {
         axios
-          .get(`${process.env.REACT_APP_API_URL}/api/pets/${petId}`, {
-            Authorization: `Bearer ${storedToken}`,
-          })
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => console.log(error));
+            .get(`${process.env.REACT_APP_API_URL}/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch((error) => console.log(error));
     }
 
     useEffect(() => {
@@ -27,7 +26,7 @@ function PetProfilePage() {
 
     return (
         <div className = "PetDetails">
-            <h1>{pet.name}</h1>
+            <h1>{pet}</h1>
         </div>
     )
 }

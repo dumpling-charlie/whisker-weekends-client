@@ -20,42 +20,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/profile"
-          element={
-            <IsPrivate>
-              {" "}
-              <ProfilePage />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/profile/edit"
-          element={
-            <IsPrivate>
-              {" "}
-              <EditProfile />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              {" "}
-              <SignupPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              {" "}
-              <LoginPage />{" "}
-            </IsAnon>
-          }
-        />
+        <Route path="/profile" element={ <IsPrivate> {" "} <ProfilePage />{" "} </IsPrivate> }/>
+        <Route path="/profile/edit"element={ <IsPrivate> {" "} <EditProfile />{" "} </IsPrivate> }/>
+        <Route path="/signup" element={ <IsAnon> {" "} <SignupPage />{" "} </IsAnon> } />
+        <Route path="/login" element={ <IsAnon> {" "} <LoginPage />{" "}</IsAnon> }/>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
       </Routes>
