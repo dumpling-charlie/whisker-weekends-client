@@ -61,7 +61,15 @@ function App() {
         />
         <Route path="/api/pets/" element={<PetList />} />
         <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route path="/api/playdates" element={<PlaydatesPage />} />
+        <Route
+          path="/api/playdates"
+          element={
+            <IsAnon>
+              {" "}
+              <PlaydatesPage />{" "}
+            </IsAnon>
+          }
+        />
         <Route
           path="/api/playdates/create"
           element=<IsPrivate>
@@ -78,7 +86,10 @@ function App() {
         />
         <Route
           path="/api/playdates/:playdateId/edit"
-          element={<EditPlaydatePage />}
+          element=<IsPrivate>
+            {" "}
+            <EditPlaydatePage />{" "}
+          </IsPrivate>
         />
       </Routes>
     </div>

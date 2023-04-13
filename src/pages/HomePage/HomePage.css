@@ -1,0 +1,20 @@
+.carousel {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-item {
+  max-height: 500px; /* adjust this value to your desired height */
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    max-height: 300px; /* adjust this value to your desired height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    max-height: 200px; /* adjust this value to your desired height for even smaller screens */
+  }
+}
