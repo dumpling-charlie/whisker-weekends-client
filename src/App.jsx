@@ -62,13 +62,19 @@ function App() {
         <Route path="/api/pets/" element={<PetList />} />
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
-        <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
+        <Route
+          path="/api/playdates/create"
+          element=<IsPrivate>
+            {" "}
+            <CreatePlaydatePage />{" "}
+          </IsPrivate>
+        />
         <Route
           path="/api/playdates/:playdateId"
           element=<IsPrivate>
-          {" "}
-          <PlaydateDetailsPage />{" "}
-        </IsPrivate>
+            {" "}
+            <PlaydateDetailsPage />{" "}
+          </IsPrivate>
         />
         <Route
           path="/api/playdates/:playdateId/edit"
