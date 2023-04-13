@@ -24,7 +24,7 @@ function Navbar() {
             {/* <img src="https://picsum.photos/id/402/200/300" style={{ width: 50, height: 50, borderRadius: 25}} alt="profile" /> */}
           </Link>
 
-          <Link to="/playdates">
+          <Link to="/api/playdates">
             <button>Playdates</button>
             {/* <img src="https://picsum.photos/id/402/200/300" style={{ width: 50, height: 50, borderRadius: 25}} alt="profile" /> */}
           </Link>
