@@ -27,31 +27,37 @@ return (
         <span className="navbar-toggler-icon"></span>
       </button>
 
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/api/playdates">
+            Playdates
+          </NavLink>
+        </li>
+      </ul>
+
       {isLoggedIn && (
-        <>
+        <><span>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <button onClick={logOutUser} className="nav-link">
                 Logout
               </button>
             </li>
+            
             <li className="nav-item">
               <NavLink className="nav-link" to="/profile">
-                Profile
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/api/playdates">
-                Playdates
+                {user && user.name}
               </NavLink>
             </li>
           </ul>
-          <span>{user && user.name}</span>
+          </span>
+      
         </>
       )}
 
       {!isLoggedIn && (
         <>
+        <span>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/signup">
@@ -64,6 +70,7 @@ return (
               </NavLink>
             </li>
           </ul>
+          </span>
         </>
       )}
     </div>

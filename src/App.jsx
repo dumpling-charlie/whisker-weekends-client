@@ -9,7 +9,6 @@ import EditProfile from "./pages/ProfilePage/EditProfile";
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-import IsCreator from "./components/IsCreator/IsCreator";
 import PetProfilePage from "./pages/PetPages/PetProfilePage";
 import PlaydatesPage from "./pages/Playdates/PlaydatesPage";
 import PetList from "./pages/PetPages/PetList";
@@ -64,8 +63,17 @@ function App() {
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
-        <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
-        <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
+        <Route
+          path="/api/playdates/:playdateId"
+          element=<IsPrivate>
+          {" "}
+          <PlaydateDetailsPage />{" "}
+        </IsPrivate>
+        />
+        <Route
+          path="/api/playdates/:playdateId/edit"
+          element={<EditPlaydatePage />}
+        />
       </Routes>
     </div>
   );
