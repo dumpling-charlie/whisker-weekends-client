@@ -12,6 +12,7 @@ import IsAnon from "./components/IsAnon/IsAnon";
 import IsCreator from "./components/IsCreator/IsCreator";
 import PetProfilePage from "./pages/PetPages/PetProfilePage";
 import PlaydatesPage from "./pages/Playdates/PlaydatesPage";
+import PetList from "./pages/PetPages/PetList";
 import CreatePlaydatePage from "./pages/Playdates/CreatePlaydatePage";
 import PlaydateDetailsPage from "./pages/Playdates/PlaydateDetailsPage";
 import EditPlaydatePage from "./pages/Playdates/EditPlaydatePage";
@@ -59,6 +60,7 @@ function App() {
             </IsAnon>
           }
         />
+        <Route path="/api/pets/" element={<PetList />} />
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
