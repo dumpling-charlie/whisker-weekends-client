@@ -4,7 +4,7 @@ function PlaydateCard ( { title, description} ) {
   
   return (
     <div className="PlaydateCard card">
-      <Link to={`/playdates/${_id}`}>
+      <Link to={`/playdates/:id`}>
         <h3>{title}</h3>
       </Link>
       <p style={{ maxWidth: "400px" }}>{description} </p>

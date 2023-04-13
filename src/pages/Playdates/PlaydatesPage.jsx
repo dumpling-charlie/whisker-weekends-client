@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import PlaydateCard from "./../components/PlaydateCard";
+import PlaydateCard from "../../components/PlaydateCard";
 
 function PlaydatesPage() {
   const [playdates, setPlaydates] = useState([]);

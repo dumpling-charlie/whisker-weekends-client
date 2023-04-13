@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import PetProfilePage from "./pages/PetPages/PetProfilePage";
+import PlaydatesPage from "./pages/Playdates/PlaydatesPage";
+
 
 function App() {
   return (
@@ -55,6 +57,7 @@ function App() {
           }
         />
         <Route path="/pets/:petId" element={<PetProfilePage />} />
+        <Route path="/api/playdates" element={<PlaydatesPage />} />
       </Routes>
     </div>
   );
