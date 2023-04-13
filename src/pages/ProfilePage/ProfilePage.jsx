@@ -9,7 +9,7 @@ function ProfilePage(props) {
       <h1>Profile Page</h1>
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
-      <p>ID: {user._id}</p>
+      {/* <p>ID: {user._id}</p> */}
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-function PlaydateCard ( { title, description} ) {
+function PlaydateCard ( { _id, title, description} ) {
   
   return (
     <div className="PlaydateCard card">
-      <Link to={`/playdates/:id`}>
+      <Link to={`/api/playdates/${_id}`}>
         <h3>{title}</h3>
       </Link>
-      <p style={{ maxWidth: "400px" }}>{description} </p>
+      <p style={{ maxWidth: "400px" }}>The plan: {description} </p>
     </div>
   );
 }

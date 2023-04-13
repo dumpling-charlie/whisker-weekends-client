@@ -27,22 +27,27 @@ function PlaydatesDetailsPage(props) {
     getPlaydate();
   }, []);
 
+
   return (
-    <div className="ProjectDetails">
+    <div className="PlaydateDetails">
       {playdate && (
         <>
           <h1>{playdate.title}</h1>
+          <p>{playdate.location}</p>
+          <p>{playdate.date}</p>
+          <p>{playdate.pets}</p>
           <p>{playdate.description}</p>
         </>
       )}
 
-      <Link to="/playdates">
+      <Link to="/api/playdates">
         <button>Back to playdates</button>
       </Link>
 
-      <Link to={`/playdates/edit/${playdateId}`}>
-        <button>Edit Playdate</button>
-      </Link>
+  
+        <Link to={`/api/playdates/${playdateId}/edit`}>
+          <button>Edit Playdate</button>
+        </Link>
     </div>
   );
 }
