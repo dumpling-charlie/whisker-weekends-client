@@ -10,10 +10,9 @@ function PetProfilePage() {
 
     const storedToken = localStorage.getItem('authToken');
 
-
     const getPetDetails = () => {
         axios
-            .get(`${process.env.REACT_APP_API_URL}/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
+            .get(`${process.env.REACT_APP_SERVER_URL}/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
             .then(response => {
                 console.log(response.data)
             })

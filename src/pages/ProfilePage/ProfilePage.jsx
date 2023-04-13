@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from "../../context/auth.context"
+import { Link } from 'react-router-dom';
 
-function ProfilePage(props) {
+function ProfilePage() {
   const { user } = useContext(AuthContext);
   
   return (
@@ -9,7 +10,16 @@ function ProfilePage(props) {
       <h1>Profile Page</h1>
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
-      {/* <p>ID: {user._id}</p> */}
+      <p>ID: {user._id}</p>
+
+      <Link to={"/profile/edit"}>
+        <h4>Edit profile</h4>
+      </Link>
+
+      <Link to="/api/pets">
+            <button>My Pets</button>
+      </Link>
+
     </div>
   );
 }
