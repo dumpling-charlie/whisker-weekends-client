@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from "../../context/auth.context"
 
-function EditPage(props) {
+function EditProfile(props) {
   const { user } = useContext(AuthContext);
   
   return (

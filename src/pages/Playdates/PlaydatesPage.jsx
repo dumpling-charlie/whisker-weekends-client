@@ -21,6 +21,11 @@ function PlaydatesPage() {
       {playdates.map((playdate) => (
         <PlaydateCard key={playdate._id} {...playdate} />
       ))}
+      <div>
+        <button>
+          <a href="/api/playdates/create">Add playdate</a>
+        </button>
+      </div>
     </div>
   );
 }
