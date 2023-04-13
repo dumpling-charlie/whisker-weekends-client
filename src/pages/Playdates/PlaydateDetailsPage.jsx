@@ -7,7 +7,7 @@ function PlaydatesDetailsPage(props) {
   const [playdate, setPlaydate] = useState(null);
   const { playdateId } = useParams();
 
-  const getPlaydate = () => {
+  useEffect(() => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
@@ -21,11 +21,7 @@ function PlaydatesDetailsPage(props) {
         setPlaydate(onePlaydate);
       })
       .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    getPlaydate();
-  }, []);
+  });
 
 
   return (
@@ -35,6 +31,7 @@ function PlaydatesDetailsPage(props) {
           <h1>{playdate.title}</h1>
           <p>{playdate.location}</p>
           <p>{playdate.date}</p>
+          <p>{playdate.time}</p>
           <p>{playdate.pets}</p>
           <p>{playdate.description}</p>
         </>
@@ -44,10 +41,9 @@ function PlaydatesDetailsPage(props) {
         <button>Back to playdates</button>
       </Link>
 
-  
-        <Link to={`/api/playdates/${playdateId}/edit`}>
-          <button>Edit Playdate</button>
-        </Link>
+      <Link to={`/api/playdates/${playdateId}/edit`}>
+        <button>Edit Playdate</button>
+      </Link>
     </div>
   );
 }

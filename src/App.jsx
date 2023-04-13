@@ -63,7 +63,7 @@ function App() {
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
         <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
-        <Route path="/api/playdates/:playdateid/edit" element={<IsCreator><EditPlaydatePage /></IsCreator>} />
+        <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
       </Routes>
     </div>
   );
