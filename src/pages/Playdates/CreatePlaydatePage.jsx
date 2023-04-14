@@ -1,8 +1,6 @@
 import {  useState } from "react";
 import playdateServices from "../../services/playdate.service";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import authService from "../../services/auth.service";
 function CreatePlaydatePage() {
 
     const [title, setTitle] = useState("");
@@ -13,11 +11,9 @@ function CreatePlaydatePage() {
     const [imageUrl, setImageUrl] = useState("");
 
  const navigate = useNavigate();
- const storedToken = localStorage.getItem("authToken");
  // ******** this method handles the file upload ********
  const handleFileUpload = (e) => {
   e.preventDefault()
-  console.log("wtf")
    // console.log("The file to be uploaded is: ", e.target.files[0]);
 
    const uploadData = new FormData();
@@ -25,11 +21,9 @@ function CreatePlaydatePage() {
 
    uploadData.append("imageUrl", e.target.files[0]);
 
-  //  playdateServices
-  //    .uploadImage(uploadData)
-  axios
-    .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {headers: { Authorization: `Bearer ${storedToken}` }})
-   
+  
+  playdateServices
+  .uploadImage(uploadData)
     .then((response) => {
       console.log("response is: ", response);
       // response carries "fileUrl" which we can use to update the state
@@ -40,16 +34,18 @@ function CreatePlaydatePage() {
 
  // ********  this method submits the form ********
  const handleSubmit = (e) => {
-   e.preventDefault();
+  e.preventDefault();
 
-   playdateServices
-     .createPlaydate({ title, location, date, time, description, imageUrl })
-     .then((res) => {
-       // navigate to another page
-       navigate("/api/playdates");
-     })
-     .catch((err) => console.log("Error while adding the new playdate: ", err));
- };
+  const newPlaydate = { title, location, date, time, description, imageUrl };
+
+  playdateServices
+    .createPlaydate(newPlaydate)
+    .then((res) => {
+      // navigate to another page
+      navigate("/api/playdates");
+    })
+    .catch((err) => console.log("Error while adding the new playdate: ", err));
+};
   return (
     <div>
       <h1>Create a Playdate</h1>
