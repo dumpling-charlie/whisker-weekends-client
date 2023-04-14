@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddPet from '../../components/AddPet/AddPet';
 
 function PetList() {
@@ -27,7 +27,7 @@ function PetList() {
         return (
           <div key={index}>
             <h3>{pet.name}</h3>
-            <Link to={`/api/pets/${pet._id}`}> View Profile </Link>
+            <Link to={`/pets/${pet._id}`}> View Profile </Link>
           </div>
         );
       })}
