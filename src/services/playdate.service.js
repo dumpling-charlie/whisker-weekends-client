@@ -38,7 +38,7 @@ class PlaydateServices {
   };
 
   uploadImage = (imageUrl) => {
-    return this.api.post("/api/pets/upload", imageUrl)
+    return this.api.post("/api/upload", imageUrl)
   };
 
   updatePlaydate = (playdateId, updatedPlaydateData) => {

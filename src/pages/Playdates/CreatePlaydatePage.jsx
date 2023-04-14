@@ -28,7 +28,7 @@ function CreatePlaydatePage() {
   //  playdateServices
   //    .uploadImage(uploadData)
   axios
-    .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/upload`, uploadData, {headers: { Authorization: `Bearer ${storedToken}` }})
+    .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {headers: { Authorization: `Bearer ${storedToken}` }})
    
     .then((response) => {
       console.log("response is: ", response);
