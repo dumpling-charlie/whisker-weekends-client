@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 
-function PlaydatesDetailsPage(props) {
+function PlaydatesDetailsPage() {
   const [playdate, setPlaydate] = useState(null);
   const { playdateId } = useParams();
 
@@ -17,6 +17,7 @@ function PlaydatesDetailsPage(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+        console.log(response.data);
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
       })
@@ -33,7 +34,9 @@ function PlaydatesDetailsPage(props) {
           <p>{playdate.location}</p>
           <p>{playdate.date}</p>
           <p>{playdate.time}</p>
-          <p>{playdate.pets}</p>
+          {playdate.pets && playdate.pets.map((pet) => (
+            <p key={pet._id}>{pet.name}</p>
+          ))}
           <p>{playdate.description}</p>
         </>
       )}
