@@ -16,7 +16,7 @@ function ProfilePage() {
         <h4>Edit profile</h4>
       </Link>
 
-      <Link to="/api/pets">
+      <Link to="/pets">
             <button>My Pets</button>
       </Link>
 

@@ -5,7 +5,10 @@ function AddPet() {
     const [ newPet, setNewPet ] = useState({
         name: '',
         age: 0,
-        species: ''
+        species: '',
+        breed: '',
+        personality: '',
+        imageUrl: ''
     })
 
     const changeHandler = (target) => {
@@ -32,12 +35,15 @@ function AddPet() {
         <section>
           <h1>Create Pet</h1>
           <form onSubmit={(event) => {submitForm(event)}}>
+
             <label> Name:
               <input type="text" name="name" value={newPet.name} onChange={(event)=>{changeHandler(event.target)}}/>
             </label>
+
             <label> Age:
               <input type="number" name="age" value={newPet.age} onChange={(event)=>{changeHandler(event.target)}}/>
             </label>
+
             <label>Species:
                 <select name="species" value={newPet.species} onChange={(event)=>{changeHandler(event.target)}}>
                     <option value="">select...</option>
@@ -46,9 +52,11 @@ function AddPet() {
                         ))}
                 </select>
             </label>
+
             <label> Breed:
               <input type="text" name="breed" value={newPet.breed} onChange={(event)=>{changeHandler(event.target)}}/>
             </label>
+
             <label> Personality:
                 <select name="personality" value={newPet.personality} onChange={(event)=>{changeHandler(event.target)}}>
                     <option value="">select...</option>
@@ -57,6 +65,11 @@ function AddPet() {
                         ))}
                 </select>
             </label>
+            
+            <label> Image Url:
+              <input type="text" name="imageUrl" value={newPet.imageUrl} onChange={(event)=>{changeHandler(event.target)}}/>
+            </label>
+
             <button type="submit">Create</button>
           </form>
         </section>

@@ -15,6 +15,7 @@ import PetList from "./pages/PetPages/PetList";
 import CreatePlaydatePage from "./pages/Playdates/CreatePlaydatePage";
 import PlaydateDetailsPage from "./pages/Playdates/PlaydateDetailsPage";
 import EditPlaydatePage from "./pages/Playdates/EditPlaydatePage";
+import EditPetProfilePage from "./pages/PetPages/EditPetProfilePage";
 
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
         <Route path="/profile/edit"element={<IsPrivate>{" "}<EditProfile />{" "}</IsPrivate>} />
         <Route path="/signup"element={<IsAnon>{" "}<SignupPage />{" "}</IsAnon>}/>
         <Route path="/login" element={ <IsAnon>{" "} <LoginPage />{" "}</IsAnon>}/>
-        <Route path="/api/pets/" element={<PetList />} />
-        <Route path="/api/pets/:petId" element={<PetProfilePage />} />
+        <Route path="/pets/" element={<PetList />} />
+        <Route path="/pets/:petId" element={<PetProfilePage />} />
+        <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
         <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
