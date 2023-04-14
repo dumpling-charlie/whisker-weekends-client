@@ -1,38 +1,55 @@
-import { useState } from "react";
+import {  useState } from "react";
+import playdateServices from "../../services/playdate.service";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import authService from "../../services/auth.service";
 function CreatePlaydatePage() {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    location: "",
-    date: "",
-    time: "",
-  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .post(
-        `${process.env.REACT_APP_SERVER_URL}/api/playdates/create`,
-        formData,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        // Redirect to the playdates list page
-        window.location.replace("/api/playdates");
-      })
-      .catch((error) => console.log(error));
-  };
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [description, setDescription] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+ const navigate = useNavigate();
+ const storedToken = localStorage.getItem("authToken");
+ // ******** this method handles the file upload ********
+ const handleFileUpload = (e) => {
+  e.preventDefault()
+  console.log("wtf")
+   // console.log("The file to be uploaded is: ", e.target.files[0]);
 
+   const uploadData = new FormData();
+
+
+   uploadData.append("imageUrl", e.target.files[0]);
+
+  //  playdateServices
+  //    .uploadImage(uploadData)
+  axios
+    .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/upload`, uploadData, {headers: { Authorization: `Bearer ${storedToken}` }})
+   
+    .then((response) => {
+      console.log("response is: ", response);
+      // response carries "fileUrl" which we can use to update the state
+      setImageUrl(response.imageUrl);
+    })
+    .catch((err) => console.log("Error while uploading the file: ", err));
+ };
+
+ // ********  this method submits the form ********
+ const handleSubmit = (e) => {
+   e.preventDefault();
+
+   playdateServices
+     .createPlaydate({ title, location, date, time, description, imageUrl })
+     .then((res) => {
+       // navigate to another page
+       navigate("/api/playdates");
+     })
+     .catch((err) => console.log("Error while adding the new playdate: ", err));
+ };
   return (
     <div>
       <h1>Create a Playdate</h1>
@@ -42,8 +59,8 @@ function CreatePlaydatePage() {
           <input
             type="text"
             name="title"
-            value={formData.title}
-            onChange={handleChange}
+            value={title}
+            onChange={(e) => {setTitle(e.target.value)}}
             required
           />
         </div>
@@ -51,8 +68,8 @@ function CreatePlaydatePage() {
           <label htmlFor="description">Description</label>
           <textarea
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            value={description}
+            onChange={(e) => {setDescription(e.target.value)}}
             required
           />
         </div>
@@ -61,8 +78,8 @@ function CreatePlaydatePage() {
           <input
             type="text"
             name="location"
-            value={formData.location}
-            onChange={handleChange}
+            value={location}
+            onChange={(e) => {setLocation(e.target.value)}}
             required
           />
         </div>
@@ -71,8 +88,8 @@ function CreatePlaydatePage() {
           <input
             type="date"
             name="date"
-            value={formData.date}
-            onChange={handleChange}
+            value={date}
+            onChange={(e) => {setDate(e.target.value)}}
             required
           />
         </div>
@@ -81,11 +98,12 @@ function CreatePlaydatePage() {
           <input
             type="time"
             name="time"
-            value={formData.time}
-            onChange={handleChange}
+            value={time}
+            onChange={(e) => {setTime(e.target.value)}}
             required
           />
         </div>
+        <input type="file" onChange={(e) => handleFileUpload(e)} />
         <button type="submit">Create</button>
       </form>
     </div>

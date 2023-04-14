@@ -26,6 +26,7 @@ function PetList() {
       {petList.map((pet, index) => {
         return (
           <div key={index}>
+            <img src={pet.imageUrl} alt="pet" width="200" />
             <h3>{pet.name}</h3>
             <Link to={`/api/pets/${pet._id}`}> View Profile </Link>
           </div>

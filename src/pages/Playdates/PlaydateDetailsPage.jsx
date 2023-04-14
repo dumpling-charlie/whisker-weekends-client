@@ -28,6 +28,7 @@ function PlaydatesDetailsPage(props) {
     <div className="PlaydateDetails">
       {playdate && (
         <>
+          <img src={playdate.imageUrl} alt="playdate.title" width="200" />
           <h1>{playdate.title}</h1>
           <p>{playdate.location}</p>
           <p>{playdate.date}</p>
