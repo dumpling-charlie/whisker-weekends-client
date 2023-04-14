@@ -2,138 +2,165 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-function EditPlaydatePage(props) {
+function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    // imageUrl: "",
+    title: "",
+    location: "",
+    date: "",
+    time: "",
+    pets: "",
+    description: "",
+  });
   const { playdateId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
-    // Send the token through the request "Authorization" Headers
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdateId}`, {
+      .get(`http://localhost:5005/api/playdates/${playdateId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
         setFormData({
+          // imageUrl: onePlaydate.imageUrl,
           title: onePlaydate.title,
-          description: onePlaydate.description,
+          location: onePlaydate.location,
           date: onePlaydate.date,
           time: onePlaydate.time,
-          location: onePlaydate.location,
+          pets: onePlaydate.pets,
+          description: onePlaydate.description,
         });
+        console.log(formData);
       })
       .catch((error) => console.log(error));
   }, [playdateId]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // Get the token from the localStorage
+
     const storedToken = localStorage.getItem("authToken");
 
 axios
-  .put(
-    `${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdateId}`,
-    formData,
-    {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    }
-  )
-  .then((response) => {
-    navigate(`/api/playdates/`);
+  .put(`http://localhost:5005/api/playdates/${playdateId}/edit`, formData, {
+    headers: { Authorization: `Bearer ${storedToken}` },
   })
-  .catch((error) => console.log(error));
+
+  .then(() => navigate("/api/playdates"))
+  .catch((err) => console.error(err));
+    console.log(formData);
   };
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-    const deletePlaydate = () => {
-      const storedToken = localStorage.getItem("authToken");
+  const deletePlaydate = () => {
+    const storedToken = localStorage.getItem("authToken");
 
-      axios
-        .delete(
-          `${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdateId}`,
-          {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          }
-        )
-        .then(() => navigate("/api/playdates"))
-        .catch((err) => console.log(err));
-    };  
-
+    axios
+      .delete(`http://localhost:5005/api/playdates/${playdateId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => navigate("/api/playdates"))
+      .catch((err) => console.log(err));
+  };
 
   return (
-    <div className="EditPlaydatePage">
-      <h1>Edit Playdate</h1>
+    <section>
+      <h1>Edit Playdate Details</h1>
       {playdate && (
         <form onSubmit={handleFormSubmit}>
           <label>
+            {" "}
             Title:
             <input
               type="text"
-              name="title"
+              name="name"
               value={formData.title}
               onChange={handleFormChange}
             />
           </label>
 
           <label>
+            {" "}
+            Location:
+            <input
+              type="string"
+              name="location"
+              value={formData.location}
+              onChange={handleFormChange}
+            />
+          </label>
+          <label>
+            {" "}
+            Date:
+            <input
+              type="Date"
+              name="date"
+              value={formData.date}
+              onChange={handleFormChange}
+            />
+          </label>
+          <label>
+            {" "}
+            Time:
+            <input
+              type="string"
+              name="time"
+              value={formData.time}
+              onChange={handleFormChange}
+            />
+          </label>
+          <label>
+            {" "}
             Description:
-            <textarea
+            <input
+              type="string"
               name="description"
               value={formData.description}
               onChange={handleFormChange}
             />
           </label>
 
-          <label>
-            Date:
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
+          {/* <label>
+            {" "}
+            Pets:
+            <select
+              name="personality"
+              value={formData.personality}
               onChange={handleFormChange}
-            />
-          </label>
+            >
+              <option value="">select...</option>
+              {["introvert", "outgoing", "playful"].map((personality) => (
+                <option key={personality} value={personality}>
+                  {personality}
+                </option>
+              ))}
+            </select>
+          </label> */}
 
-          <label>
-            Time:
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleFormChange}
-            />
-          </label>
-
-          <label>
-            Location:
+          {/* <label>
+            {" "}
+            Image Url:
             <input
               type="text"
-              name="location"
-              value={formData.location}
+              name="imageUrl"
+              value={formData.imageUrl}
               onChange={handleFormChange}
             />
-          </label>
+          </label> */}
 
-          <button type="submit">Save</button>
-          <button type="button" onClick={deletePlaydate}>
-            Delete
-          </button>
+          <button type="submit">Update</button>
         </form>
       )}
-    </div>
+      <button onClick={deletePlaydate}>Delete Playdate</button>
+    </section>
   );
 }
 
