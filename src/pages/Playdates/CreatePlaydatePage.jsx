@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 
@@ -42,7 +41,6 @@ function CreatePlaydatePage() {
   // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
     e.preventDefault();
-    console.log("wtf");
     // console.log("The file to be uploaded is: ", e.target.files[0]);
 
     const uploadData = new FormData();
