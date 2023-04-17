@@ -39,8 +39,8 @@ function App() {
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
         <Route path="/api/playdates/my-playdates" element={<MyPlaydatesPage />} /> 
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
-        <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
         <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
+        <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
       </Routes>
 
     </div>

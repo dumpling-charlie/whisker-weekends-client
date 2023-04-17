@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 import jwtDecode from 'jwt-decode';
 
-
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
@@ -166,7 +165,7 @@ function CreatePlaydatePage() {
               ))}
           </select>
         </div>
-        <button type="submit" /*disabled={!imageUrl}*/>
+        <button type="submit" disabled={!imageUrl}>
           Create
         </button>
       </form>

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import playdateServices from "../../services/playdate.service";
 
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
   const [formData, setFormData] = useState({
-    // imageUrl: "",
+    imageUrl: "",
     title: "",
     location: "",
     date: "",
@@ -17,17 +18,14 @@ function EditPlaydatePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
-
-    axios
-      .get(`http://localhost:5005/api/playdates/${playdateId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+    
+    playdateServices
+      .getPlaydate(playdateId)
       .then((response) => {
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
         setFormData({
-          // imageUrl: onePlaydate.imageUrl,
+          imageUrl: onePlaydate.imageUrl,
           title: onePlaydate.title,
           location: onePlaydate.location,
           date: onePlaydate.date,
@@ -40,34 +38,48 @@ function EditPlaydatePage() {
       .catch((error) => console.log(error));
   }, [playdateId]);
 
+  const handleFileUpload = (e) => {
+    e.preventDefault();
+
+    const uploadData = new FormData();
+
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    playdateServices
+      .uploadImage(uploadData)
+      .then((response) => {
+        const imageUrl = response.data.fileUrl;
+        setImageUrl(imageUrl);
+        setFormData((prevFormData) => ({
+          ...prevFormData, imageUrl: imageUrl
+        }));
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const storedToken = localStorage.getItem("authToken");
-
-axios
-  .put(`http://localhost:5005/api/playdates/${playdateId}/edit`, formData, {
-    headers: { Authorization: `Bearer ${storedToken}` },
-  })
-
-  .then(() => navigate("/api/playdates"))
-  .catch((err) => console.error(err));
-    console.log(formData);
+    playdateServices
+      .updatePlaydate(playdateId, formData)
+      .then(() => navigate("/api/playdates"))
+      .catch((err) => console.error(err));
+        console.log(formData);
   };
 
   const handleFormChange = (event) => {
-    const { title, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [title]: value }));
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   const deletePlaydate = () => {
-    const storedToken = localStorage.getItem("authToken");
 
-    axios
-      .delete(`http://localhost:5005/api/playdates/${playdateId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+    playdateServices
+      .deletePlaydate(playdateId)
+      .then(() => {
+        console.log("playdate deleted!")
+        navigate("/api/playdates")
       })
-      .then(() => navigate("/api/playdates"))
       .catch((err) => console.log(err));
   };
 
@@ -81,7 +93,7 @@ axios
             Title:
             <input
               type="text"
-              name="name"
+              name="title"
               value={formData.title}
               onChange={handleFormChange}
             />
@@ -128,14 +140,17 @@ axios
             />
           </label>
 
-          {/* <label>
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
+
+          {/*<label>
             {" "}
             Pets:
             <select
-              name="personality"
-              value={formData.personality}
-              onChange={handleFormChange}
+              name="pets"
+              multiple value={formData.pets}
+              onChange={handlePetSelect}
             >
+              {}
               <option value="">select...</option>
               {["introvert", "outgoing", "playful"].map((personality) => (
                 <option key={personality} value={personality}>
@@ -143,23 +158,12 @@ axios
                 </option>
               ))}
             </select>
-          </label> */}
+              </label> */}
 
-          {/* <label>
-            {" "}
-            Image Url:
-            <input
-              type="text"
-              name="imageUrl"
-              value={formData.imageUrl}
-              onChange={handleFormChange}
-            />
-          </label> */}
-
-          <button type="submit">Update</button>
-      <button onClick={deletePlaydate}>Delete Playdate</button>
+          <button type="submit" disabled={!imageUrl}>Update</button>
       </form>
       )}
+      <button onClick={deletePlaydate}>Delete Playdate</button>
     </section>
   );
 }
