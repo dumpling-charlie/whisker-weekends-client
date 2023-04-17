@@ -18,3 +18,11 @@
     max-height: 200px; /* adjust this value to your desired height for even smaller screens */
   }
 }
+
+.banner {
+  background-color: #5A625B;
+}
+.link-text {
+  color: white;
+  text-decoration: none;
+}
