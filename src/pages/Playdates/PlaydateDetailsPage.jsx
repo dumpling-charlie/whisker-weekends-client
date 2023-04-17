@@ -22,7 +22,7 @@ function PlaydatesDetailsPage() {
         setPlaydate(onePlaydate);
       })
       .catch((error) => console.log(error));
-  });
+  }, []);
 
 
   return (

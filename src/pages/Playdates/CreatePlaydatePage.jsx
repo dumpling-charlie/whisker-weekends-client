@@ -17,6 +17,7 @@ function CreatePlaydatePage() {
   
   const [userPets, setUserPets] = useState([]);
   const [pets, setPets] = useState([]);
+   const [isSubmitting, setIsSubmitting] = useState(false);
 
 
  useEffect(() => {
@@ -50,15 +51,16 @@ function CreatePlaydatePage() {
 
     //  playdateServices
     //    .uploadImage(uploadData)
+
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-
       .then((response) => {
         console.log("response is: ", response);
-        // response carries "fileUrl" which we can use to update the state
-        setImageUrl(response.imageUrl);
+        // Parse the response
+        const imageUrl = response.data.fileUrl;
+        setImageUrl(imageUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
   };
@@ -66,6 +68,7 @@ function CreatePlaydatePage() {
   // ********  this method submits the form ********
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     playdateServices
       .createPlaydate({ title, location, date, time, description, imageUrl, pets })
@@ -77,6 +80,7 @@ function CreatePlaydatePage() {
         console.log("Error while adding the new playdate: ", err)
       );
   };
+   const isSubmitDisabled = !imageUrl || isSubmitting;
 
   return (
     <div>
@@ -84,27 +88,66 @@ function CreatePlaydatePage() {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
-          <input type="text" name="title" value={title} onChange={(e) => { setTitle(e.target.value); }} required />
+          <input
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            required
+          />
         </div>
 
         <div>
           <label htmlFor="description">Description</label>
-          <textarea name="description" value={description} onChange={(e) => { setDescription(e.target.value); }} required />
+          <textarea
+            name="description"
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+            required
+          />
         </div>
 
         <div>
           <label htmlFor="location">Location</label>
-          <input type="text" name="location" value={location} onChange={(e) => { setLocation(e.target.value); }} required />
+          <input
+            type="text"
+            name="location"
+            value={location}
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+            required
+          />
         </div>
 
         <div>
           <label htmlFor="date">Date</label>
-          <input type="date" name="date" value={date} onChange={(e) => { setDate(e.target.value); }} required />
+          <input
+            type="date"
+            name="date"
+            value={date}
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            required
+          />
         </div>
 
         <div>
           <label htmlFor="time">Time</label>
-          <input type="time" name="time" value={time} onChange={(e) => { setTime(e.target.value); }} required />
+          <input
+            type="time"
+            name="time"
+            value={time}
+            onChange={(e) => {
+              setTime(e.target.value);
+            }}
+            required
+          />
         </div>
 
         <input type="file" onChange={(e) => handleFileUpload(e)} />
@@ -112,15 +155,17 @@ function CreatePlaydatePage() {
         <div>
           <label htmlFor="pets">Pets</label>
           <select name="pets" multiple value={pets} onChange={handlePetSelect}>
-            {userPets && userPets.map((pet) => (
+            {userPets &&
+              userPets.map((pet) => (
                 <option key={pet._id} value={JSON.stringify(pet)}>
                   {pet.name}
                 </option>
               ))}
           </select>
-            </div>
-
-        <button type="submit">Create</button>
+        </div>
+        <button type="submit" disabled={!imageUrl}>
+          Create
+        </button>
       </form>
     </div>
   );

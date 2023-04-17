@@ -56,8 +56,8 @@ axios
   };
 
   const handleFormChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    const { title, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [title]: value }));
   };
 
   const deletePlaydate = () => {
@@ -157,9 +157,9 @@ axios
           </label> */}
 
           <button type="submit">Update</button>
-        </form>
-      )}
       <button onClick={deletePlaydate}>Delete Playdate</button>
+      </form>
+      )}
     </section>
   );
 }
