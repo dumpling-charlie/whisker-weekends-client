@@ -18,6 +18,7 @@ import EditPlaydatePage from "./pages/Playdates/EditPlaydatePage";
 import EditPetProfilePage from "./pages/PetPages/EditPetProfilePage";
 import { Container } from "react-bootstrap";
 import MyPlaydatesPage from "./pages/Playdates/MyPlaydatesPage";
+import PlaydateLike from "./components/PlaydateLike";
 
 
 function App() {
@@ -36,7 +37,8 @@ function App() {
         <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
-        <Route path="/api/playdates/my-playdates" element={<MyPlaydatesPage />} />
+        <Route path="/api/playdates/my-playdates" element={<MyPlaydatesPage />} /> 
+        <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
         <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
         <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
       </Routes>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import PlaydateLike from "../../components/PlaydateLike";
 
 
 function PlaydatesDetailsPage() {
@@ -48,6 +49,8 @@ function PlaydatesDetailsPage() {
       <Link to={`/api/playdates/${playdateId}/edit`}>
         <button>Edit Playdate</button>
       </Link>
+
+      {playdate && <PlaydateLike playdate={playdate} />}
     </div>
   );
 }

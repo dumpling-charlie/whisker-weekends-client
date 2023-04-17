@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
+import jwtDecode from 'jwt-decode';
 
 
 function CreatePlaydatePage() {
@@ -11,29 +12,34 @@ function CreatePlaydatePage() {
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const navigate = useNavigate();
-  const storedToken = localStorage.getItem("authToken");
   
   const [userPets, setUserPets] = useState([]);
   const [pets, setPets] = useState([]);
-   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
  useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+
+    if (storedToken) {
+      const decodedToken = jwtDecode(storedToken);
+
     axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/api/pets/?owner=${storedToken}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/pets/?owner=${decodedToken._id}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {
         setUserPets(response.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+    }
+  }, [storedToken]);
 
   // handle pet multi select
-    const handlePetSelect = (event) => {
+  const handlePetSelect = (event) => {
     const selectedPets = Array.from(event.target.selectedOptions, (option) => JSON.parse(option.value));
     setPets(selectedPets);
   };
@@ -71,7 +77,6 @@ function CreatePlaydatePage() {
     playdateServices
       .createPlaydate({ title, location, date, time, description, imageUrl, pets })
       .then((res) => {
-        // navigate to another page
         navigate("/api/playdates");
       })
       .catch((err) =>
@@ -161,7 +166,7 @@ function CreatePlaydatePage() {
               ))}
           </select>
         </div>
-        <button type="submit" disabled={!imageUrl}>
+        <button type="submit" /*disabled={!imageUrl}*/>
           Create
         </button>
       </form>

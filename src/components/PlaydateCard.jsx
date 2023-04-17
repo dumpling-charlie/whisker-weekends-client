@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import PlaydateLike from "./PlaydateLike"
 
 function PlaydateCard ( { _id, imageUrl, title, description} ) {
+
+  const userId = localStorage.getItem('authToken');
   
   return (
-    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+    <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
     <div className="PlaydateCard card" style={{ width: "18rem" }}>
         <img src={imageUrl} alt="playdate" width="200" />
         <h3>{title}</h3>
