@@ -12,6 +12,10 @@ function ProfilePage() {
       <p>Email: {user.email}</p>
       <p>ID: {user._id}</p>
 
+      <Link to={"/api/playdates/my-playdates"}>
+        <h4>View your playdates!</h4>
+      </Link>
+
       <Link to={"/profile/edit"}>
         <h4>Edit profile</h4>
       </Link>
