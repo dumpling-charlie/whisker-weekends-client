@@ -18,7 +18,7 @@ function PlaydatesPage() {
   }, []);
 
   return (
-    <div className="PlaydatePage">
+    <div className="PlaydatePage row">
       {playdates.map((playdate) => (
         <PlaydateCard key={playdate._id} {...playdate} />
       ))}

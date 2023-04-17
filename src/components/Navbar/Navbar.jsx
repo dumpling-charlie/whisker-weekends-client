@@ -10,7 +10,7 @@ function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
 return (
-  <nav className="navbar navbar-expand-lg bg-body-tertiary">
+  <nav className="navbar navbar-expand-lg">
     <div className="container-fluid">
       <a className="navbar-brand" href="/">
         Whisker Weekends
