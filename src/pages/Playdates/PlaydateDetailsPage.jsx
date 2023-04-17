@@ -1,22 +1,18 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import PlaydateLike from "../../components/PlaydateLike";
-
+import { AuthContext } from "../../context/auth.context";
+import playdateServices from "../../services/playdate.service";
 
 function PlaydatesDetailsPage() {
   const [playdate, setPlaydate] = useState(null);
   const { playdateId } = useParams();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
 
-    // Send the token through the request "Authorization" Headers
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdateId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+    playdateServices
+      .getPlaydate(playdateId)
       .then((response) => {
         console.log(response.data);
         const onePlaydate = response.data;
@@ -25,6 +21,7 @@ function PlaydatesDetailsPage() {
       .catch((error) => console.log(error));
   }, []);
 
+  const canEdit = playdate && user && playdate.createdBy === user._id;
 
   return (
     <div className="PlaydateDetails">
@@ -45,10 +42,13 @@ function PlaydatesDetailsPage() {
       <Link to="/api/playdates">
         <button>Back to playdates</button>
       </Link>
-
-      <Link to={`/api/playdates/${playdateId}/edit`}>
+      
+      {canEdit && (
+        <Link to={`/api/playdates/${playdateId}/edit`}>
         <button>Edit Playdate</button>
       </Link>
+      )}
+      
 
       {playdate && <PlaydateLike playdate={playdate} />}
     </div>

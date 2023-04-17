@@ -5,15 +5,13 @@ import AddPet from '../../components/AddPet/AddPet';
 
 function PetList() {
   const [petList, setPetList] = useState(null);
-
-  const userId = localStorage.getItem('authToken');
+  const storedToken = localStorage.getItem('authToken');
 
   const loadData = () => {
     axios
-      .get(`http://localhost:5005/api/pets/?owner=${userId}`, { headers: {Authorization: `Bearer ${userId}`}})
+      .get(`http://localhost:5005/api/pets`, { headers: {Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
-        const data = response.data;
-        setPetList(data);
+        setPetList(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -33,12 +31,11 @@ function PetList() {
         );
       })}
     </section>
-
     );
   };
 
   useEffect(() => {
-    loadData();
+      loadData();
   }, []);
 
   return (
