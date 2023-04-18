@@ -1,8 +1,8 @@
-function PlaydateSecurityPage(){
+function PlaydateSafetyPage(){
 return(
-<div class="container">
-  <h1 class="mb-5">
-    Good security practices foy you and your pet when going on playdates
+<div className="container">
+  <h1 className="mb-5">
+    Good safety practices foy you and your pet when going on playdates
   </h1>
 
   <ol>
@@ -51,4 +51,4 @@ return(
 </div>
 )
 }
-export default PlaydateSecurityPage;
+export default PlaydateSafetyPage;

@@ -32,7 +32,7 @@ function PlaydatesPage() {
           <Link to="/api/playdates/create">Add playdate</Link>
         </button>
         <div>
-        <Link to="/api/playdates/security">Security</Link>
+        <Link to="/api/playdates/safety">Safety</Link>
       </div>
       </div>
     </div>

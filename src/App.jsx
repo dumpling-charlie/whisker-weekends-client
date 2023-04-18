@@ -20,7 +20,7 @@ import MyPlaydatesPage from "./pages/Playdates/MyPlaydatesPage";
 import PlaydateLike from "./components/PlaydateLike";
 import PetFriendlyPlaces from "./pages/PetFriendly/PetFriendlyPlaces";
 import CreatePetFriendlyPlacePage from './pages/PetFriendly/CreatePetFriendlyPlace';
-import PlaydateSecurityPage from './pages/Playdates/PlaydateSecurityPage'
+import PlaydateSafetyPage from './pages/Playdates/PlaydateSafetyPage'
 
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
         <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
         <Route path="/api/friendly" element={<PetFriendlyPlaces />} />
         <Route path="/api/friendly/create" element={<CreatePetFriendlyPlacePage />} />
-        <Route path="/api/playdates/security" element={<PlaydateSecurityPage />} />
+        <Route path="/api/playdates/safety" element={<PlaydateSafetyPage />} />
       </Routes>
 
     </div>
