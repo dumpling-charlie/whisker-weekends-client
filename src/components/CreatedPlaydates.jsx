@@ -10,6 +10,8 @@ function CreatedPlaydates() {
     const [userId, setUserId] = useState(null);
     const storedToken = localStorage.getItem('authToken');
 
+
+
     const loadPlaydates = () => { 
         axios
             .get(`http://localhost:5005/api/playdates`, { headers: {Authorization: `Bearer ${storedToken}`}})

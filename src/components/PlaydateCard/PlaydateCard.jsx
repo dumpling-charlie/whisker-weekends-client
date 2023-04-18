@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import PlaydateLike from "../PlaydateLike";
-import "./PlaydateCard.css"
+import "./PlaydateCard.css";
+
 
 function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
   const userId = localStorage.getItem("authToken");
+  
 
   return (
     <Card Style={{ width: "18rem" }}>
@@ -21,7 +23,7 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
         <Card.Text>{createdBy}</Card.Text>
         <Link to={`/api/playdates/${_id}`}>
           <Button>More details</Button>
-        </Link>
+        </Link>          
       </Card.Body>
     </Card>
   );

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PetFriendlyCard from "../../components/PetFriendly/PetFriendlyCard";
 
+
 function PetFriendlyPlaces() {
   const [petFriendlyPlaces, setPetFriendlyPlaces] = useState([]);
 
@@ -18,10 +19,11 @@ function PetFriendlyPlaces() {
 
   return (
     <div className="PetFriendlyPage row">
-    Pet Friendly Places
+      Pet Friendly Places
       {petFriendlyPlaces.map((petfriendly) => (
-        <PetFriendlyCard key={petfriendly._id} {...petfriendly} />
+        <PetFriendlyCard {...petfriendly} />
       ))}
+    
       <div>
         <button>
           <a href="/api/friendly/create">Add pet-friendly place</a>
