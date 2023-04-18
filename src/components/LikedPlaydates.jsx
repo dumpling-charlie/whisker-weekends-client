@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import jwtDecode from 'jwt-decode';
+import PlaydateCard from "./PlaydateCard/PlaydateCard";
 
 function LikedPlaydates() {
 
@@ -35,18 +36,19 @@ function LikedPlaydates() {
       }, [userId]);
 
     const renderList = () => {
-        return(
-            <section>
-                <h3>These are the playdates you've liked!</h3>
-                {playdatesList.map((playdate, index) => {
-                    return (
-                    <div key={index}>
-                        <h4>{playdate.title}</h4>
-                    </div>
-                    )
-                })} 
-            </section>
-        )
+        return (
+          <div className="row">
+            <h3>These are the playdates you've liked!</h3>
+            {playdatesList.map((playdate) => (
+              <div
+                key={playdate._id}
+                className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4"
+              >
+                <PlaydateCard {...playdate} />
+              </div>
+            ))}
+          </div>
+        );
     }
 
     return (
