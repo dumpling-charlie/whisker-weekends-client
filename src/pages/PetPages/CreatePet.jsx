@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function AddPet() {
+function CreatePet() {
     const storedToken = localStorage.getItem('authToken');
+    const navigate = useNavigate();
 
     const [newImage, setNewImage] = useState("");
     const [ newPet, setNewPet ] = useState({
@@ -48,10 +50,10 @@ function AddPet() {
         console.log("new pet:", newPet);
 
         axios
-          .post('http://localhost:5005/api/pets/', newPet, { headers: {Authorization: `Bearer ${storedToken}`}})
+          .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/`, newPet, { headers: {Authorization: `Bearer ${storedToken}`}})
           .then((response) => {
             console.log("submitted data:", response);
-            //navigate("/");
+            navigate("/pets");
           })
           .catch((err) => console.error(err));
       }
@@ -99,4 +101,4 @@ function AddPet() {
       );  
 }
 
-export default AddPet;
+export default CreatePet;

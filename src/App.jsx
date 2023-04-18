@@ -12,6 +12,7 @@ import IsAnon from "./components/IsAnon/IsAnon";
 import PetProfilePage from "./pages/PetPages/PetProfilePage";
 import PlaydatesPage from "./pages/Playdates/PlaydatesPage";
 import PetList from "./pages/PetPages/PetList";
+import CreatePet from "./pages/PetPages/CreatePet";
 import CreatePlaydatePage from "./pages/Playdates/CreatePlaydatePage";
 import PlaydateDetailsPage from "./pages/Playdates/PlaydateDetailsPage";
 import EditPlaydatePage from "./pages/Playdates/EditPlaydatePage";
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup"element={<IsAnon>{" "}<SignupPage />{" "}</IsAnon>}/>
         <Route path="/login" element={ <IsAnon>{" "} <LoginPage />{" "}</IsAnon>}/>
         <Route path="/pets/" element={<PetList />} />
+        <Route path="/pets/create" element={<CreatePet />}></Route>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
