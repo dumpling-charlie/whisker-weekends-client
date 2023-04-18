@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PlaydateCard from "../../components/PlaydateCard/PlaydateCard";
+import { Link } from "react-router-dom";
 
 function PlaydatesPage() {
   const [playdates, setPlaydates] = useState([]);
@@ -28,8 +29,11 @@ function PlaydatesPage() {
       ))}
       <div>
         <button>
-          <a href="/api/playdates/create">Add playdate</a>
+          <Link to="/api/playdates/create">Add playdate</Link>
         </button>
+        <div>
+        <Link to="/api/playdates/security">Security</Link>
+      </div>
       </div>
     </div>
   );
