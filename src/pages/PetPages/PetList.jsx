@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import AddPet from '../../components/AddPet/AddPet';
 
 function PetList() {
   const [petList, setPetList] = useState(null);
@@ -9,7 +8,7 @@ function PetList() {
 
   const loadData = () => {
     axios
-      .get(`http://localhost:5005/api/pets`, { headers: {Authorization: `Bearer ${storedToken}`}})
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/pets`, { headers: {Authorization: `Bearer ${storedToken}`}})
       .then((response) => {
         setPetList(response.data);
       })
@@ -42,7 +41,10 @@ function PetList() {
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
 
-      <AddPet/>
+      <button>
+          <Link to={"/pets/create"}>Add Pets</Link>
+      </button>
+
     </>
   );
 }

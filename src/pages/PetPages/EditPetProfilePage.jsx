@@ -17,7 +17,7 @@ function EditPetProfilePage () {
     useEffect(() => {
 
         axios
-            .get(`http://localhost:5005/api/pets/${petId}`, { headers: { Authorization: `Bearer ${storedToken}` }})
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, { headers: { Authorization: `Bearer ${storedToken}` }})
             .then((response) => {
                 const onePet = response.data;
                 setPet(onePet);
@@ -36,7 +36,7 @@ function EditPetProfilePage () {
         event.preventDefault();
 
         axios 
-            .put(`http://localhost:5005/api/pets/${petId}`, formData, { headers: {Authorization: `Bearer ${storedToken}`}})
+            .put(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, formData, { headers: {Authorization: `Bearer ${storedToken}`}})
             .then(() => navigate("/pets"))
             .catch((err) => console.error(err));
             console.log(formData);
@@ -50,7 +50,7 @@ function EditPetProfilePage () {
     const deletePet = () => {
 
         axios
-            .delete(`http://localhost:5005/api/pets/${petId}`, { headers: {Authorization: `Bearer ${storedToken}`}})
+            .delete(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, { headers: {Authorization: `Bearer ${storedToken}`}})
             .then(() => navigate('/pets'))
             .catch((err) => console.log(err));
     };

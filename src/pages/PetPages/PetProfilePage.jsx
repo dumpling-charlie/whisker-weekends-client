@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams, Route } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 function PetProfilePage() {
@@ -10,7 +10,7 @@ function PetProfilePage() {
 
     const getPetDetails = () => {
         axios
-            .get(`http://localhost:5005/api/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
             .then(response => {
                 setPet(response.data);
             })
