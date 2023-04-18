@@ -18,7 +18,6 @@ function PetList() {
   const renderList = () => {
     return (
       <section>
-      <h1>this is the pet list page</h1>
       {petList.map((pet, index) => {
         return (
           <div key={index}>

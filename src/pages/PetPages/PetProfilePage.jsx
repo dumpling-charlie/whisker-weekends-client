@@ -24,8 +24,13 @@ function PetProfilePage() {
     const renderPetDetails = () => {
         return (
             <div>
-              <h1>{pet.name}</h1>
-              <Link to={`/pets/edit/${pet._id}`}>Edit Profile</Link>
+                <img src={pet.imageUrl} alt="`photo of ${pet.name}`" width="200"/>
+                <h1>{pet.name}</h1>
+                <p>age: {pet.age}</p>
+                <p>species: {pet.species}</p>
+                <p>breed: {pet.breed}</p>
+                <p>personality: {pet.personality}</p>
+                <Link to={`/pets/edit/${pet._id}`}>Edit Profile</Link>
             </div>
           )
     }

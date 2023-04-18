@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import PlaydateLike from "../../components/PlaydateLike";
 import { AuthContext } from "../../context/auth.context";
 import playdateServices from "../../services/playdate.service";
+import * as Icon from 'react-bootstrap-icons';
 
 function PlaydatesDetailsPage() {
   const [playdate, setPlaydate] = useState(null);
@@ -32,7 +33,7 @@ function PlaydatesDetailsPage() {
           <p>{playdate.date}</p>
           <p>{playdate.time}</p>
           {playdate.pets && playdate.pets.map((pet) => (
-            <p key={pet._id}>{pet.name}</p>
+            <Link key={pet._id} to={`/pets/${pet._id}`}>{pet.name}</Link>
           ))}
           <p>{playdate.description}</p>
         </>

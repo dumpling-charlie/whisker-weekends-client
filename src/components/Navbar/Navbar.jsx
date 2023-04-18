@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PlaydatesDropdown from "./PlaydatesDropdown";
+import MyAccountDropdown from "./MyAccountDropdown";
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -44,16 +45,8 @@ return (
         <>
           <span>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <button onClick={logOutUser} className="nav-link">
-                  Logout
-                </button>
-              </li>
-
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/profile">
-                  {user && user.name}
-                </NavLink>
+              <li>
+                <MyAccountDropdown/>
               </li>
             </ul>
           </span>
