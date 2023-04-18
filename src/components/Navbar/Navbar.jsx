@@ -2,6 +2,7 @@ import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import PlaydatesDropdown from "./PlaydatesDropdown";
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -27,10 +28,9 @@ return (
       </button>
 
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/api/playdates">
-            Playdates
-          </NavLink>
+
+        <li>
+          <PlaydatesDropdown/>
         </li>
 
         <li className="nav-item">
