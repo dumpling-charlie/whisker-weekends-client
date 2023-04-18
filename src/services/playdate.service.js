@@ -46,7 +46,6 @@ class PlaydateServices {
   };
 }
 
-
 const playdateServices = new PlaydateServices();
 
 export default playdateServices;

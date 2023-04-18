@@ -5,9 +5,7 @@ import { Link, useParams, Route } from "react-router-dom";
 
 function PetProfilePage() {
     const [pet, setPet] = useState(null);
-
     const { petId } = useParams();
-
     const storedToken = localStorage.getItem('authToken');
 
     const getPetDetails = () => {

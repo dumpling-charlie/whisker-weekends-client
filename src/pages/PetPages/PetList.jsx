@@ -17,7 +17,6 @@ function PetList() {
   };
 
   const renderList = () => {
-    console.log(petList);
     return (
       <section>
       <h1>this is the pet list page</h1>

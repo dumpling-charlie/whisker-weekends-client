@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function AddPet() {
+    const storedToken = localStorage.getItem('authToken');
+
+    const [newImage, setNewImage] = useState("");
     const [ newPet, setNewPet ] = useState({
         name: '',
         age: 0,
@@ -17,15 +20,37 @@ function AddPet() {
         })
     }
 
-    const storedToken = localStorage.getItem('authToken');
+    // image file upload
+    const handleFileUpload = (e) => {
+      e.preventDefault();
+    
+      const uploadData = new FormData();
+  
+      uploadData.append("imageUrl", e.target.files[0]);
+  
+      axios
+        .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          const imageFile = response.data.fileUrl;
+          console.log("Image URL:", imageFile);
+          setNewImage(imageFile);
+          setNewPet((prevState) => ({
+            ...prevState, imageUrl: imageFile
+          }));
+        })
+        .catch((err) => console.log("Error while uploading the file: ", err));
+    };
 
-    const submitForm = (event, userId) => {
+    const submitForm = (event) => {
         event.preventDefault();
-        console.log(newPet);
+        console.log("new pet:", newPet);
+
         axios
-          .post('http://localhost:5005/api/pets/', { ...newPet, owner: userId }, { headers: {Authorization: `Bearer ${storedToken}`}})
+          .post('http://localhost:5005/api/pets/', newPet, { headers: {Authorization: `Bearer ${storedToken}`}})
           .then((response) => {
-            console.log(response);
+            console.log("submitted data:", response);
             //navigate("/");
           })
           .catch((err) => console.error(err));
@@ -34,7 +59,7 @@ function AddPet() {
       return (
         <section>
           <h1>Create Pet</h1>
-          <form onSubmit={(event) => {submitForm(event)}}>
+          <form onSubmit={(event) => {submitForm(event, newImage)}}>
 
             <label> Name:
               <input type="text" name="name" value={newPet.name} onChange={(event)=>{changeHandler(event.target)}}/>
@@ -66,15 +91,11 @@ function AddPet() {
                 </select>
             </label>
             
-            <label> Image Url:
-              <input type="text" name="imageUrl" value={newPet.imageUrl} onChange={(event)=>{changeHandler(event.target)}}/>
-            </label>
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
 
-            <button type="submit">Create</button>
+            <button type="submit" disabled={!newPet.imageUrl}>Create</button>
           </form>
         </section>
-      
-    
       );  
 }
 

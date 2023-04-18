@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 function EditPetProfilePage () {
+    const storedToken = localStorage.getItem("authToken");
     const [pet, setPet] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
@@ -14,8 +15,6 @@ function EditPetProfilePage () {
     const navigate = useNavigate();
 
     useEffect(() => {
-
-        const storedToken = localStorage.getItem("authToken");
 
         axios
             .get(`http://localhost:5005/api/pets/${petId}`, { headers: { Authorization: `Bearer ${storedToken}` }})
@@ -35,8 +34,6 @@ function EditPetProfilePage () {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        
-        const storedToken = localStorage.getItem("authToken");
 
         axios 
             .put(`http://localhost:5005/api/pets/${petId}`, formData, { headers: {Authorization: `Bearer ${storedToken}`}})
@@ -51,7 +48,6 @@ function EditPetProfilePage () {
     }
 
     const deletePet = () => {
-        const storedToken = localStorage.getItem("authToken");
 
         axios
             .delete(`http://localhost:5005/api/pets/${petId}`, { headers: {Authorization: `Bearer ${storedToken}`}})
