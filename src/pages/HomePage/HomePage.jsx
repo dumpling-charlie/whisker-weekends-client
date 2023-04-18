@@ -25,7 +25,7 @@ function HomePage() {
           />
 
           <Carousel.Caption>
-            <Link to="#" className="link-text"><h3>Discover pet-friendly locations</h3></Link>
+            <Link to="/api/petfriendly" className="link-text"><h3>Discover pet-friendly locations</h3></Link>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
