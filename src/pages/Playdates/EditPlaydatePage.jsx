@@ -5,6 +5,10 @@ import playdateServices from "../../services/playdate.service";
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+  
+  const [newImageFile, setNewImageFile] = useState(null);
+
   const [formData, setFormData] = useState({
     imageUrl: "",
     title: "",
@@ -24,16 +28,18 @@ function EditPlaydatePage() {
       .then((response) => {
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
+        
+        setImageUrl(onePlaydate.imageUrl);
+        
         setFormData({
-          imageUrl: onePlaydate.imageUrl,
           title: onePlaydate.title,
           location: onePlaydate.location,
-          date: onePlaydate.date,
+          date: new Date(onePlaydate.date).toISOString().substr(0, 10),
+          time: onePlaydate.time,
           time: onePlaydate.time,
           pets: onePlaydate.pets,
           description: onePlaydate.description,
         });
-        console.log(formData);
       })
       .catch((error) => console.log(error));
   }, [playdateId]);
@@ -44,6 +50,7 @@ function EditPlaydatePage() {
     const uploadData = new FormData();
 
     uploadData.append("imageUrl", e.target.files[0]);
+    setUploading(true);
 
     playdateServices
       .uploadImage(uploadData)
@@ -54,11 +61,20 @@ function EditPlaydatePage() {
           ...prevFormData, imageUrl: imageUrl
         }));
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => setUploading(false));
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
+    const uploadData = new FormData();
+
+    if (newImageFile) {
+      uploadData.append("imageUrl", newImageFile);
+    } else {
+      uploadData.append("imageUrl", imageUrl);
+    }
 
     playdateServices
       .updatePlaydate(playdateId, formData)
@@ -140,7 +156,11 @@ function EditPlaydatePage() {
             />
           </label>
 
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          <label> Image:
+            <img src={imageUrl} alt="current playdate image"/>
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
+            {uploading && <p>Image uploading...</p>}
+          </label>
 
           {/*<label>
             {" "}
@@ -150,13 +170,6 @@ function EditPlaydatePage() {
               multiple value={formData.pets}
               onChange={handlePetSelect}
             >
-              {}
-              <option value="">select...</option>
-              {["introvert", "outgoing", "playful"].map((personality) => (
-                <option key={personality} value={personality}>
-                  {personality}
-                </option>
-              ))}
             </select>
               </label> */}
 

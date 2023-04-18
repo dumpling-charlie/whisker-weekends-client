@@ -15,7 +15,7 @@ function CreatePlaydatePage() {
   const [userPets, setUserPets] = useState([]);
   const [pets, setPets] = useState([]);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
@@ -46,14 +46,10 @@ function CreatePlaydatePage() {
   // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
     e.preventDefault();
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
+  
     const uploadData = new FormData();
-
     uploadData.append("imageUrl", e.target.files[0]);
-
-    //  playdateServices
-    //    .uploadImage(uploadData)
+    setUploading(true);
 
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
@@ -65,7 +61,8 @@ function CreatePlaydatePage() {
         const imageUrl = response.data.fileUrl;
         setImageUrl(imageUrl);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => setUploading(false));
   };
 
   // ********  this method submits the form ********
@@ -82,7 +79,6 @@ function CreatePlaydatePage() {
         console.log("Error while adding the new playdate: ", err)
       );
   };
-   const isSubmitDisabled = !imageUrl || isSubmitting;
 
   return (
     <div>
@@ -153,6 +149,7 @@ function CreatePlaydatePage() {
         </div>
 
         <input type="file" onChange={(e) => handleFileUpload(e)} />
+        {uploading && <p>Image uploading...</p>}
 
         <div>
           <label htmlFor="pets">Pets</label>

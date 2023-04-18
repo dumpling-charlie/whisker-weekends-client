@@ -6,6 +6,7 @@ function CreatePet() {
     const storedToken = localStorage.getItem('authToken');
     const navigate = useNavigate();
 
+    const [uploading, setUploading] = useState(false);
     const [newImage, setNewImage] = useState("");
     const [ newPet, setNewPet ] = useState({
         name: '',
@@ -27,8 +28,8 @@ function CreatePet() {
       e.preventDefault();
     
       const uploadData = new FormData();
-  
       uploadData.append("imageUrl", e.target.files[0]);
+      setUploading(true);
   
       axios
         .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
@@ -42,7 +43,8 @@ function CreatePet() {
             ...prevState, imageUrl: imageFile
           }));
         })
-        .catch((err) => console.log("Error while uploading the file: ", err));
+        .catch((err) => console.log("Error while uploading the file: ", err))
+        .finally(() => setUploading(false));
     };
 
     const submitForm = (event) => {
@@ -94,6 +96,7 @@ function CreatePet() {
             </label>
             
             <input type="file" onChange={(e) => handleFileUpload(e)} />
+            {uploading && <p>Image uploading...</p>}
 
             <button type="submit" disabled={!newPet.imageUrl}>Create</button>
           </form>

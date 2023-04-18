@@ -5,6 +5,10 @@ import { useParams, useNavigate } from "react-router-dom";
 function EditPetProfilePage () {
     const storedToken = localStorage.getItem("authToken");
     const [pet, setPet] = useState(null);
+    const [uploading, setUploading] = useState(false);
+    const [imageUrl, setImageUrl] = useState("");
+    const [newImageFile, setNewImageFile] = useState(null);
+
     const [formData, setFormData] = useState({
         name: '',
         age: 0,
@@ -21,19 +25,51 @@ function EditPetProfilePage () {
             .then((response) => {
                 const onePet = response.data;
                 setPet(onePet);
+
+                setImageUrl(onePet.imageUrl);
+
                 setFormData({
                     name: onePet.name,
                     age: onePet.age,
                     personality: onePet.personality,
-                    imageUrl: onePet.imageUrl
                 });
                 console.log(formData);
             })
             .catch((error) => console.log(error));
     }, [petId])
 
+    const handleFileUpload = (e) => {
+        e.preventDefault();
+      
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);
+        setUploading(true);
+    
+        axios
+          .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+          .then((response) => {
+            const imageUrl = response.data.fileUrl;
+            setImageUrl(imageUrl);
+            setFormData((prevState) => ({
+              ...prevState, imageUrl: imageUrl
+            }));
+          })
+          .catch((err) => console.log("Error while uploading the file: ", err))
+          .finally(() => setUploading(false));
+      };
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
+
+        const uploadData = new FormData();
+
+        if (newImageFile) {
+            uploadData.append("imageUrl", newImageFile);
+        } else {
+            uploadData.append("imageUrl", imageUrl);
+        }
 
         axios 
             .put(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, formData, { headers: {Authorization: `Bearer ${storedToken}`}})
@@ -77,9 +113,11 @@ function EditPetProfilePage () {
                 </select>
             </label>
 
-            <label> Image Url:
-              <input type="text" name="imageUrl" value={formData.imageUrl} onChange={handleFormChange}/>
-            </label>
+            <label> Image:
+                <img src={imageUrl} alt="current pet image"/>
+                <input type="file" onChange={(e) => handleFileUpload(e)} />
+                {uploading && <p>Image uploading...</p>}
+          </label>
 
             <button type="submit">Update</button>
           </form>

@@ -14,7 +14,6 @@ function PlaydatesDetailsPage() {
     playdateServices
       .getPlaydate(playdateId)
       .then((response) => {
-        console.log(response.data);
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
       })
