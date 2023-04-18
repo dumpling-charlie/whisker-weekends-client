@@ -16,9 +16,10 @@ import CreatePlaydatePage from "./pages/Playdates/CreatePlaydatePage";
 import PlaydateDetailsPage from "./pages/Playdates/PlaydateDetailsPage";
 import EditPlaydatePage from "./pages/Playdates/EditPlaydatePage";
 import EditPetProfilePage from "./pages/PetPages/EditPetProfilePage";
-import { Container } from "react-bootstrap";
 import MyPlaydatesPage from "./pages/Playdates/MyPlaydatesPage";
 import PlaydateLike from "./components/PlaydateLike";
+import PetFriendlyPlaces from "./pages/PetFriendly/PetFriendlyPlaces";
+import CreatePetFriendlyPlacePage from './pages/PetFriendly/CreatePetFriendlyPlace';
 
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
         <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
         <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
+        <Route path="/api/friendly" element={<PetFriendlyPlaces />} />
+        <Route path="/api/friendly/create" element={<CreatePetFriendlyPlacePage />} />
       </Routes>
 
     </div>
