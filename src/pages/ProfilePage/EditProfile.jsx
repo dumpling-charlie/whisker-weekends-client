@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context"
 
 function EditProfile() {
-  const { user } = useContext(AuthContext); // add isLoading, authenticateUser later
+  const { user, isLoading, authenticateUser } = useContext(AuthContext);
 
   const [updatedUser, setUpdatedUser] = useState({
     name: '',

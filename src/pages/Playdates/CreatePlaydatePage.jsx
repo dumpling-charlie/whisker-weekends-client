@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
-import jwtDecode from 'jwt-decode';
-import Map from "../../components/Map/Map";
+import jwtDecode from "jwt-decode";
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -12,7 +13,7 @@ function CreatePlaydatePage() {
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  
+
   const [userPets, setUserPets] = useState([]);
   const [pets, setPets] = useState([]);
 
@@ -21,33 +22,34 @@ function CreatePlaydatePage() {
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
- useEffect(() => {
-
+  useEffect(() => {
     if (storedToken) {
       const decodedToken = jwtDecode(storedToken);
 
-    axios
-      .get(
-        `${process.env.REACT_APP_SERVER_URL}/api/pets/?owner=${decodedToken._id}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
-      .then((response) => {
-        setUserPets(response.data);
-      })
-      .catch((error) => console.log(error));
+      axios
+        .get(
+          `${process.env.REACT_APP_SERVER_URL}/api/pets/?owner=${decodedToken._id}`,
+          { headers: { Authorization: `Bearer ${storedToken}` } }
+        )
+        .then((response) => {
+          setUserPets(response.data);
+        })
+        .catch((error) => console.log(error));
     }
   }, [storedToken]);
 
   // handle pet multi select
   const handlePetSelect = (event) => {
-    const selectedPets = Array.from(event.target.selectedOptions, (option) => JSON.parse(option.value));
+    const selectedPets = Array.from(event.target.selectedOptions, (option) =>
+      JSON.parse(option.value)
+    );
     setPets(selectedPets);
   };
 
   // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
     e.preventDefault();
-  
+
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
     setUploading(true);
@@ -70,9 +72,16 @@ function CreatePlaydatePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     playdateServices
-      .createPlaydate({ title, location, date, time, description, imageUrl, pets })
+      .createPlaydate({
+        title,
+        location,
+        date,
+        time,
+        description,
+        imageUrl,
+        pets,
+      })
       .then((res) => {
         navigate("/api/playdates");
       })
@@ -122,7 +131,7 @@ function CreatePlaydatePage() {
             required
           />
         </div>
-        <Map location={location} />
+
         <div>
           <label htmlFor="date">Date</label>
           <input
@@ -150,7 +159,12 @@ function CreatePlaydatePage() {
         </div>
 
         <input type="file" onChange={(e) => handleFileUpload(e)} />
-        {uploading && <p>Image uploading...</p>}
+        {uploading && (
+          <p>
+            Image uploading <Spinner />
+          </p>
+        )}
+        {imageUrl && <BsCheckCircle color="green" />}
 
         <div>
           <label htmlFor="pets">Pets</label>
