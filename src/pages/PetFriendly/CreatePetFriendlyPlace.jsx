@@ -36,7 +36,7 @@ function CreatePetFriendlyPlacePage() {
       }
       )
       .then((res) => {
-        navigate("/api/friendly");
+        navigate("/friendly");
       })
       .catch((err) => console.log("Error while adding the new place: ", err));
   };

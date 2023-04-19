@@ -26,7 +26,7 @@ function PetFriendlyPlaces() {
     
       <div>
         <button>
-          <a href="/api/friendly/create">Add pet-friendly place</a>
+          <a href="/friendly/create">Add pet-friendly place</a>
         </button>
       </div>
     </div>

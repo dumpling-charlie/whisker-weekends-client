@@ -28,7 +28,7 @@ function PlaydatesDetailsPage() {
         <>
           <img src={playdate.imageUrl} alt="playdate.title" width="200" />
           <h1>{playdate.title}</h1>
-          <p>Creator: {playdate.createdBy.name}</p>
+          <p>Creator: <Link to={`/profile/${playdate.createdBy._id}`}>{playdate.createdBy.name}</Link></p>
           <p>Where: {playdate.location}</p>
           <p>When: {playdate.date} at {playdate.time}</p>
           Pets: 
@@ -39,12 +39,12 @@ function PlaydatesDetailsPage() {
         </>
       )}
 
-      <Link to="/api/playdates">
+      <Link to="/playdates">
         <button>Back to playdates</button>
       </Link>
       
       {canEdit && (
-        <Link to={`/api/playdates/${playdateId}/edit`}>
+        <Link to={`/playdates/${playdateId}/edit`}>
         <button>Edit Playdate</button>
       </Link>
       )}

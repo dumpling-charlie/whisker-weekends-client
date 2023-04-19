@@ -36,7 +36,7 @@ return (
         </li>
 
         <li className="nav-item">
-          <NavLink className="nav-link" to="/api/friendly">
+          <NavLink className="nav-link" to="/friendly">
             Pet friendly
           </NavLink>
         </li>
