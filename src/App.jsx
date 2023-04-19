@@ -20,36 +20,81 @@ import EditPetProfilePage from "./pages/PetPages/EditPetProfilePage";
 import MyPlaydatesPage from "./pages/Playdates/MyPlaydatesPage";
 import PlaydateLike from "./components/PlaydateLike";
 import PetFriendlyPlaces from "./pages/PetFriendly/PetFriendlyPlaces";
-import CreatePetFriendlyPlacePage from './pages/PetFriendly/CreatePetFriendlyPlace';
-import PlaydateSafetyPage from './pages/Playdates/PlaydateSafetyPage'
-
+import CreatePetFriendlyPlacePage from "./pages/PetFriendly/CreatePetFriendlyPlace";
+import PlaydateSafetyPage from "./pages/Playdates/PlaydateSafetyPage";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/profile"element={<IsPrivate>{" "}<ProfilePage />{" "} </IsPrivate>}/>
-        <Route path="/profile/edit"element={<IsPrivate>{" "}<EditProfile />{" "}</IsPrivate>} />
-        <Route path="/signup"element={<IsAnon>{" "}<SignupPage />{" "}</IsAnon>}/>
-        <Route path="/login" element={ <IsAnon>{" "} <LoginPage />{" "}</IsAnon>}/>
+      </Routes>
+      <div className="innerApp">
+      <Routes>
+        <Route
+          path="/profile"
+          element={
+            <IsPrivate>
+              {" "}
+              <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProfile />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
         <Route path="/pets/" element={<PetList />} />
         <Route path="/pets/create" element={<CreatePet />}></Route>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
+        <Route path="/pets/edit/:petId" element={<EditPetProfilePage />} />
         <Route path="/api/playdates" element={<PlaydatesPage />} />
         <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
-        <Route path="/api/playdates/my-playdates" element={<MyPlaydatesPage />} /> 
+        <Route
+          path="/api/playdates/my-playdates"
+          element={<MyPlaydatesPage />}
+        />
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
-        <Route path="/api/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
-        <Route path="/api/playdates/:playdateId" element={<PlaydateDetailsPage />} />
+        <Route
+          path="/api/playdates/:playdateId/edit"
+          element={<EditPlaydatePage />}
+        />
+        <Route
+          path="/api/playdates/:playdateId"
+          element={<PlaydateDetailsPage />}
+        />
         <Route path="/api/friendly" element={<PetFriendlyPlaces />} />
-        <Route path="/api/friendly/create" element={<CreatePetFriendlyPlacePage />} />
+        <Route
+          path="/api/friendly/create"
+          element={<CreatePetFriendlyPlacePage />}
+        />
         <Route path="/api/playdates/safety" element={<PlaydateSafetyPage />} />
       </Routes>
-
+    </div>
     </div>
   );
 }

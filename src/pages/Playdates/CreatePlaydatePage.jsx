@@ -5,6 +5,8 @@ import playdateServices from "../../services/playdate.service";
 import jwtDecode from "jwt-decode";
 import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -91,11 +93,13 @@ function CreatePlaydatePage() {
   };
 
   return (
-    <div>
-      <h1>Create a Playdate</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+    <Card >
+      <Card.Body>
+        <Card.Title>Create a playdate</Card.Title>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item>
+          Title <br />
           <input
             type="text"
             name="title"
@@ -105,10 +109,9 @@ function CreatePlaydatePage() {
             }}
             required
           />
-        </div>
-
-        <div>
-          <label htmlFor="description">Description</label>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          Details <br />
           <textarea
             name="description"
             value={description}
@@ -117,10 +120,9 @@ function CreatePlaydatePage() {
             }}
             required
           />
-        </div>
-
-        <div>
-          <label htmlFor="location">Location</label>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          Location <br />
           <input
             type="text"
             name="location"
@@ -130,10 +132,9 @@ function CreatePlaydatePage() {
             }}
             required
           />
-        </div>
-
-        <div>
-          <label htmlFor="date">Date</label>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          Date & Time <br />
           <input
             type="date"
             name="date"
@@ -143,10 +144,6 @@ function CreatePlaydatePage() {
             }}
             required
           />
-        </div>
-
-        <div>
-          <label htmlFor="time">Time</label>
           <input
             type="time"
             name="time"
@@ -156,18 +153,21 @@ function CreatePlaydatePage() {
             }}
             required
           />
-        </div>
-
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
-        {uploading && (
-          <p>
-            Image uploading <Spinner />
-          </p>
-        )}
-        {imageUrl && <BsCheckCircle color="green" />}
-
-        <div>
-          <label htmlFor="pets">Pets</label>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          Image
+          <br />
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          {uploading && (
+            <p>
+              Image uploading <Spinner />
+            </p>
+          )}
+          {imageUrl && <BsCheckCircle color="green" />}
+        </ListGroup.Item>
+        <ListGroup.Item>
+          Pets present
+          <br />
           <select name="pets" multiple value={pets} onChange={handlePetSelect}>
             {userPets &&
               userPets.map((pet) => (
@@ -176,12 +176,14 @@ function CreatePlaydatePage() {
                 </option>
               ))}
           </select>
-        </div>
+        </ListGroup.Item>
+      </ListGroup>
+      <Card.Body>
         <button type="submit" disabled={!imageUrl}>
           Create
         </button>
-      </form>
-    </div>
+      </Card.Body>
+    </Card>
   );
 }
 

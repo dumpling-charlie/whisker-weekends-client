@@ -1,8 +1,12 @@
 .App {
   text-align: center;  
-  background-color: #F9F9F9;
+  font-size: large;
 }
 
 button {
   background-color: #ABAEA3;
+}
+
+.innerApp {
+  margin: 20px
 }
