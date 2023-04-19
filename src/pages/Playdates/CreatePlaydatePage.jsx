@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 import jwtDecode from 'jwt-decode';
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -149,7 +151,8 @@ function CreatePlaydatePage() {
         </div>
 
         <input type="file" onChange={(e) => handleFileUpload(e)} />
-        {uploading && <p>Image uploading...</p>}
+        {uploading && <p>Image uploading <Spinner/></p>}
+        {imageUrl && <BsCheckCircle color='green'/>}
 
         <div>
           <label htmlFor="pets">Pets</label>

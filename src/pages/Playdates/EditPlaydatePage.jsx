@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
@@ -56,7 +58,7 @@ function EditPlaydatePage() {
       .uploadImage(uploadData)
       .then((response) => {
         const imageUrl = response.data.fileUrl;
-        setImageUrl(imageUrl);
+        setNewImageFile(imageUrl);
         setFormData((prevFormData) => ({
           ...prevFormData, imageUrl: imageUrl
         }));
@@ -157,9 +159,11 @@ function EditPlaydatePage() {
           </label>
 
           <label> Image:
-            <img src={imageUrl} alt="current playdate image"/>
+            <img src={newImageFile || imageUrl} alt="current playdate image"/>
             <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && <p>Image uploading...</p>}
+            {uploading && <p>Image uploading <Spinner/></p>}
+            {newImageFile && <BsCheckCircle color='green'/>}
+
           </label>
 
           {/*<label>

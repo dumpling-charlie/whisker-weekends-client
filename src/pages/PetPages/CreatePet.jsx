@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
 function CreatePet() {
     const storedToken = localStorage.getItem('authToken');
     const navigate = useNavigate();
-
     const [uploading, setUploading] = useState(false);
+
     const [newImage, setNewImage] = useState("");
     const [ newPet, setNewPet ] = useState({
         name: '',
@@ -96,7 +98,8 @@ function CreatePet() {
             </label>
             
             <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && <p>Image uploading...</p>}
+            {uploading && <p>Image uploading <Spinner/></p>}
+            {newImage && <BsCheckCircle color='green'/>}
 
             <button type="submit" disabled={!newImage}>Create</button>
           </form>

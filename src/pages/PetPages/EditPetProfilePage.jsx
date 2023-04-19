@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
 function EditPetProfilePage () {
     const storedToken = localStorage.getItem("authToken");
@@ -51,7 +53,7 @@ function EditPetProfilePage () {
           })
           .then((response) => {
             const imageUrl = response.data.fileUrl;
-            setImageUrl(imageUrl);
+            setNewImageFile(imageUrl);
             setFormData((prevState) => ({
               ...prevState, imageUrl: imageUrl
             }));
@@ -114,9 +116,10 @@ function EditPetProfilePage () {
             </label>
 
             <label> Image:
-                <img src={imageUrl} alt="current pet image"/>
+                <img src={newImageFile || imageUrl} alt="current pet image"/>
                 <input type="file" onChange={(e) => handleFileUpload(e)} />
-                {uploading && <p>Image uploading...</p>}
+                {uploading && <p>Image uploading<Spinner/></p>}
+                {newImageFile && <BsCheckCircle color='green'/>}
           </label>
 
             <button type="submit">Update</button>
