@@ -1,32 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { BsHeartFill } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
+import { AuthContext } from '../context/auth.context';
 
 function PlaydateLike({ playdate }) {
 
-    const userId = localStorage.getItem("authToken");
+    const { user } = useContext(AuthContext);
+    const storedToken = localStorage.getItem("authToken");
     const [likes, setLikes] = useState(playdate ? playdate.likes: 0);
     const [likedBy, setLikedBy] = useState(playdate ? playdate.likedBy: []);
-    console.log(playdate);
+    const hasLiked = likedBy.includes(user._id);
 
     const handleLike = () => {
-        axios
-            .put(`http://localhost:5005/api/playdates/${playdate._id}/like`, {}, {
-                headers: { Authorization: `Bearer ${userId}` },
+
+        if (hasLiked) {
+            axios
+            .put(`${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdate._id}/like`, {}, {
+                headers: { Authorization: `Bearer ${storedToken}` },
               })
             .then((response) => {
-                console.log("playdate has been liked!");
                 setLikes(response.data.likes);
-                setLikedBy(response.data.likedBy);
+                setLikedBy(likedBy.filter(userId => userId !== user._id));
             })
             .catch((err) => console.log(err));
+        } else {
+            axios
+            .put(`${process.env.REACT_APP_SERVER_URL}/api/playdates/${playdate._id}/like`, {}, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              })
+            .then((response) => {
+                setLikes(response.data.likes);
+                setLikedBy([...likedBy, user._id]);
+            })
+            .catch((err) => console.log(err));
+        }
+        
     }
-
-    const hasLiked = likedBy.includes(userId);
 
     return(
         <div>
-            <button onClick={handleLike} disabled={hasLiked}>
-                {hasLiked ? 'Liked' : 'Like'} {likes}
+            <button onClick={handleLike}>
+                {hasLiked ? <BsHeartFill/> : <BsHeart/>} {likes}
             </button>
         </div>
     )

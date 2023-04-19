@@ -98,7 +98,7 @@ function CreatePet() {
             <input type="file" onChange={(e) => handleFileUpload(e)} />
             {uploading && <p>Image uploading...</p>}
 
-            <button type="submit" disabled={!newPet.imageUrl}>Create</button>
+            <button type="submit" disabled={!newImage}>Create</button>
           </form>
         </section>
       );  

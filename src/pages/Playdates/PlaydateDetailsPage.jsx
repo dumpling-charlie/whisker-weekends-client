@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import PlaydateLike from "../../components/PlaydateLike";
 import { AuthContext } from "../../context/auth.context";
 import playdateServices from "../../services/playdate.service";
-import * as Icon from 'react-bootstrap';
 
 function PlaydatesDetailsPage() {
   const [playdate, setPlaydate] = useState(null);
