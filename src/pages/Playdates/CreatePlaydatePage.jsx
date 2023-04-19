@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 import jwtDecode from 'jwt-decode';
+import Map from "../../components/Map/Map";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -121,7 +122,7 @@ function CreatePlaydatePage() {
             required
           />
         </div>
-
+        <Map location={location} />
         <div>
           <label htmlFor="date">Date</label>
           <input
