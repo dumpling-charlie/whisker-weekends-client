@@ -9,6 +9,7 @@ import EditProfile from "./pages/ProfilePage/EditProfile";
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
 import PetProfilePage from "./pages/PetPages/PetProfilePage";
 import PlaydatesPage from "./pages/Playdates/PlaydatesPage";
 import PetList from "./pages/PetPages/PetList";
@@ -71,28 +72,17 @@ function App() {
         <Route path="/pets/" element={<PetList />} />
         <Route path="/pets/create" element={<CreatePet />}></Route>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route path="/pets/edit/:petId" element={<EditPetProfilePage />} />
-        <Route path="/api/playdates" element={<PlaydatesPage />} />
-        <Route path="/api/playdates/create" element={<CreatePlaydatePage />} />
-        <Route
-          path="/api/playdates/my-playdates"
-          element={<MyPlaydatesPage />}
-        />
+        <Route path="/profile/:userId" element={<UserProfilePage/>} />
+        <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
+        <Route path="/playdates" element={<PlaydatesPage />} />
+        <Route path="/playdates/create" element={<CreatePlaydatePage />} />
+        <Route path="/playdates/my-playdates" element={<MyPlaydatesPage />} /> 
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
-        <Route
-          path="/api/playdates/:playdateId/edit"
-          element={<EditPlaydatePage />}
-        />
-        <Route
-          path="/api/playdates/:playdateId"
-          element={<PlaydateDetailsPage />}
-        />
-        <Route path="/api/friendly" element={<PetFriendlyPlaces />} />
-        <Route
-          path="/api/friendly/create"
-          element={<CreatePetFriendlyPlacePage />}
-        />
-        <Route path="/api/playdates/safety" element={<PlaydateSafetyPage />} />
+        <Route path="/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
+        <Route path="/playdates/:playdateId" element={<PlaydateDetailsPage />} />
+        <Route path="/friendly" element={<PetFriendlyPlaces />} />
+        <Route path="/friendly/create" element={<CreatePetFriendlyPlacePage />} />
+        <Route path="/playdates/safety" element={<PlaydateSafetyPage />} />
       </Routes>
     </div>
     </div>

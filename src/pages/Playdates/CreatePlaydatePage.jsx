@@ -62,7 +62,6 @@ function CreatePlaydatePage() {
       })
       .then((response) => {
         console.log("response is: ", response);
-        // Parse the response
         const imageUrl = response.data.fileUrl;
         setImageUrl(imageUrl);
       })
@@ -85,7 +84,7 @@ function CreatePlaydatePage() {
         pets,
       })
       .then((res) => {
-        navigate("/api/playdates");
+        navigate("/playdates");
       })
       .catch((err) =>
         console.log("Error while adding the new playdate: ", err)

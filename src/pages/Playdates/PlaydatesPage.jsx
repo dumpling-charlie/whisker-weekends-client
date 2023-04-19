@@ -35,15 +35,15 @@ function PlaydatesPage() {
         <div>
           {isAuthenticated ? (
             <Button size="sm" variant="light">
-              <Link to="/api/playdates/create">Add playdate</Link>
+              <Link to="/playdates/create">Add playdate</Link>
             </Button>) : (
               <Button size="sm" variant="light" disabled>
-              <Link to="/api/playdates/create">Add playdate</Link>
+              <Link to="/playdates/create">Add playdate</Link>
             </Button>
             )
           }
           <div>
-            <Link to="/api/playdates/safety">Safety</Link>
+            <Link to="/playdates/safety">Safety</Link>
           </div>
         </div>
       </div>

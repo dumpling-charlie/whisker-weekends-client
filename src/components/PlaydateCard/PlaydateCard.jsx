@@ -25,7 +25,7 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
         <Card.Title>{title}</Card.Title>
         <Card.Text>Details: {description}</Card.Text>
         {isAuthenticated ? (
-          <Button href={`/api/playdates/${_id}`} size="sm" variant="outline-secondary">
+          <Button href={`/playdates/${_id}`} size="sm" variant="outline-secondary">
             More details
           </Button>
         ) : (

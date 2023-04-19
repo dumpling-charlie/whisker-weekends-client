@@ -80,7 +80,7 @@ function EditPlaydatePage() {
 
     playdateServices
       .updatePlaydate(playdateId, formData)
-      .then(() => navigate("/api/playdates"))
+      .then(() => navigate("/playdates"))
       .catch((err) => console.error(err));
         console.log(formData);
   };
@@ -96,7 +96,7 @@ function EditPlaydatePage() {
       .deletePlaydate(playdateId)
       .then(() => {
         console.log("playdate deleted!")
-        navigate("/api/playdates")
+        navigate("/playdates")
       })
       .catch((err) => console.log(err));
   };
