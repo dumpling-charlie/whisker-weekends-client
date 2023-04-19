@@ -20,7 +20,7 @@ function PlaydatesDetailsPage() {
       .catch((error) => console.log(error));
   }, []);
 
-  const canEdit = playdate && user && playdate.createdBy === user._id;
+  const canEdit = playdate && user && playdate.createdBy._id === user._id;
 
   return (
     <div className="PlaydateDetails">
@@ -28,6 +28,7 @@ function PlaydatesDetailsPage() {
         <>
           <img src={playdate.imageUrl} alt="playdate.title" width="200" />
           <h1>{playdate.title}</h1>
+          <p>Creator: {playdate.createdBy.name}</p>
           <p>Where: {playdate.location}</p>
           <p>When: {playdate.date} at {playdate.time}</p>
           Pets: 
