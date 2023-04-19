@@ -13,9 +13,9 @@ function Navbar() {
 return (
   <nav className="navbar navbar-expand-lg">
     <div className="container-fluid">
-      <a className="navbar-brand" href="/">
+      <NavLink className="navbar-brand" to="/">
         Whisker Weekends
-      </a>
+      </NavLink>
       <button
         className="navbar-toggler"
         type="button"

@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import PlaydateLike from "../PlaydateLike";
 import "./PlaydateCard.css";
+import { Link } from "react-router-dom";
 
 
 function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
@@ -25,9 +26,9 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
         <Card.Title>{title}</Card.Title>
         <Card.Text>Details: {description}</Card.Text>
         {isAuthenticated ? (
-          <Button href={`/playdates/${_id}`} size="sm" variant="outline-secondary">
+          <Button size="sm" variant="outline-secondary"><Link to={`/playdates/${_id}`}> 
             More details
-          </Button>
+          </Link></Button>
         ) : (
           <Button size="sm" variant="light" onClick={handleClick}>
             More details

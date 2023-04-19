@@ -1,6 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { Link } from 'react-router-dom';
 
 function PlaydatesDropdown() {
 
@@ -13,17 +14,17 @@ function PlaydatesDropdown() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="/playdates">Find</Dropdown.Item>
+          <Dropdown.Item> <Link to="/playdates">Find</Link></Dropdown.Item>
 
           {isLoggedIn && (
             <>
-              <Dropdown.Item href="/playdates/create">
+              <Dropdown.Item> <Link to="/playdates/create">
                 Organize
-              </Dropdown.Item>
-              <Dropdown.Item href="/playdates/my-playdates">
+              </Link></Dropdown.Item>
+              <Dropdown.Item> <Link to="/playdates/my-playdates">
                 My Playdates
-              </Dropdown.Item>
-          <Dropdown.Item href="/playdates">Find</Dropdown.Item>
+              </Link></Dropdown.Item>
+          <Dropdown.Item> <Link to="/playdates">Find</Link></Dropdown.Item>
           </>
           )}
         </Dropdown.Menu>

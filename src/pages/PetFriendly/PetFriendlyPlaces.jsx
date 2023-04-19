@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PetFriendlyCard from "../../components/PetFriendly/PetFriendlyCard";
+import { Link } from "react-router-dom";
 
 
 function PetFriendlyPlaces() {
@@ -26,7 +27,7 @@ function PetFriendlyPlaces() {
     
       <div>
         <button>
-          <a href="/friendly/create">Add pet-friendly place</a>
+          <Link to="/friendly/create">Add pet-friendly place</Link>
         </button>
       </div>
     </div>

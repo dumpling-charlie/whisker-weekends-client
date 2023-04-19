@@ -1,6 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { Link } from 'react-router-dom';
 
 function MyAccountDropdown() {
 
@@ -13,8 +14,8 @@ function MyAccountDropdown() {
         </Dropdown.Toggle>
   
         <Dropdown.Menu>
-            <Dropdown.Item href="/profile">My Account</Dropdown.Item>
-            <Dropdown.Item href="/pets">My Pets</Dropdown.Item>
+            <Dropdown.Item> <Link to="/profile">My Account</Link></Dropdown.Item>
+            <Dropdown.Item> <Link to="/pets">My Pets</Link></Dropdown.Item>
             <button className="dropdown-item" type="button" onClick={logOutUser}>
                 Logout
             </button>
