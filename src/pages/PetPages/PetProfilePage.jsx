@@ -1,18 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-
+import { AuthContext } from "../../context/auth.context";
 
 function PetProfilePage() {
     const [pet, setPet] = useState(null);
     const { petId } = useParams();
+    const [ownerId, setOwnerId] = useState(null);
     const storedToken = localStorage.getItem('authToken');
+    const { user } = useContext(AuthContext);
 
     const getPetDetails = () => {
         axios
             .get(`${process.env.REACT_APP_SERVER_URL}/api/pets/${petId}`, { Authorization: `Bearer ${storedToken}`})
             .then(response => {
                 setPet(response.data);
+                setOwnerId(response.data.owner._id);
             })
             .catch((error) => console.log(error));
     }
@@ -20,6 +23,8 @@ function PetProfilePage() {
     useEffect(() => {
         getPetDetails();
     }, [petId])
+
+   const canEdit = pet && user && ownerId === user._id;
 
     const renderPetDetails = () => {
         return (
@@ -30,7 +35,9 @@ function PetProfilePage() {
                 <p>species: {pet.species}</p>
                 <p>breed: {pet.breed}</p>
                 <p>personality: {pet.personality}</p>
-                <Link to={`/pets/edit/${pet._id}`}>Edit Profile</Link>
+                {canEdit &&
+                    <Link to={`/pets/edit/${pet._id}`}>Edit Profile</Link>
+                } 
             </div>
           )
     }
