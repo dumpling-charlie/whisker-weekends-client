@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import PlaydateLike from "../../components/PlaydateLike";
+import PlaydateLike from "../../components/Playdates/PlaydateLike";
 import { AuthContext } from "../../context/auth.context";
 import playdateServices from "../../services/playdate.service";
 
@@ -10,7 +10,6 @@ function PlaydatesDetailsPage() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-
     playdateServices
       .getPlaydate(playdateId)
       .then((response) => {
@@ -28,13 +27,24 @@ function PlaydatesDetailsPage() {
         <>
           <img src={playdate.imageUrl} alt="playdate.title" width="200" />
           <h1>{playdate.title}</h1>
-          <p>Creator: <Link to={`/profile/${playdate.createdBy._id}`}>{playdate.createdBy.name}</Link></p>
+          <p>
+            Creator:{" "}
+            <Link to={`/profile/${playdate.createdBy._id}`}>
+              {playdate.createdBy.name}
+            </Link>
+          </p>
           <p>Where: {playdate.location}</p>
-          <p>When: {playdate.date} at {playdate.time}</p>
-          Pets: 
-          {playdate.pets && playdate.pets.map((pet) => (
-            <Link key={pet._id} to={`/pets/${pet._id}`}> {pet.name}</Link>
-          ))}
+          <p>
+            When: {playdate.date} at {playdate.time}
+          </p>
+          Pets:
+          {playdate.pets &&
+            playdate.pets.map((pet) => (
+              <Link key={pet._id} to={`/pets/${pet._id}`}>
+                {" "}
+                {pet.name}
+              </Link>
+            ))}
           <p>Details: {playdate.description}</p>
         </>
       )}
@@ -42,13 +52,12 @@ function PlaydatesDetailsPage() {
       <Link to="/playdates">
         <button>Back to playdates</button>
       </Link>
-      
+
       {canEdit && (
         <Link to={`/playdates/${playdateId}/edit`}>
-        <button>Edit Playdate</button>
-      </Link>
+          <button>Edit Playdate</button>
+        </Link>
       )}
-      
 
       {playdate && <PlaydateLike playdate={playdate} />}
     </div>

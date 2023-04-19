@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
-import Spinner from "../../components/Spinner";
+import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
-  
+
   const [newImageFile, setNewImageFile] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -24,20 +24,18 @@ function EditPlaydatePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     playdateServices
       .getPlaydate(playdateId)
       .then((response) => {
         const onePlaydate = response.data;
         setPlaydate(onePlaydate);
-        
+
         setImageUrl(onePlaydate.imageUrl);
-        
+
         setFormData({
           title: onePlaydate.title,
           location: onePlaydate.location,
           date: new Date(onePlaydate.date).toISOString().substr(0, 10),
-          time: onePlaydate.time,
           time: onePlaydate.time,
           pets: onePlaydate.pets,
           description: onePlaydate.description,
@@ -60,7 +58,8 @@ function EditPlaydatePage() {
         const imageUrl = response.data.fileUrl;
         setNewImageFile(imageUrl);
         setFormData((prevFormData) => ({
-          ...prevFormData, imageUrl: imageUrl
+          ...prevFormData,
+          imageUrl: imageUrl,
         }));
       })
       .catch((err) => console.log("Error while uploading the file: ", err))
@@ -82,7 +81,7 @@ function EditPlaydatePage() {
       .updatePlaydate(playdateId, formData)
       .then(() => navigate("/playdates"))
       .catch((err) => console.error(err));
-        console.log(formData);
+    console.log(formData);
   };
 
   const handleFormChange = (event) => {
@@ -91,12 +90,11 @@ function EditPlaydatePage() {
   };
 
   const deletePlaydate = () => {
-
     playdateServices
       .deletePlaydate(playdateId)
       .then(() => {
-        console.log("playdate deleted!")
-        navigate("/playdates")
+        console.log("playdate deleted!");
+        navigate("/playdates");
       })
       .catch((err) => console.log(err));
   };
@@ -158,12 +156,17 @@ function EditPlaydatePage() {
             />
           </label>
 
-          <label> Image:
-            <img src={newImageFile || imageUrl} alt="current playdate image"/>
+          <label>
+            {" "}
+            Image:
+            <img src={newImageFile || imageUrl} alt="current playdate" />
             <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && <p>Image uploading <Spinner/></p>}
-            {newImageFile && <BsCheckCircle color='green'/>}
-
+            {uploading && (
+              <p>
+                Image uploading <Spinner />
+              </p>
+            )}
+            {newImageFile && <BsCheckCircle color="green" />}
           </label>
 
           {/*<label>
@@ -177,8 +180,10 @@ function EditPlaydatePage() {
             </select>
               </label> */}
 
-          <button type="submit" disabled={!imageUrl}>Update</button>
-      </form>
+          <button type="submit" disabled={!imageUrl}>
+            Update
+          </button>
+        </form>
       )}
       <button onClick={deletePlaydate}>Delete Playdate</button>
     </section>

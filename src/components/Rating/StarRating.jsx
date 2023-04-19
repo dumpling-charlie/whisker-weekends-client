@@ -10,13 +10,13 @@ function StarRating({ addRating }) {
   };
 
   return (
-    <div>
+    <>
       {stars.map((star, index) => (
         <span onClick={() => handleClick(index + 1)}>
           {index < rating ? "★" : "☆"}
         </span>
       ))}
-    </div>
+    </>
   );
 }
 

@@ -3,9 +3,9 @@ function RatingSummary ({ratings}) {
  const averageRating = totalRatings > 0 ? ratings.reduce((acc, curr) => acc + curr) / totalRatings : 0;
 
  return (
-    <div>
-        <p>{averageRating.toFixed(1)}</p>
-    </div>
+    <>
+        {averageRating.toFixed(1)}
+    </>
  );
 }
 

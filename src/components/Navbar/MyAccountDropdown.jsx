@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function MyAccountDropdown() {
 
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
 
     return (
       <Dropdown>

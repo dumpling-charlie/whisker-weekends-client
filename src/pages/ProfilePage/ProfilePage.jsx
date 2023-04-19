@@ -17,8 +17,8 @@ function ProfilePage() {
         <ListGroup.Item>USER BIO HERE</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Card.Link to="/profile/edit">Edit</Card.Link>
-        <Card.Link to="/pets">Pets</Card.Link>
+        <Link to={"/profile/edit"}>Edit</Link>
+        <Link to={"/pets"}>Pets</Link>
       </Card.Body>
     </Card>
   );

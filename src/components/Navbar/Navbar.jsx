@@ -8,7 +8,7 @@ import MyAccountDropdown from "./MyAccountDropdown";
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider's `value` prop
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn} = useContext(AuthContext);
 
 return (
   <nav className="navbar navbar-expand-lg">

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { BsHeartFill } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../../context/auth.context';
 
 function PlaydateLike({ playdate }) {
 
