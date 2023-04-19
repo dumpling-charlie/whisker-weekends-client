@@ -7,6 +7,11 @@ import "./PlaydateCard.css";
 
 function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
   const userId = localStorage.getItem("authToken");
+  const isAuthenticated = !!userId;
+
+  const handleClick =() => {
+    alert("You must be logged in to view playdate details. Please log in or sign up.")
+  }
   
 
   return (
@@ -20,9 +25,12 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>Details: {description}</Card.Text>
-        <Link to={`/api/playdates/${_id}`}>
+        {isAuthenticated ? (
+          <Link to={`/api/playdates/${_id}`}>
           <Button>More details</Button>
-        </Link>          
+        </Link> ):(       
+          <Button onClick={handleClick}>More details</Button>
+          )}        
       </Card.Body>
     </Card>
   );

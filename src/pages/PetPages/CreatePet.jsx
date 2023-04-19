@@ -89,7 +89,7 @@ function CreatePet() {
             <label> Personality:
                 <select name="personality" value={newPet.personality} onChange={(event)=>{changeHandler(event.target)}}>
                     <option value="">select...</option>
-                        {['introvert', 'outgoing', 'playful'].map((personality) => (
+                        {['Introvert', 'Outgoing', 'Playful', 'Protective', 'Independant', 'Affectionate'].map((personality) => (
                     <option key={personality} value={personality}>{personality}</option>
                         ))}
                 </select>

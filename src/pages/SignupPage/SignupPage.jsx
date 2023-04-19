@@ -67,9 +67,10 @@ console.log(requestBody)
         // Parse the response
         const imageUrl = response.data.fileUrl;
         setImageUrl(imageUrl);
+        setUploading(false)
       })
       .catch((err) => console.log("Error while uploading the file: ", err))
-      .finally(() => setUploading(false));
+      .finally(() => setUploading(false));  
   };
 
   return (
