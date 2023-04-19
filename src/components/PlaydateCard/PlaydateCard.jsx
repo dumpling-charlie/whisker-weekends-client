@@ -19,8 +19,7 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
       />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Text>{description}</Card.Text>
-        <Card.Text>{createdBy}</Card.Text>
+        <Card.Text>Details: {description}</Card.Text>
         <Link to={`/api/playdates/${_id}`}>
           <Button>More details</Button>
         </Link>          

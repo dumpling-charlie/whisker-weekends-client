@@ -8,9 +8,10 @@ function ProfilePage() {
   return (
     <div>
       <h1>Profile Page</h1>
+      <img src={user.imageUrl} alt={user.name} width="200" />
       <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
-      <p>ID: {user._id}</p>
+      {/* <p>ID: {user._id}</p> */}
 
       <Link to={"/api/playdates/my-playdates"}>
         <h4>View your playdates!</h4>
@@ -21,9 +22,8 @@ function ProfilePage() {
       </Link>
 
       <Link to="/pets">
-            <button>My Pets</button>
+        <button>My Pets</button>
       </Link>
-
     </div>
   );
 }

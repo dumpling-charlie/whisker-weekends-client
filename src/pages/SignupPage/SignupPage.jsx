@@ -2,15 +2,20 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import axios from "axios";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
+
   const navigate = useNavigate();
+
+  const [uploading, setUploading] = useState(false);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -20,8 +25,8 @@ function SignupPage() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name, location };
-
+    const requestBody = { email, password, name, location, imageUrl };
+console.log(requestBody)
     // Send a request to the server using axios
     /* 
     const authToken = localStorage.getItem("authToken");
@@ -47,6 +52,26 @@ function SignupPage() {
       });
   };
 
+  const handleFileUpload = (e) => {
+    e.preventDefault();
+
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+    setUploading(true);
+
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/signupUpload`, uploadData, {
+      })
+      .then((response) => {
+        console.log("response is: ", response);
+        // Parse the response
+        const imageUrl = response.data.fileUrl;
+        setImageUrl(imageUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => setUploading(false));
+  };
+
   return (
     <div className="SignupPage">
       <h1>Sign Up</h1>
@@ -67,9 +92,19 @@ function SignupPage() {
         <input type="text" name="name" value={name} onChange={handleName} />
 
         <label>Location:</label>
-        <input type="text" name="location" value={location} onChange={handleLocation} />
+        <input
+          type="text"
+          name="location"
+          value={location}
+          onChange={handleLocation}
+        />
 
-        <button type="submit">Sign Up</button>
+        <input type="file" onChange={(e) => handleFileUpload(e)} />
+        {uploading && <p>Image uploading...</p>}
+
+        <button type="submit" disabled={!imageUrl}>
+          submit
+        </button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
