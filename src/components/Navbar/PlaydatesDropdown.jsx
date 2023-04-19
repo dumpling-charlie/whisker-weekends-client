@@ -13,7 +13,7 @@ function PlaydatesDropdown() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="/api/playdates">Find</Dropdown.Item>
+          <Dropdown.Item href="/playdates">Find</Dropdown.Item>
 
           {isLoggedIn && (
             <>

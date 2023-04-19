@@ -7,6 +7,7 @@ import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import { Button } from "react-bootstrap";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -93,9 +94,11 @@ function CreatePlaydatePage() {
 
   return (
     <Card >
+    
       <Card.Body>
         <Card.Title>Create a playdate</Card.Title>
       </Card.Body>
+      <form onSubmit={handleSubmit}>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>
           Title <br />
@@ -158,9 +161,9 @@ function CreatePlaydatePage() {
           <br />
           <input type="file" onChange={(e) => handleFileUpload(e)} />
           {uploading && (
-            <p>
+            <>
               Image uploading <Spinner />
-            </p>
+            </>
           )}
           {imageUrl && <BsCheckCircle color="green" />}
         </ListGroup.Item>
@@ -178,10 +181,11 @@ function CreatePlaydatePage() {
         </ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <button type="submit" disabled={!imageUrl}>
+        <Button type="submit" disabled={!imageUrl}>
           Create
-        </button>
+        </Button>
       </Card.Body>
+      </form>
     </Card>
   );
 }
