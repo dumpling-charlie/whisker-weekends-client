@@ -34,6 +34,7 @@ function PetProfilePage() {
         const handleImgLoadingError = (e) => {
           e.target.src = "/images/animal-default.jpg";}
           return (
+            <div className="d-flex justify-content-center">
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
@@ -46,9 +47,9 @@ function PetProfilePage() {
                 <Card.Text>{pet.age} years old</Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item>species: {pet.species}</ListGroup.Item>
-                <ListGroup.Item>breed: {pet.breed}</ListGroup.Item>
-                <ListGroup.Item>personality: {pet.personality}</ListGroup.Item>
+                <ListGroup.Item>Species: {pet.species}</ListGroup.Item>
+                <ListGroup.Item>Breed: {pet.breed}</ListGroup.Item>
+                <ListGroup.Item>Personality: {pet.personality}</ListGroup.Item>
               </ListGroup>
               <Card.Body>
                 {canEdit && (
@@ -58,6 +59,7 @@ function PetProfilePage() {
                 )}
               </Card.Body>
             </Card>
+            </div>
           );
         };
 

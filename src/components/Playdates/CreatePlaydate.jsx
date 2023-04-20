@@ -41,10 +41,10 @@ function CreatePlaydatePage() {
 
   // handle pet multi select
   const handlePetSelect = (event) => {
-    const selectedPets = Array.from(event.target.selectedOptions, (option) =>
-      JSON.parse(option.value)
+    const selectedOptions = Array.from(event.target.selectedOptions).map(
+      (option) => JSON.parse(option.value)
     );
-    setPets(selectedPets);
+    setPets(selectedOptions);
   };
 
   // ******** this method handles the file upload ********
