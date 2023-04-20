@@ -12,7 +12,7 @@ function LikedPlaydates() {
     const loadPlaydates = () => { 
 
         axios
-            .get(`http://localhost:5005/api/playdates`, { headers: {Authorization: `Bearer ${storedToken}`}})
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates`, { headers: {Authorization: `Bearer ${storedToken}`}})
             .then((response) => {
                 const likedPlaydates = response.data.filter(
                     (playdate) => playdate.likedBy.includes(userId)
@@ -33,7 +33,7 @@ function LikedPlaydates() {
         if (userId !== null) {
           loadPlaydates();
         }
-      }, [userId]);
+      }, []);
 
     const renderList = () => {
         return (

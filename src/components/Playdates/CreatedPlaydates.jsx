@@ -11,7 +11,7 @@ function CreatedPlaydates() {
 
   const loadPlaydates = () => {
     axios
-      .get(`http://localhost:5005/api/playdates`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -50,7 +50,7 @@ function CreatedPlaydates() {
     if (userId !== null) {
       loadPlaydates();
     }
-  }, [userId]);
+  }, []);
 
   return <>{playdatesList ? renderList() : <h2>still loading...</h2>}</>;
 }
