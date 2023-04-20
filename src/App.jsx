@@ -32,7 +32,8 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
+      <div className="innerApp">
+      <Routes >
         <Route path="/" element={<HomePage />} />
         <Route
           path="/profile"
@@ -99,6 +100,7 @@ function App() {
         </Route>
         <Route path="*" element={null} />
       </Routes>
+      </div>
     </div>
   );
 }
