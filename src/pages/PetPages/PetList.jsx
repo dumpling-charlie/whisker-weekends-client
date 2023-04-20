@@ -34,7 +34,7 @@ function PetList() {
             <Card.Body>
               <Card.Title>{pet.name}</Card.Title>
               <Link to={`/pets/${pet._id}`}>
-                <Button variant="primary">View Profile</Button>
+                <Button variant="light">View Profile</Button>
               </Link>
             </Card.Body>
           </Card>
@@ -51,19 +51,16 @@ function PetList() {
   }, []);
 
   return (
-    
     <div className="pet-list">
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
-
-      <Button>
-          <Link to={"/pets/create"}>Add Pets</Link>
+      <Button variant="light">
+        <Link to={"/pets/create"}>Add Pets</Link>
       </Button>
-<br/>
-      Are your pets lonely?<Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!
-
+      <br />
+      Are your pets lonely?
+      <Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!
     </div>
-    
   );
 }
 
