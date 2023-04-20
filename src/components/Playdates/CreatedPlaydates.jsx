@@ -6,7 +6,7 @@ import PlaydateCard from "./PlaydateCard/PlaydateCard";
 
 function CreatedPlaydates() {
   const [playdatesList, setPlaydatesList] = useState(null);
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState('');
   const storedToken = localStorage.getItem("authToken");
 
   const loadPlaydates = () => {
@@ -16,7 +16,7 @@ function CreatedPlaydates() {
       })
       .then((response) => {
         const createdPlaydates = response.data.filter(
-          (playdate) => playdate.createdBy === userId
+          (playdate) => playdate.createdBy._id === userId
         );
         setPlaydatesList(createdPlaydates);
       })
@@ -26,7 +26,7 @@ function CreatedPlaydates() {
   const renderList = () => {
     return (
       <div className="row">
-        <h3>These are the playdates you've created!</h3>
+        <h3>Created by you:</h3>
         {playdatesList.map((playdate, index) => (
           <div
             key={index}

@@ -6,16 +6,7 @@ import "./Navbar.css"
 
 function PlaydatesDropdown() {
 
-    const { isLoggedIn, hasPets, checkForPets, user } = useContext(AuthContext);
-    const [userId, setUserId] = useState(null);
-
-    useEffect(() => {
-      if (user) {
-        setUserId(user._id);
-      }
-      checkForPets(userId);
-      console.log(hasPets);
-    }, [])
+    const { isLoggedIn } = useContext(AuthContext);
 
     return (
       <Dropdown>

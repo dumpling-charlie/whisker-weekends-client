@@ -35,7 +35,7 @@ function PetProfilePage() {
           e.target.src = "/images/animal-default.jpg";}
           return (
             <div className="d-flex justify-content-center">
-            <Card style={{ width: "18rem" }}>
+            <Card style={{ width: "30vw" }}>
               <Card.Img
                 variant="top"
                 src={pet.imageUrl}

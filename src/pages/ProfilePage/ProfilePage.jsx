@@ -19,14 +19,13 @@ function ProfilePage() {
     })
     .then(response => {
       setUserFromDb(response.data);
-      console.log(response.data);
     })
     .catch((error) => console.log(error));
   }
 
   useEffect(() => {
     getUserDetails();
-  }, [user._id])
+  }, [])
 
   const handleImgLoadingError = (e) => {
     e.target.src = "/images/default-image.jpg";
@@ -34,6 +33,7 @@ function ProfilePage() {
   
 
   return (
+    <div className="d-flex justify-content-center">
     <Card style={{ width: "18rem" }}>
       {userFromDb && (
         <Card.Img
@@ -58,7 +58,7 @@ function ProfilePage() {
         {userFromDb && <ListGroup.Item>{userFromDb.bio}</ListGroup.Item>}
       </ListGroup>
       <Card.Body>
-        <Link to={`/profile/edit/${user._id}`}>
+        <Link to={`/profile/edit/${user._id}`} >
           <Button className="m-1" variant="light">
             Edit
           </Button>
@@ -70,6 +70,7 @@ function ProfilePage() {
         </Link>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 

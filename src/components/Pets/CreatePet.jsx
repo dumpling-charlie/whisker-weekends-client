@@ -54,7 +54,7 @@ function CreatePet() {
     event.preventDefault();
 
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/`, newPet, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/pets`, newPet, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
