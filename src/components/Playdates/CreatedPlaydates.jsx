@@ -6,19 +6,19 @@ import PlaydateCard from "./PlaydateCard/PlaydateCard";
 
 function CreatedPlaydates() {
   const [playdatesList, setPlaydatesList] = useState(null);
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState("");
   const storedToken = localStorage.getItem("authToken");
 
   const loadPlaydates = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates/`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         const createdPlaydates = response.data.filter(
           (playdate) => playdate.createdBy._id === userId
         );
-        setPlaydatesList(createdPlaydates);
+        setPlaydatesList(createdPlaydates || []);
       })
       .catch((err) => console.log(err));
   };
@@ -26,12 +26,8 @@ function CreatedPlaydates() {
   const renderList = () => {
     return (
       <div className="row">
-        <h3>Created by you:</h3>
         {playdatesList.map((playdate, index) => (
-          <div
-            key={index}
-            className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4"
-          >
+          <div key={index} className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
             <PlaydateCard {...playdate} />
           </div>
         ))}
@@ -47,12 +43,18 @@ function CreatedPlaydates() {
   }, [storedToken]);
 
   useEffect(() => {
-    if (userId !== null) {
+    if (userId) {
       loadPlaydates();
     }
-  }, []);
+  }, [userId]);
 
-  return <>{playdatesList ? renderList() : <h2>still loading...</h2>}</>;
+  return (
+    <div>
+      <h3>Created by you:</h3>
+
+      {playdatesList ? renderList() : <h2>still loading...</h2>}
+    </div>
+  );
 }
 
 export default CreatedPlaydates;

@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/auth.context";
 function PlaydatesPage() {
   const [playdates, setPlaydates] = useState([]);
   const [loading, setLoading] = useState(false);
-const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const getAllPlaydates = () => {
     setLoading(true);
