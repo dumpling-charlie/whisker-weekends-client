@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ChatBar from "./ChatBar";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
+import './Chat.css'
 
 const ChatPage = ({ socket }) => {
   const [messages, setMessages] = useState([]);

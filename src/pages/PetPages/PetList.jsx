@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./PetList.css"
+import { Card } from "react-bootstrap";
 
 function PetList() {
   const [petList, setPetList] = useState(null);
@@ -19,18 +20,30 @@ function PetList() {
 
   const renderList = () => {
     return (
-      <section>
+    <section>
+    <div className="row">
       {petList.map((pet, index) => {
         return (
-          <div key={index}>
-            <img src={pet.imageUrl} alt="pet" width="200" />
-            <h3>{pet.name}</h3>
-            <Link to={`/pets/${pet._id}`}> View Profile </Link>
+          <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src={pet.imageUrl}
+              style={{ objectFit: "cover", aspectRatio: "1/1" }}
+            />
+            <Card.Body>
+              <Card.Title>{pet.name}</Card.Title>
+              <Link to={`/pets/${pet._id}`}>
+                <Button variant="primary">View Profile</Button>
+              </Link>
+            </Card.Body>
+          </Card>
           </div>
         );
-      })}
+    })}
+    </div>
     </section>
-    );
+  );
   };
 
   useEffect(() => {
@@ -38,6 +51,7 @@ function PetList() {
   }, []);
 
   return (
+    
     <div className="pet-list">
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
@@ -49,6 +63,7 @@ function PetList() {
       Are your pets lonely?<Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!
 
     </div>
+    
   );
 }
 

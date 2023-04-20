@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function PetProfilePage() {
     const [pet, setPet] = useState(null);
@@ -27,20 +29,34 @@ function PetProfilePage() {
    const canEdit = pet && user && ownerId === user._id;
 
     const renderPetDetails = () => {
-        return (
-            <div>
-                <img src={pet.imageUrl} alt="`photo of ${pet.name}`" width="200"/>
-                <h1>{pet.name}</h1>
-                <p>age: {pet.age}</p>
-                <p>species: {pet.species}</p>
-                <p>breed: {pet.breed}</p>
-                <p>personality: {pet.personality}</p>
-                {canEdit &&
-                    <Link to={`/pets/edit/${pet._id}`}>Edit Profile</Link>
-                } 
-            </div>
-          )
-    }
+         return (
+           <Card style={{ width: "18rem" }}>
+             <Card.Img
+               variant="top"
+               src={pet.imageUrl}
+               style={{ objectFit: "cover", aspectRatio: "1/1" }}
+             />
+             <Card.Body>
+               <Card.Title>{pet.name}</Card.Title>
+               <Card.Text>{pet.age}</Card.Text>
+             </Card.Body>
+             <ListGroup className="list-group-flush">
+               <ListGroup.Item>species: {pet.species}</ListGroup.Item>
+               <ListGroup.Item>breed: {pet.breed}</ListGroup.Item>
+               <ListGroup.Item>personality: {pet.personality}</ListGroup.Item>
+             </ListGroup>
+             <Card.Body>
+               <Card.Link href="#">Card Link</Card.Link>
+               {canEdit && (
+                 <Card.Link to={`/pets/edit/${pet._id}`}>
+                   Edit Profile
+                 </Card.Link>
+               )}
+             </Card.Body>
+           </Card>
+         );
+}
+
 
     return (
         <>
