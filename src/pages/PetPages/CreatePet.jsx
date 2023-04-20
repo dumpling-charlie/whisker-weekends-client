@@ -54,7 +54,6 @@ function CreatePet() {
         axios
           .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/`, newPet, { headers: {Authorization: `Bearer ${storedToken}`}})
           .then((response) => {
-            console.log("submitted data:", response);
             navigate("/pets");
           })
           .catch((err) => console.error(err));

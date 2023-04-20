@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import { BsGeoAlt } from "react-icons/bs";
 
 function ProfilePage() {
   const { user } = useContext(AuthContext);
@@ -16,8 +17,8 @@ function ProfilePage() {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then(response => {
-      console.log(response.data);
       setUserFromDb(response.data);
+      console.log(response.data);
     })
     .catch((error) => console.log(error));
   }
@@ -34,7 +35,10 @@ function ProfilePage() {
         <Card.Title>{user.name}</Card.Title>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>USER BIO HERE</ListGroup.Item>
+        {userFromDb && <ListGroup.Item><BsGeoAlt/> {userFromDb.location} </ListGroup.Item>}
+      </ListGroup>
+      <ListGroup className="list-group-flush">
+        {userFromDb && <ListGroup.Item>{userFromDb.bio}</ListGroup.Item> }
       </ListGroup>
       <Card.Body>
         <Link to={`/profile/edit/${user._id}`}>Edit</Link>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AuthContext = React.createContext();
 
@@ -8,6 +9,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [hasPets, setHasPets] = useState(null);
   const navigate = useNavigate();
 
   const storeToken = (token) => {
@@ -65,6 +67,11 @@ function AuthProviderWrapper(props) {
     authenticateUser();
     navigate("/")
   };
+
+  const checkForPets = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${user._id}`)
+  }
 
   useEffect(() => {
     // Run this code once the AuthProviderWrapper component in the App loads for the first time.

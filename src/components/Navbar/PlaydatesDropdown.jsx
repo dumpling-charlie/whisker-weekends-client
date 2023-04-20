@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function PlaydatesDropdown() {
 
-    const { isLoggedIn} = useContext(AuthContext);
+    const { isLoggedIn } = useContext(AuthContext);
 
     return (
       <Dropdown>
