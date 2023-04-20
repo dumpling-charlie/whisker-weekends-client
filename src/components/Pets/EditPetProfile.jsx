@@ -36,7 +36,6 @@ function EditPetProfilePage() {
           age: onePet.age,
           personality: onePet.personality,
         });
-        console.log(formData);
       })
       .catch((error) => console.log(error));
   }, [petId]);
