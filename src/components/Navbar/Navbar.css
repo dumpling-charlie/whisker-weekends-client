@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
 .navbar {
-    background-color: #ABAEA3;
+    background-color: #374785;
       position: sticky;
   top: 0;
   z-index: 1;
@@ -10,4 +10,8 @@
 
 .navbar-brand {
     width: 11rem;
+}
+
+.drop-account {
+  background-color: #F76C6C;
 }
