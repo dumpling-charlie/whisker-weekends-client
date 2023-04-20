@@ -22,23 +22,24 @@ function PetFriendlyPlaces() {
   }, []);
 
   return (
-    <div className="PetFriendlyPage row">
+    <div className="PetFriendlyPage">
+    <div className="row">
       Pet Friendly Places
       {petFriendlyPlaces.map((petfriendly) => (
+        <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
         <PetFriendlyCard {...petfriendly} />
-      ))}
-      <div>
+      </div>))}
         {isAuthenticated ? (
-          <Button size="sm" variant="light">
+          <Button variant="light">
             <Link to="/friendly/create">Add petfriendly place</Link>
           </Button>
         ) : (
-          <Button size="sm" variant="light" disabled>
+          <Button variant="light" disabled>
             <Link to="/playdates/create">Add petfriendly place</Link>
           </Button>
         )}
-      </div>
-    </div>
+        </div>
+      </div> 
   );
 }
 
