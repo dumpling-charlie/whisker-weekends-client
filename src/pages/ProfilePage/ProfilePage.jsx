@@ -37,7 +37,7 @@ function ProfilePage() {
         <ListGroup.Item>USER BIO HERE</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Link to={"/profile/edit"}>Edit</Link>
+        <Link to={`/profile/edit/${user._id}`}>Edit</Link>
         <Link to={"/pets"}>Pets</Link>
       </Card.Body>
     </Card>
