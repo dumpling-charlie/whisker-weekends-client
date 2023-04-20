@@ -24,7 +24,6 @@ function PlaydatesDropdown() {
               <Dropdown.Item> <Link to="/playdates/my-playdates">
                 My Playdates
               </Link></Dropdown.Item>
-          <Dropdown.Item> <Link to="/playdates">Find</Link></Dropdown.Item>
           </>
           )}
         </Dropdown.Menu>
