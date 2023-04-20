@@ -13,7 +13,7 @@ function HomePage() {
             alt="First slide"
           />
           <Carousel.Caption>
-            <Link to="/api/playdates/" className="link-text">
+            <Link to="/playdates/" className="link-text">
               <h3>Discover and create playdates near you</h3>
             </Link>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -27,7 +27,7 @@ function HomePage() {
           />
 
           <Carousel.Caption>
-            <Link to="/api/petfriendly" className="link-text">
+            <Link to="/friendly" className="link-text">
               <h3>Discover pet-friendly locations</h3>
             </Link>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -56,7 +56,7 @@ function HomePage() {
         className="banner container-fluid row text-center text-light"
         Style="padding: 60px;"
       >
-        <div className=" col-sm-4 ">
+        <div className=" col-md-4 col-lg-4 ">
           <h2>Why?</h2>
           <p>
             Having a playdate for your pet can provide them with much-needed
@@ -65,7 +65,7 @@ function HomePage() {
             supportive community around your mutual love for furry companions.
           </p>
         </div>
-        <div className=" col-sm-4">
+        <div className=" col-md-4 col-lg-4">
           <h2>Where?</h2>
           <p>
             Thanks to Whisker Weekend, you can easily find nearby pet-friendly
@@ -74,7 +74,7 @@ function HomePage() {
             gathering at a local cafe, Whisker Weekend has got you covered.
           </p>
         </div>
-        <div className="col-sm-4">
+        <div className="col-md-4 col-lg-4">
           <h2>When?</h2>
           <p>
             With Whisker Weekend, you can easily organize a playdate that fits
