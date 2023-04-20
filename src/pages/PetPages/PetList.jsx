@@ -54,9 +54,9 @@ function PetList() {
     <div className="pet-list">
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
-      <Button variant="light">
-        <Link to={"/pets/create"}>Add Pets</Link>
-      </Button>
+      <Link to={"/pets/create"}><Button variant="light">
+        Add Pets
+      </Button></Link>
       <br />
       Are your pets lonely?
       <Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!

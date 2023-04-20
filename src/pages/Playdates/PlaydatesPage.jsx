@@ -34,13 +34,13 @@ function PlaydatesPage() {
         ))}
         <div>
           {isAuthenticated ? (
-            <Button variant="light">
-              <Link to="/playdates/create">Add playdate</Link>
-            </Button>
+            <Link to="/playdates/create"><Button variant="light">
+              Add playdate
+            </Button></Link>
           ) : (
-            <Button variant="light" disabled>
-              <Link to="/playdates/create">Add playdate</Link>
-            </Button>
+            <Link to="/playdates/create"><Button variant="light" disabled>
+              Add playdate
+            </Button></Link>
           )}
           <div>
             <Link to="/playdates/safety">Safety</Link>
