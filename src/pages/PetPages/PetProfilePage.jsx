@@ -48,9 +48,9 @@ function PetProfilePage() {
              </ListGroup>
              <Card.Body>
                {canEdit && (
-                 <Card.Link to={`/pets/edit/${pet._id}`}>
+                 <Link to={`/pets/edit/${pet._id}`}>
                    <Button variant="light">Edit Profile</Button>
-                 </Card.Link>
+                 </Link>
                )}
              </Card.Body>
            </Card>

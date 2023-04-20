@@ -31,6 +31,6 @@
 
 .home-page {
   height: 100vh; /* adjust this value to fit the content */
-  overflow: hidden;
+  overflow: scroll;
   position: fixed;
 }

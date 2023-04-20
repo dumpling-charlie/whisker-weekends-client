@@ -114,7 +114,7 @@ function EditPetProfilePage() {
               onChange={handleFormChange}
             />
           </label>
-
+<br/>
           <label>
             {" "}
             Age:
@@ -125,7 +125,7 @@ function EditPetProfilePage() {
               onChange={handleFormChange}
             />
           </label>
-
+<br/>
           <label>
             {" "}
             Personality:
@@ -144,7 +144,7 @@ function EditPetProfilePage() {
               ))}
             </select>
           </label>
-
+<br/>
           <label>
             {" "}
             Image:
@@ -153,6 +153,7 @@ function EditPetProfilePage() {
               alt="current pet image"
               Style="max-width: 150px; max-height: 150px"
             />
+            
             <input type="file" onChange={(e) => handleFileUpload(e)} />
             {uploading && (
               <p>
@@ -162,15 +163,16 @@ function EditPetProfilePage() {
             )}
             {newImageFile && <BsCheckCircle color="green" />}
           </label>
-
+<br/>
           <Button variant="light" type="submit">
             Update
           </Button>
-        </form>
-      )}
+          <br/>
       <Button variant="light" onClick={deletePet}>
         Delete Profile
       </Button>
+      </form>
+      )}
     </section>
   );
 }
