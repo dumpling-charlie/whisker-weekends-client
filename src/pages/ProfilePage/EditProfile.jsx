@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 function EditProfile(props) {
   const storedToken = localStorage.getItem("authToken");
@@ -91,25 +92,53 @@ function EditProfile(props) {
     <div>
       <h2>Edit your account</h2>
       <form onSubmit={handleFormSubmit}>
-
-      <label> Image:
-        <img src={newImageFile || imageUrl} alt="current profile photo" />
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {isLoading && <p>Image uploading <Spinner/></p>}
-            {newImageFile && <BsCheckCircle color='green'/>}
-      </label>
-      
-        <label> Location:
-          <input type="text" name="location" value={formData.location} onChange={handleFormChange}></input>
+        <label className="mb-3">
+          {" "}
+          Image:
+          <img
+            src={newImageFile || imageUrl}
+            alt="current profile photo"
+            className="img-fluid mx-auto"
+            Style="max-width: 200px"
+          />
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          {isLoading && (
+            <p>
+              Image uploading <Spinner />
+            </p>
+          )}
+          {newImageFile && <BsCheckCircle color="green" />}
         </label>
-
-        <label> Bio:
-          <input type="textarea" name="bio" value={formData.bio} onChange={handleFormChange}></input>
+        <br />
+        <label className="mb-3">
+          {" "}
+          Location:
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleFormChange}
+          ></input>
         </label>
-
-        <button type="submit">Update Profile</button>
+        <br />
+        <label className="mb-3">
+          {" "}
+          Bio:
+          <input
+            type="textarea"
+            name="bio"
+            value={formData.bio}
+            onChange={handleFormChange}
+          ></input>
+        </label>
+        <br />
+        <Button variant="light" type="submit" className="mb-3">
+          Update Profile
+        </Button>
       </form>
-      <button>Delete Profile</button>
+      <Button variant="light" className="mb-3">
+        Delete Profile
+      </Button>
     </div>
   );
 }
