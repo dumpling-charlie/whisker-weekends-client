@@ -9,7 +9,6 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [hasPets, setHasPets] = useState(null);
   const navigate = useNavigate();
 
   const storeToken = (token) => {
@@ -60,19 +59,6 @@ function AuthProviderWrapper(props) {
     navigate("/")
   };
 
-  const checkForPets = (userId) => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${userId}`)
-      .then(user => {
-        if (user.pets.length > 0) {
-          setHasPets(true);
-        } else {
-          setHasPets(false);
-        }
-      })
-      .catch((error) => console.log(error));
-  }
-
   useEffect(() => {
     // Run this code once the AuthProviderWrapper component in the App loads for the first time.
     // This effect runs when the application and the AuthProviderWrapper component load for the first time.
@@ -87,9 +73,7 @@ function AuthProviderWrapper(props) {
         user,
         storeToken,
         authenticateUser,
-        logOutUser,
-        checkForPets,
-        hasPets
+        logOutUser
       }}
     >
       {props.children}

@@ -6,13 +6,13 @@ import PlaydateCard from "./LikedPlaydates";
 function LikedPlaydates() {
 
     const [playdatesList, setPlaydatesList] = useState(null);
-    const [userId, setUserId] = useState();
+    const [userId, setUserId] = useState('');
     const storedToken = localStorage.getItem('authToken');
 
     const loadPlaydates = () => { 
 
         axios
-            .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates`, { headers: {Authorization: `Bearer ${storedToken}`}})
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates/`, { headers: {Authorization: `Bearer ${storedToken}`}})
             .then((response) => {
                 const likedPlaydates = response.data.filter(
                     (playdate) => playdate.likedBy.includes(userId)
@@ -38,7 +38,6 @@ function LikedPlaydates() {
     const renderList = () => {
         return (
           <div className="row">
-            <h3>These are the playdates you've liked!</h3>
             {playdatesList.map((playdate) => (
               <div
                 key={playdate._id}
@@ -53,6 +52,7 @@ function LikedPlaydates() {
 
     return (
         <>
+        <h3>Liked Playdates:</h3>
         {playdatesList ? renderList() : <h2>still loading...</h2>}
         </>
     )

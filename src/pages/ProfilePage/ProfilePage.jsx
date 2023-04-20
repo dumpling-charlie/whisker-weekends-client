@@ -34,6 +34,7 @@ function ProfilePage() {
   
 
   return (
+    <div className="d-flex justify-content-center">
     <Card style={{ width: "18rem" }}>
       {userFromDb && (
         <Card.Img
@@ -70,6 +71,7 @@ function ProfilePage() {
         </Link>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 
