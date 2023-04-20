@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ChatHome = ({ socket }) => {
-
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
 
@@ -14,7 +13,6 @@ const ChatHome = ({ socket }) => {
     navigate("/chat/live");
   };
 
-  
   return (
     <form onSubmit={handleSubmit}>
       <h2>Find other pet parents to chat with</h2>
@@ -28,7 +26,9 @@ const ChatHome = ({ socket }) => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button type="submit" className="start-chat">Start chatting</button>
+      <button type="submit" className="start-chat">
+        Start chatting
+      </button>
     </form>
   );
 };

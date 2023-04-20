@@ -34,26 +34,71 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/profile"element={<IsPrivate>{" "}<ProfilePage />{" "} </IsPrivate>}/>
-        <Route path="/profile/edit/:userId"element={<IsPrivate>{" "}<EditProfile />{" "}</IsPrivate>} />
-        <Route path="/signup"element={<IsAnon>{" "}<SignupPage />{" "}</IsAnon>}/>
-        <Route path="/login" element={ <IsAnon>{" "} <LoginPage />{" "}</IsAnon>}/>
+        <Route
+          path="/profile"
+          element={
+            <IsPrivate>
+              {" "}
+              <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/profile/edit/:userId"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProfile />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
         <Route path="/pets/" element={<PetList />} />
         <Route path="/pets/create" element={<CreatePet />}></Route>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route path="/profile/:userId" element={<UserProfilePage/>} />
-        <Route path="/pets/edit/:petId" element={<EditPetProfilePage/>} />
+        <Route path="/profile/:userId" element={<UserProfilePage />} />
+        <Route path="/pets/edit/:petId" element={<EditPetProfilePage />} />
         <Route path="/playdates" element={<PlaydatesPage />} />
         <Route path="/playdates/create" element={<CreatePlaydatePage />} />
-        <Route path="/playdates/my-playdates" element={<MyPlaydatesPage />} /> 
+        <Route path="/playdates/my-playdates" element={<MyPlaydatesPage />} />
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
-        <Route path="/playdates/:playdateId/edit" element={<EditPlaydatePage />} />
-        <Route path="/playdates/:playdateId" element={<PlaydateDetailsPage />} />
+        <Route
+          path="/playdates/:playdateId/edit"
+          element={<EditPlaydatePage />}
+        />
+        <Route
+          path="/playdates/:playdateId"
+          element={<PlaydateDetailsPage />}
+        />
         <Route path="/friendly" element={<PetFriendlyPlaces />} />
-        <Route path="/friendly/create" element={<CreatePetFriendlyPlacePage />} />
+        <Route
+          path="/friendly/create"
+          element={<CreatePetFriendlyPlacePage />}
+        />
         <Route path="/playdates/safety" element={<PlaydateSafetyPage />} />
+        <Route path="/chat" element={<ChatHome socket={socket} />}></Route>
+        <Route path="/chat/live" element={<ChatPage socket={socket} />}>
+          {" "}
+        </Route>
+        <Route path="*" element={null} />
       </Routes>
-
     </div>
   );
 }

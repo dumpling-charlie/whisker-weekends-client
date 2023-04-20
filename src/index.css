@@ -35,7 +35,7 @@ align-items: center;
 
 /* Styles for the chat sidebar */
 .chat-bar {
-height: 80%;
+height: 100%;
 background-color: #949967;
 flex: 0.2;
 padding: 20px;
@@ -124,6 +124,31 @@ background-color: #DEC386;
 padding: 10px;
 border: none;
 outline: none;
-
 cursor: pointer;
+}
+
+.sendBtn:hover {
+  background-color: #e4c270;
+}
+
+.message-recipient {
+  background-color: #f5ccc2;
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.message-sender {
+  background-color: rgb(194, 243, 194);
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  font-size: 15px;
+}
+.message-chats > p {
+  font-size: 13px;
+}
+.sender-name {
+  text-align: right;
 }
