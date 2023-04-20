@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
@@ -180,12 +181,12 @@ function EditPlaydatePage() {
             </select>
               </label> */}
 
-          <button type="submit" disabled={!imageUrl}>
+          <Button variant="light" type="submit" disabled={!imageUrl}>
             Update
-          </button>
+          </Button>
         </form>
       )}
-      <button onClick={deletePlaydate}>Delete Playdate</button>
+      <Button onClick={deletePlaydate}>Delete Playdate</Button>
     </section>
   );
 }

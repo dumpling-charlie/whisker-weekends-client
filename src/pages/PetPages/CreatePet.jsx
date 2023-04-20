@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 function CreatePet() {
     const storedToken = localStorage.getItem('authToken');
@@ -62,43 +63,105 @@ function CreatePet() {
       return (
         <section>
           <h1>Create Pet</h1>
-          <form onSubmit={(event) => {submitForm(event, newImage)}}>
-
-            <label> Name:
-              <input type="text" name="name" value={newPet.name} onChange={(event)=>{changeHandler(event.target)}}/>
+          <form
+            onSubmit={(event) => {
+              submitForm(event, newImage);
+            }}
+          >
+            <label>
+              {" "}
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={newPet.name}
+                onChange={(event) => {
+                  changeHandler(event.target);
+                }}
+              />
             </label>
 
-            <label> Age:
-              <input type="number" name="age" value={newPet.age} onChange={(event)=>{changeHandler(event.target)}}/>
+            <label>
+              {" "}
+              Age:
+              <input
+                type="number"
+                name="age"
+                value={newPet.age}
+                onChange={(event) => {
+                  changeHandler(event.target);
+                }}
+              />
             </label>
 
-            <label>Species:
-                <select name="species" value={newPet.species} onChange={(event)=>{changeHandler(event.target)}}>
-                    <option value="">select...</option>
-                        {['cat', 'dog'].map((species) => (
-                    <option key={species} value={species}>{species}</option>
-                        ))}
-                </select>
+            <label>
+              Species:
+              <select
+                name="species"
+                value={newPet.species}
+                onChange={(event) => {
+                  changeHandler(event.target);
+                }}
+              >
+                <option value="">select...</option>
+                {["cat", "dog"].map((species) => (
+                  <option key={species} value={species}>
+                    {species}
+                  </option>
+                ))}
+              </select>
             </label>
 
-            <label> Breed:
-              <input type="text" name="breed" value={newPet.breed} onChange={(event)=>{changeHandler(event.target)}}/>
+            <label>
+              {" "}
+              Breed:
+              <input
+                type="text"
+                name="breed"
+                value={newPet.breed}
+                onChange={(event) => {
+                  changeHandler(event.target);
+                }}
+              />
             </label>
 
-            <label> Personality:
-                <select name="personality" value={newPet.personality} onChange={(event)=>{changeHandler(event.target)}}>
-                    <option value="">select...</option>
-                        {['Introvert', 'Outgoing', 'Playful', 'Protective', 'Independant', 'Affectionate'].map((personality) => (
-                    <option key={personality} value={personality}>{personality}</option>
-                        ))}
-                </select>
+            <label>
+              {" "}
+              Personality:
+              <select
+                name="personality"
+                value={newPet.personality}
+                onChange={(event) => {
+                  changeHandler(event.target);
+                }}
+              >
+                <option value="">select...</option>
+                {[
+                  "Introvert",
+                  "Outgoing",
+                  "Playful",
+                  "Protective",
+                  "Independant",
+                  "Affectionate",
+                ].map((personality) => (
+                  <option key={personality} value={personality}>
+                    {personality}
+                  </option>
+                ))}
+              </select>
             </label>
-            
+
             <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && <p>Image uploading <Spinner/></p>}
-            {newImage && <BsCheckCircle color='green'/>}
+            {uploading && (
+              <p>
+                Image uploading <Spinner />
+              </p>
+            )}
+            {newImage && <BsCheckCircle color="green" />}
 
-            <button type="submit" disabled={!newImage}>Create</button>
+            <Button variant="light" type="submit" disabled={!newImage}>
+              Create
+            </Button>
           </form>
         </section>
       );  

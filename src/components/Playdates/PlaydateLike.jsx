@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BsHeartFill } from "react-icons/bs";
 import { BsHeart } from "react-icons/bs";
 import { AuthContext } from '../../context/auth.context';
+import Button from "react-bootstrap/Button";
 
 function PlaydateLike({ playdate }) {
 
@@ -40,9 +41,9 @@ function PlaydateLike({ playdate }) {
 
     return(
         <div>
-            <button onClick={handleLike}>
+            <Button onClick={handleLike}>
                 {hasLiked ? <BsHeartFill/> : <BsHeart/>} {likes}
-            </button>
+            </Button>
         </div>
     )
 }

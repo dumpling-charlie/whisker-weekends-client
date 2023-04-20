@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
 
 function CreatePetFriendlyPlacePage() {
   const [name, setName] = useState("");
@@ -83,7 +85,9 @@ function CreatePetFriendlyPlacePage() {
           />
         </div>
 
-        <button type="submit">Create</button>
+        <Button variant="light" type="submit">
+          Create
+        </Button>
       </form>
     </div>
   );

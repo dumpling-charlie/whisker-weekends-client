@@ -185,7 +185,7 @@ function CreatePlaydatePage() {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Button type="submit" disabled={!imageUrl}>
+          <Button variant="light" type="submit" disabled={!imageUrl}>
             Create
           </Button>
         </Card.Body>

@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
+import Button from "react-bootstrap/Button";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -60,7 +61,9 @@ function LoginPage() {
           onChange={handlePassword}
         />
 
-        <button type="submit">Login</button>
+        <Button variant="light" type="submit">
+          Login
+        </Button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 

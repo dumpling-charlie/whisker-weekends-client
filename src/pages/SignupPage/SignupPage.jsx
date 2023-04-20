@@ -2,6 +2,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import Button from "react-bootstrap/Button";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -66,16 +67,11 @@ function SignupPage() {
         />
 
         <label>Bio:</label>
-          <input
-            type="textarea"
-            name="bio"
-            value={bio}
-            onChange={handleBio}
-        />
+        <input type="textarea" name="bio" value={bio} onChange={handleBio} />
 
-        <button type="submit">
+        <Button variant="light" type="submit">
           submit
-        </button>
+        </Button>
       </form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}

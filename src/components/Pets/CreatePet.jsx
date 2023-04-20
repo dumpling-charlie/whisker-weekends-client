@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
 
 function CreatePet() {
   const storedToken = localStorage.getItem("authToken");
@@ -164,9 +165,9 @@ function CreatePet() {
         )}
         {newImage && <BsCheckCircle color="green" />}
 
-        <button type="submit" disabled={!newImage}>
+        <Button variant="light" type="submit" disabled={!newImage}>
           Create
-        </button>
+        </Button>
       </form>
     </section>
   );

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import PlaydateLike from "../../components/Playdates/PlaydateLike";
 import { AuthContext } from "../../context/auth.context";
 import playdateServices from "../../services/playdate.service";
+import Button from "react-bootstrap/Button";
 
 function PlaydatesDetailsPage() {
   const [playdate, setPlaydate] = useState(null);
@@ -50,12 +51,12 @@ function PlaydatesDetailsPage() {
       )}
 
       <Link to="/playdates">
-        <button>Back to playdates</button>
+        <Button variant="light">Back to playdates</Button>
       </Link>
 
       {canEdit && (
         <Link to={`/playdates/${playdateId}/edit`}>
-          <button>Edit Playdate</button>
+          <Button variant="light" >Edit Playdate</Button>
         </Link>
       )}
 
