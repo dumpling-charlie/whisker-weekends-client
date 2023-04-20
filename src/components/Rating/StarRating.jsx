@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 
-function StarRating({ addRating }) {
+function StarRating({ onAddRating }) {
   const [rating, setRating] = useState(0);
-  const stars = Array(5).fill(0);
+  const maxRating = 5;
 
   const handleClick = (value) => {
     setRating(value);
-    addRating(value);
+    onAddRating(value);
   };
+
+  const renderStars =() => {
+    const stars = [];
+
+    for (let i = 1; i <= maxRating; i++) {
+      const filled = i <= rating;
+    stars.push(
+      <span key={i} onClick={() => handleClick(i)}>
+        {filled ? "★" : "☆"}
+      </span>
+    )    }
+  }
 
   return (
     <>
-      {stars.map((star, index) => (
-        <span onClick={() => handleClick(index + 1)}>
-          {index < rating ? "★" : "☆"}
-        </span>
-      ))}
+      <p>Been here? Rate it:</p>
+      {renderStars()}
     </>
   );
 }

@@ -16,8 +16,8 @@ function PetFriendlyCard({ _id, name, details, location }) {
             <Card.Title>{name}</Card.Title>
             <Card.Text>{details}</Card.Text>
             <Card.Text>{location}</Card.Text>
-            <Card.Text>Been here? Rate it:<StarRating  addRating={addRating} /></Card.Text>
-            <Card.Text>Average rating:<RatingSummary ratings={ratings} /></Card.Text>
+            <Card.Text><StarRating  addRating={addRating} /></Card.Text>
+            <Card.Text><RatingSummary ratings={ratings} /></Card.Text>
           </Card.Body>
         </Card>
   );
