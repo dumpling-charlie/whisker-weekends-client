@@ -25,7 +25,7 @@ const handleSendMessage = (e) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button onClick={handleSendMessage} className="sendBtn">SEND</button>
+        <button onClick={handleSendMessage} className="sendBtn">Send</button>
       </form>
     </div>
   );

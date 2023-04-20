@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 function PetProfilePage() {
     const [pet, setPet] = useState(null);
@@ -38,7 +39,7 @@ function PetProfilePage() {
              />
              <Card.Body>
                <Card.Title>{pet.name}</Card.Title>
-               <Card.Text>{pet.age}</Card.Text>
+               <Card.Text>{pet.age} years old</Card.Text>
              </Card.Body>
              <ListGroup className="list-group-flush">
                <ListGroup.Item>species: {pet.species}</ListGroup.Item>
@@ -46,10 +47,9 @@ function PetProfilePage() {
                <ListGroup.Item>personality: {pet.personality}</ListGroup.Item>
              </ListGroup>
              <Card.Body>
-               <Card.Link href="#">Card Link</Card.Link>
                {canEdit && (
                  <Card.Link to={`/pets/edit/${pet._id}`}>
-                   Edit Profile
+                   <Button variant="light">Edit Profile</Button>
                  </Card.Link>
                )}
              </Card.Body>
