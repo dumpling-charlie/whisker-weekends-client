@@ -5,9 +5,7 @@ import playdateServices from "../../services/playdate.service";
 import jwtDecode from "jwt-decode";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import { Button } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -93,15 +91,16 @@ function CreatePlaydatePage() {
   };
 
   return (
-    <Card>
+    <div className="d-flex justify-content-center">
+    <Card style={{ width: '50rem', backgroundColor: '#A8D0E6' }}>
       <Card.Body>
-        <Card.Title>Create a playdate</Card.Title>
+      <h3 style={{ color: '#374785' }}>Organize a Playdate</h3>
       </Card.Body>
-      <form onSubmit={handleSubmit}>
-        <ListGroup className="list-group-flush">
-          <ListGroup.Item>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>
             Title <br />
-            <input
+            <Form.Control
               type="text"
               name="title"
               value={title}
@@ -110,10 +109,14 @@ function CreatePlaydatePage() {
               }}
               required
             />
-          </ListGroup.Item>
-          <ListGroup.Item>
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>
             Details <br />
-            <textarea
+            <Form.Control
+              as="textarea"
+              rows={5}
               name="description"
               value={description}
               onChange={(e) => {
@@ -121,76 +124,85 @@ function CreatePlaydatePage() {
               }}
               required
             />
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Location <br />
-            <input
-              type="text"
-              name="location"
-              value={location}
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-              required
-            />
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Date & Time <br />
-            <input
-              type="date"
-              name="date"
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-              required
-            />
-            <input
-              type="time"
-              name="time"
-              value={time}
-              onChange={(e) => {
-                setTime(e.target.value);
-              }}
-              required
-            />
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Image
-            <br />
-            <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && (
-              <>
-                Image uploading <Spinner />
-              </>
-            )}
-            {imageUrl && <BsCheckCircle color="green" />}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            Pets present
-            <br />
-            <select
-              name="pets"
-              multiple
-              value={pets}
-              onChange={handlePetSelect}
-            >
-              {userPets &&
-                userPets.map((pet) => (
-                  <option key={pet._id} value={JSON.stringify(pet)}>
-                    {pet.name}
-                  </option>
-                ))}
-            </select>
-          </ListGroup.Item>
-        </ListGroup>
+          </Form.Label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>
+          Location <br />
+          <Form.Control
+            type="text"
+            name="location"
+            value={location}
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+            required
+          />
+        </Form.Label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>
+          Date & Time <br />
+          <Form.Control
+            type="date"
+            name="date"
+            value={date}
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            required
+          />
+        </Form.Label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>
+          <Form.Control
+            type="time"
+            name="time"
+            value={time}
+            onChange={(e) => {
+              setTime(e.target.value);
+            }}
+            required
+          />
+        </Form.Label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>
+          Image
+          <br />
+          <Form.Control type="file" onChange={(e) => handleFileUpload(e)} />
+          {uploading && (
+            <>
+              Image uploading <Spinner />
+            </>
+          )}
+          {imageUrl && <BsCheckCircle color="green" />}
+        </Form.Label>
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>
+          Pets present
+          <br />
+          <select name="pets" multiple value={pets} onChange={handlePetSelect}>
+            {userPets &&
+              userPets.map((pet) => (
+                <option key={pet._id} value={JSON.stringify(pet)}>
+                  {pet.name}
+                </option>
+              ))}
+          </select>
+        </Form.Label>
+        </Form.Group>
+
         <Card.Body>
-          <Button variant="light" type="submit" disabled={!imageUrl}>
+          <Button variant="light" type="submit" disabled={!imageUrl} style={{ backgroundColor: '#F76C6C' }}>
             Create
           </Button>
         </Card.Body>
-      </form>
+      </Form>
     </Card>
+    </div>
   );
 }
 

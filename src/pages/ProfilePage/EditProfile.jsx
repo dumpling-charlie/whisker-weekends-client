@@ -4,10 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { Image } from "react-bootstrap";
 import "./EditProfile.css";
+import {Card, Image, Button, Form} from 'react-bootstrap';
 
 function EditProfile(props) {
   const storedToken = localStorage.getItem("authToken");
@@ -98,10 +96,11 @@ function EditProfile(props) {
   }, [user._id]);
 
   return (
-    <div>
+    <div className="d-flex justify-content-center">
+    <Card style={{ width: '40rem', backgroundColor: '#A8D0E6' }}>
       <h2 className="mt-3">Edit Account Details</h2>
       <Form onSubmit={handleFormSubmit}>
-        <Form.Group className="mb-1 mt-5">
+        <Form.Group className="mt-3">
           <Form.Label>
             {" "}
             <Image
@@ -152,7 +151,9 @@ function EditProfile(props) {
             {" "}
             Bio:
             <Form.Control
-              type="textarea"
+              as="textarea"
+              rows={2}
+              maxLength={100}
               name="bio"
               value={formData.bio}
               onChange={handleFormChange}
@@ -160,10 +161,11 @@ function EditProfile(props) {
           </Form.Label>
         </Form.Group>
         <br />
-        <Button variant="light" type="submit" className="mb-3">
+        <Button variant="light" type="submit" className="mb-3" style={{ backgroundColor: '#F76C6C' }}>
           Update Profile
         </Button>
       </Form>
+    </Card>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
+import {Button, Card, Form} from "react-bootstrap";
 
 function CreatePet() {
   const storedToken = localStorage.getItem("authToken");
@@ -67,17 +67,15 @@ function CreatePet() {
   };
 
   return (
-    <section>
-      <h1>Create Pet</h1>
-      <form
-        onSubmit={(event) => {
-          submitForm(event, newImage);
-        }}
-      >
-        <label>
+    <section className="d-flex justify-content-center">
+      <Card style={{ width: '40rem', backgroundColor: '#A8D0E6' }}>
+      <h1 className="mt-3" style={{ color: '#374785' }}>Create Pet</h1>
+      <Form onSubmit={(event) => {submitForm(event, newImage)}} className='mb-3'>
+      <Form.Group>
+          <Form.Label>
           {" "}
           Name:
-          <input
+          <Form.Control
             type="text"
             name="name"
             value={newPet.name}
@@ -85,12 +83,14 @@ function CreatePet() {
               changeHandler(event.target);
             }}
           />
-        </label>
+        </Form.Label>
+        </Form.Group>
 
-        <label>
+        <Form.Group>
+          <Form.Label>
           {" "}
           Age:
-          <input
+          <Form.Control
             type="number"
             name="age"
             value={newPet.age}
@@ -98,11 +98,14 @@ function CreatePet() {
               changeHandler(event.target);
             }}
           />
-        </label>
+        </Form.Label>
+        </Form.Group>
 
-        <label>
+        <Form.Group>
+          <Form.Label>
           Species:
-          <select
+          <Form.Control
+            as="select"
             name="species"
             value={newPet.species}
             onChange={(event) => {
@@ -115,13 +118,15 @@ function CreatePet() {
                 {species}
               </option>
             ))}
-          </select>
-        </label>
+          </Form.Control>
+          </Form.Label>
+        </Form.Group>
 
-        <label>
+        <Form.Group>
+          <Form.Label>
           {" "}
           Breed:
-          <input
+          <Form.Control
             type="text"
             name="breed"
             value={newPet.breed}
@@ -129,12 +134,15 @@ function CreatePet() {
               changeHandler(event.target);
             }}
           />
-        </label>
+        </Form.Label>
+        </Form.Group>
 
-        <label>
+        <Form.Group>
+          <Form.Label>
           {" "}
           Personality:
-          <select
+          <Form.Control
+          as="select"
             name="personality"
             value={newPet.personality}
             onChange={(event) => {
@@ -154,21 +162,27 @@ function CreatePet() {
                 {personality}
               </option>
             ))}
-          </select>
-        </label>
+          </Form.Control>
+          </Form.Label>
+        </Form.Group>
 
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
+        <Form.Group>
+          <Form.Label>
+        <Form.Control type="file" onChange={(e) => handleFileUpload(e)} />
         {uploading && (
           <p>
             Image uploading <Spinner />
           </p>
         )}
         {newImage && <BsCheckCircle color="green" />}
+        </Form.Label>
+        </Form.Group>
 
-        <Button variant="light" type="submit" disabled={!newImage}>
+        <Button variant="light" type="submit" disabled={!newImage} style={{ backgroundColor: '#F76C6C' }}>
           Create
         </Button>
-      </form>
+      </Form>
+      </Card>
     </section>
   );
 }

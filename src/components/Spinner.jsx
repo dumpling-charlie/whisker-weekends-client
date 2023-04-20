@@ -10,7 +10,7 @@ const override = {
 function Spinner() {
     return (
         <div>
-            <BeatLoader css={override} />
+            <BeatLoader css={override} color="#F76C6C" />
         </div>
     )
 }

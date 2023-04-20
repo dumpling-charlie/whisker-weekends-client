@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
-import Button from "react-bootstrap/Button";
+import { Button, Form, Card } from "react-bootstrap";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -21,13 +21,6 @@ function LoginPage() {
     e.preventDefault();
     const requestBody = { email, password };
 
-    // Send a request to the server using axios
-    /* 
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
-      .then((response) => {})
-    */
-
-    // Or using a service
     authService
       .login(requestBody)
       .then((response) => {
@@ -46,29 +39,43 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div className="d-flex justify-content-center">
+      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6" }}>
+        <h1 className="mt-3" style={{ color: '#374785' }}>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <Button variant="light" type="submit">
-          Login
-        </Button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+        <Form onSubmit={handleLoginSubmit} className="mt-3">
+          <Form.Group>
+            <Form.Label>
+              Email:
+              <Form.Control
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Password:
+              <Form.Control
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </Form.Label>
+          </Form.Group>
+          <Button variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
+            Login
+          </Button>
+        </Form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+    <div className="mt-3 mb-3">
+        <p>Don't have an account yet?</p>
+        <Link to={"/signup"}> Sign Up</Link>
+        </div>
+      </Card>
     </div>
   );
 }
