@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 import { Button, Card, Form } from "react-bootstrap";
-import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -42,10 +41,10 @@ function CreatePlaydatePage() {
 
   // handle pet multi select
   const handlePetSelect = (event) => {
-    const selectedPets = Array.from(event.target.selectedOptions, (option) =>
-      JSON.parse(option.value)
+    const selectedOptions = Array.from(event.target.selectedOptions).map(
+      (option) => JSON.parse(option.value)
     );
-    setPets(selectedPets);
+    setPets(selectedOptions);
   };
 
   // ******** this method handles the file upload ********

@@ -9,7 +9,7 @@ function UserProfilePage() {
 
     const getUserDetails = () => {
         axios
-            .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${userId}`, { Authorization: `Bearer ${storedToken}`})
+            .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${userId}`, { headers: { Authorization: `Bearer ${storedToken}` }})
             .then(response => {
                 setUser(response.data);
             })
@@ -23,7 +23,10 @@ function UserProfilePage() {
     const renderUserDetails = () => {
         return (
             <div>
+                <img src={user.imageUrl} alt="profile img"/>
                 <h1>{user.name}</h1>
+                <p>{user.location}</p>
+                <p>{user.bio}</p>
             </div>
           )
     }
