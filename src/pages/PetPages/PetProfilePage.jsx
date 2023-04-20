@@ -29,33 +29,37 @@ function PetProfilePage() {
 
    const canEdit = pet && user && ownerId === user._id;
 
+
     const renderPetDetails = () => {
-         return (
-           <Card style={{ width: "18rem" }}>
-             <Card.Img
-               variant="top"
-               src={pet.imageUrl}
-               style={{ objectFit: "cover", aspectRatio: "1/1" }}
-             />
-             <Card.Body>
-               <Card.Title>{pet.name}</Card.Title>
-               <Card.Text>{pet.age} years old</Card.Text>
-             </Card.Body>
-             <ListGroup className="list-group-flush">
-               <ListGroup.Item>species: {pet.species}</ListGroup.Item>
-               <ListGroup.Item>breed: {pet.breed}</ListGroup.Item>
-               <ListGroup.Item>personality: {pet.personality}</ListGroup.Item>
-             </ListGroup>
-             <Card.Body>
-               {canEdit && (
-                 <Link to={`/pets/edit/${pet._id}`}>
-                   <Button variant="light">Edit Profile</Button>
-                 </Link>
-               )}
-             </Card.Body>
-           </Card>
-         );
-}
+        const handleImgLoadingError = (e) => {
+          e.target.src = "/images/animal-default.jpg";}
+          return (
+            <Card style={{ width: "18rem" }}>
+              <Card.Img
+                variant="top"
+                src={pet.imageUrl}
+                style={{ objectFit: "cover", aspectRatio: "1/1" }}
+                onError={(e) => handleImgLoadingError(e)}
+              />
+              <Card.Body>
+                <Card.Title>{pet.name}</Card.Title>
+                <Card.Text>{pet.age} years old</Card.Text>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item>species: {pet.species}</ListGroup.Item>
+                <ListGroup.Item>breed: {pet.breed}</ListGroup.Item>
+                <ListGroup.Item>personality: {pet.personality}</ListGroup.Item>
+              </ListGroup>
+              <Card.Body>
+                {canEdit && (
+                  <Link to={`/pets/edit/${pet._id}`}>
+                    <Button variant="light">Edit Profile</Button>
+                  </Link>
+                )}
+              </Card.Body>
+            </Card>
+          );
+        };
 
 
     return (

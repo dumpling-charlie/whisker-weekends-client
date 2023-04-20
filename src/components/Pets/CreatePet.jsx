@@ -178,7 +178,7 @@ function CreatePet() {
         </Form.Label>
         </Form.Group>
 
-        <Button variant="light" type="submit" disabled={!newImage} style={{ backgroundColor: '#F76C6C' }}>
+        <Button variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
           Create
         </Button>
       </Form>

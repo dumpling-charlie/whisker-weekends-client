@@ -27,6 +27,10 @@ function ProfilePage() {
   useEffect(() => {
     getUserDetails();
   }, [user._id])
+
+  const handleImgLoadingError = (e) => {
+    e.target.src = "/images/default-image.jpg";
+  };
   
 
   return (
@@ -37,6 +41,7 @@ function ProfilePage() {
           src={userFromDb.imageUrl}
           alt={userFromDb.name}
           width="200"
+          onError={(e) => handleImgLoadingError(e)}
         />
       )}
       <Card.Body>

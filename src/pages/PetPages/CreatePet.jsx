@@ -60,6 +60,7 @@ function CreatePet() {
           .catch((err) => console.error(err));
       }
     
+      
       return (
         <section>
           <h1>Create Pet</h1>
@@ -159,7 +160,7 @@ function CreatePet() {
             )}
             {newImage && <BsCheckCircle color="green" />}
 
-            <Button variant="light" type="submit" disabled={!newImage}>
+            <Button type="submit">
               Create
             </Button>
           </form>
