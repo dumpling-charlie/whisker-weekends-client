@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
-    <div>
+    <div className="home-page">
       <Carousel className="carousel">
         <Carousel.Item>
           <img
@@ -13,7 +13,9 @@ function HomePage() {
             alt="First slide"
           />
           <Carousel.Caption>
-           <Link to="/api/playdates/" className="link-text"><h3>Discover and create playdates near you</h3></Link> 
+            <Link to="/api/playdates/" className="link-text">
+              <h3>Discover and create playdates near you</h3>
+            </Link>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -25,7 +27,9 @@ function HomePage() {
           />
 
           <Carousel.Caption>
-            <Link to="/api/petfriendly" className="link-text"><h3>Discover pet-friendly locations</h3></Link>
+            <Link to="/api/petfriendly" className="link-text">
+              <h3>Discover pet-friendly locations</h3>
+            </Link>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -37,7 +41,11 @@ function HomePage() {
           />
 
           <Carousel.Caption>
-            <Link to="/signup" className="link-text"><h3>Create an account today and find a play mate for your best mate</h3></Link>
+            <Link to="/signup" className="link-text">
+              <h3>
+                Create an account today and find a play mate for your best mate
+              </h3>
+            </Link>
             <p>
               Praesent commodo cursus magna, vel scelerisque nisl consectetur.
             </p>

@@ -28,3 +28,9 @@
   color: white;
   text-decoration: none;
 }
+
+.home-page {
+  height: auto; /* adjust this value to fit the content */
+  margin: 0;
+  padding: 0;
+}

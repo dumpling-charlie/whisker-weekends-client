@@ -8,5 +8,6 @@ button {
 }
 
 .innerApp {
-  margin: 20px
+   min-height: calc(100vh - 50px); /* set the height to the viewport height minus the height of the footer */
+
 }
