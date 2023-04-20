@@ -23,14 +23,22 @@
   background-color: #F76C6C;
   width: 100%;
   margin: 0;
+  
 }
+
+h2 {
+  color: #374785;
+  font-weight: bold;
+}
+
 .link-text {
   color: white;
   text-decoration: none;
 }
 
 .home-page {
-  height: 100vh; /* adjust this value to fit the content */
+  height: 100vh;
   overflow: scroll;
   position: fixed;
+  background-color: #374785;
 }

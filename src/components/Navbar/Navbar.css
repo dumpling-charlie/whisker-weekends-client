@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
 .navbar {
-    background-color: #374785;
+    background-color: #24305E;
       position: sticky;
   top: 0;
   z-index: 1;
@@ -14,4 +14,12 @@
 
 .drop-account {
   background-color: #F76C6C;
+}
+
+.nav-link {
+  color: white;
+}
+
+#dropdown-basic {
+  color: white;
 }

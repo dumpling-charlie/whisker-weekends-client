@@ -4,6 +4,7 @@ import PlaydateCard from "../../components/Playdates/PlaydateCard/PlaydateCard";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import Button from "react-bootstrap/Button";
+import "./Playdates.css"
 
 function PlaydatesPage() {
   const [playdates, setPlaydates] = useState([]);
@@ -34,16 +35,16 @@ function PlaydatesPage() {
         ))}
         <div>
           {isAuthenticated ? (
-            <Link to="/playdates/create"><Button variant="light">
+            <Link to="/playdates/create"><Button className="Button">
               Add playdate
             </Button></Link>
           ) : (
-            <Link to="/playdates/create"><Button variant="light" disabled>
+            <Link to="/playdates/create"><Button className="Button" disabled>
               Add playdate
             </Button></Link>
           )}
           <div>
-            <Link to="/playdates/safety">Safety</Link>
+            <Link to="/playdates/safety" className="link">Safety</Link>
           </div>
         </div>
       </div>

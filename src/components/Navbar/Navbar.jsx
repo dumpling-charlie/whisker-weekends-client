@@ -16,7 +16,7 @@ return (
       <Link to="/">
         <img
           className="navbar-brand"
-          src="/images/logo.jpg"
+          src="/images/logo.png"
           alt="Whisker Weekends"
         />
       </Link>
@@ -31,9 +31,9 @@ return (
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li>
+      <div className="nav-item collapse navbar-collapse" id="navbarNav">
+        <ul className=" navbar-nav me-auto mb-2 mb-lg-0">
+          <li >
             <PlaydatesDropdown />
           </li>
 

@@ -1,3 +1,5 @@
+import "./Playdates.css"
+
 function PlaydateSafetyPage(){
 return(
 <div className="container">
