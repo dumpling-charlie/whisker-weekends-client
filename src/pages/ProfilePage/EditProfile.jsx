@@ -1,44 +1,68 @@
-import React, { useState, useContext } from "react";
-import { AuthContext } from "../../context/auth.context"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/auth.context";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../../components/Spinner";
+import { BsCheckCircle } from "react-icons/bs";
 
-function EditProfile() {
-  const { user, isLoading, authenticateUser } = useContext(AuthContext);
+function EditProfile(props) {
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const { user } = useContext(AuthContext);
+  const storedToken = localStorage.getItem("authToken");
+  const navigate = useNavigate();
 
-  const [updatedUser, setUpdatedUser] = useState({
-    name: '',
-    email: '',
-    location: ''
-  })
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+    setIsLoading(true);
 
-  const changeHandler = (target) => {
-    setUpdatedUser((prevState)=>{
-      return {...prevState, [target.name] : target.value}
-    })
-  }
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, uploadData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setImageUrl(response.data.fileUrl);
+      })
+      .catch((err) => {
+        setErrorMessage(err.response.data.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
 
-  const submitForm = (event) => {
-    event.preventDefault()
-    
-    .then((response) => {
-      setUpdatedUser(response.data);
-      console.log(response);
-    })
-    .catch((error) => console.log(error));
-  }
-  
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (!imageUrl) {
+      setErrorMessage("You need to select a profile image!");
+    } else if (!isLoading) {
+      axios
+        .put(`${process.env.REACT_APP_SERVER_URL}/api/profile/${user._id}`, imageUrl, { headers: {Authorization: `Bearer ${storedToken}`}})
+        .then((response) => {
+          navigate("/profile");
+          //props.callbackToUpdateUser();
+        })
+        .catch((err) => {
+          setErrorMessage(err.response.data.message);
+        });
+    } else {
+      setErrorMessage("The image is loading. Please wait and try again!");
+    }
+  };
+
   return (
     <div>
       <h2>Edit your account</h2>
-      <form onSubmit={submitForm}>
-        <label> Name:
-          <input type="text" name="name" value={updatedUser.name} onChange={(event)=>{changeHandler(event.target)}}></input>
-        </label>
-        <label> Email:
-          <input type="text" name="email" value={updatedUser.email} onChange={(event)=>{changeHandler(event.target)}}></input>
-        </label>
-        <label> Location:
+      <form onSubmit={handleFormSubmit}>
+
+        <input type="file" onChange={(e) => handleFileUpload(e)} />
+            {isLoading && <p>Image uploading <Spinner/></p>}
+            {imageUrl && <BsCheckCircle color='green'/>} 
+      
+        {/* <label> Location:
           <input type="text" name="location" value={updatedUser.location } onChange={(event)=>{changeHandler(event.target)}}></input>
-        </label>
+        </label> */}
 
         <button type="submit">Update Profile</button>
       </form>
