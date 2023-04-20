@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 
 function HomePage() {
   return (
@@ -81,6 +82,7 @@ function HomePage() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
