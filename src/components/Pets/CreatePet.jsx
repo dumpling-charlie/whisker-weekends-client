@@ -146,7 +146,7 @@ function CreatePet() {
               "Outgoing",
               "Playful",
               "Protective",
-              "Independant",
+              "Independent",
               "Affectionate",
             ].map((personality) => (
               <option key={personality} value={personality}>

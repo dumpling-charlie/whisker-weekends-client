@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
+import Button from "react-bootstrap/Button";
+
 
 function EditPetProfilePage() {
   const storedToken = localStorage.getItem("authToken");
@@ -133,7 +135,9 @@ function EditPetProfilePage() {
               onChange={handleFormChange}
             >
               <option value="">select...</option>
-              {["introvert", "outgoing", "playful"].map((personality) => (
+              {[
+                'Introvert', 'Outgoing', 'Playful', 'Protective', 'Independent', 'Affectionate',
+              ].map((personality) => (
                 <option key={personality} value={personality}>
                   {personality}
                 </option>
@@ -144,7 +148,11 @@ function EditPetProfilePage() {
           <label>
             {" "}
             Image:
-            <img src={newImageFile || imageUrl} alt="current pet image" />
+            <img
+              src={newImageFile || imageUrl}
+              alt="current pet image"
+              Style="max-width: 150px; max-height: 150px"
+            />
             <input type="file" onChange={(e) => handleFileUpload(e)} />
             {uploading && (
               <p>
@@ -155,10 +163,14 @@ function EditPetProfilePage() {
             {newImageFile && <BsCheckCircle color="green" />}
           </label>
 
-          <button type="submit">Update</button>
+          <Button variant="light" type="submit">
+            Update
+          </Button>
         </form>
       )}
-      <button onClick={deletePet}>Delete Profile</button>
+      <Button variant="light" onClick={deletePet}>
+        Delete Profile
+      </Button>
     </section>
   );
 }
