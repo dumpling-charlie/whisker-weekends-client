@@ -58,7 +58,7 @@ function ProfilePage() {
         {userFromDb && <ListGroup.Item>{userFromDb.bio}</ListGroup.Item>}
       </ListGroup>
       <Card.Body>
-        <Link to={`/profile/edit/${user._id}`}>
+        <Link to={`/profile/edit/${user._id}`} >
           <Button className="m-1" variant="light">
             Edit
           </Button>
