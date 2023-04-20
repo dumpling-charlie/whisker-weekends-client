@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PetFriendlyCard from "../../components/PetFriendly/PetFriendlyCard";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 
 function PetFriendlyPlaces() {
   const [petFriendlyPlaces, setPetFriendlyPlaces] = useState([]);
+    const userId = localStorage.getItem("authToken");
+  const isAuthenticated = !!userId;
 
   const getAllPlaces = () => {
     axios
@@ -24,11 +27,16 @@ function PetFriendlyPlaces() {
       {petFriendlyPlaces.map((petfriendly) => (
         <PetFriendlyCard {...petfriendly} />
       ))}
-    
       <div>
-        <button>
-          <Link to="/friendly/create">Add pet-friendly place</Link>
-        </button>
+        {isAuthenticated ? (
+          <Button size="sm" variant="light">
+            <Link to="/friendly/create">Add petfriendly place</Link>
+          </Button>
+        ) : (
+          <Button size="sm" variant="light" disabled>
+            <Link to="/playdates/create">Add petfriendly place</Link>
+          </Button>
+        )}
       </div>
     </div>
   );

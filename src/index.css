@@ -1,3 +1,128 @@
-body {
-  margin: 0;
+/* Global styles */
+
+*{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+/* Styles for the username element */
+.username {
+padding: 10px;
+width: 40%;
+}
+
+/* Styles for the call-to-action button on the home page */
+.start-chat {
+width: 150px;
+padding: 10px;
+font-size: 16px;
+cursor: pointer;
+background-color: #DEC386;
+color: #f9f5eb;
+outline: none;
+border: none;
+border-radius: 5px;
+}
+
+/* Styles for the chat page */
+.chat {
+width: 100%;
+height: 100vh;
+display: flex;
+align-items: center;
+}
+
+/* Styles for the chat sidebar */
+.chat-bar {
+height: 80%;
+background-color: #949967;
+flex: 0.2;
+padding: 20px;
+}
+
+/* Styles for the main chat area */
+.chat-main {
+height: 100%;
+flex: 0.8;
+}
+
+/* Styles for the list of online users */
+.online__users > * {
+margin-bottom: 10px;
+color: rgb(238, 102, 102);
+font-style: italic;
+}
+
+/* Styles for the main header in the chat area */
+.chat-mainHeader {
+width: 100%;
+height: 10vh;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px;
+background-color: #ABAEA3;
+}
+
+/* Styles for the leave chat button */
+.leaveChat {
+padding: 10px;
+width: 150px;
+border: none;
+outline: none;
+background-color: #d1512d;
+cursor: pointer;
+color: #eae3d2;
+border-radius: 5px;
+}
+
+/* Styles for the message container */
+.message-container {
+width: 100%;
+height: 80vh;
+background-color: #fff;
+padding: 20px;
+overflow-y: scroll;
+}
+
+/* Styles for each message in the message container */
+.message-container > * {
+margin-bottom: 10px;
+}
+
+/* Styles for the chat footer */
+.chat-footer {
+padding: 10px;
+background-color: #f9f5eb;
+height: 10vh;
+}
+
+/* Styles for the chat message input form */
+.form {
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+/* Styles for the message input field */
+.message {
+width: 80%;
+height: 100%;
+border-radius: 10px;
+border: 1px solid #ddd;
+outline: none;
+padding: 15px;
+}
+
+/* Styles for the send button */
+.sendBtn {
+width: 150px;
+background-color: #DEC386;
+padding: 10px;
+border: none;
+outline: none;
+
+cursor: pointer;
 }

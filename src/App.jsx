@@ -23,6 +23,10 @@ import PlaydateLike from "./components/Playdates/PlaydateLike";
 import PetFriendlyPlaces from "./pages/PetFriendly/PetFriendlyPlaces";
 import CreatePetFriendlyPlacePage from "./components/PetFriendly/CreatePetFriendlyPlace";
 import PlaydateSafetyPage from "./pages/Playdates/PlaydateSafetyPage";
+import ChatHome from "./components/Chat/ChatHome"
+import ChatPage from "./components/Chat/ChatPage";
+import socketIO from "socket.io-client";
+const socket = socketIO.connect("http://localhost:5005");
 
 function App() {
   return (
@@ -95,7 +99,9 @@ function App() {
             element={<CreatePetFriendlyPlacePage />}
           />
           <Route path="/playdates/safety" element={<PlaydateSafetyPage />} />
-          <Route path="*" element={null}/>
+          <Route path="/chat" element={<ChatHome socket={socket} />}></Route>
+          <Route path="/chat/live" element={<ChatPage socket={socket} />}> </Route>
+          <Route path="*" element={null} />
         </Routes>
       </div>
     </div>
