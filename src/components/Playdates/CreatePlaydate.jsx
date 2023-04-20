@@ -6,6 +6,7 @@ import jwtDecode from "jwt-decode";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 import { Button, Card, Form } from "react-bootstrap";
+import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");
@@ -92,116 +93,130 @@ function CreatePlaydatePage() {
 
   return (
     <div className="d-flex justify-content-center">
-    <Card style={{ width: '50rem', backgroundColor: '#A8D0E6' }}>
-      <Card.Body>
-      <h3 style={{ color: '#374785' }}>Organize a Playdate</h3>
-      </Card.Body>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>
-            Title <br />
-            <Form.Control
-              type="text"
-              name="title"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              required
-            />
-          </Form.Label>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            Details <br />
-            <Form.Control
-              as="textarea"
-              rows={5}
-              name="description"
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-              required
-            />
-          </Form.Label>
-        </Form.Group>
-        <Form.Group>
-        <Form.Label>
-          Location <br />
-          <Form.Control
-            type="text"
-            name="location"
-            value={location}
-            onChange={(e) => {
-              setLocation(e.target.value);
-            }}
-            required
-          />
-        </Form.Label>
-        </Form.Group>
-        <Form.Group>
-        <Form.Label>
-          Date & Time <br />
-          <Form.Control
-            type="date"
-            name="date"
-            value={date}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-            required
-          />
-        </Form.Label>
-        </Form.Group>
-        <Form.Group>
-        <Form.Label>
-          <Form.Control
-            type="time"
-            name="time"
-            value={time}
-            onChange={(e) => {
-              setTime(e.target.value);
-            }}
-            required
-          />
-        </Form.Label>
-        </Form.Group>
-        <Form.Group>
-        <Form.Label>
-          Image
-          <br />
-          <Form.Control type="file" onChange={(e) => handleFileUpload(e)} />
-          {uploading && (
-            <>
-              Image uploading <Spinner />
-            </>
-          )}
-          {imageUrl && <BsCheckCircle color="green" />}
-        </Form.Label>
-        </Form.Group>
-        <Form.Group>
-        <Form.Label>
-          Pets present
-          <br />
-          <select name="pets" multiple value={pets} onChange={handlePetSelect}>
-            {userPets &&
-              userPets.map((pet) => (
-                <option key={pet._id} value={JSON.stringify(pet)}>
-                  {pet.name}
-                </option>
-              ))}
-          </select>
-        </Form.Label>
-        </Form.Group>
-
+      <Card style={{ width: "50rem", backgroundColor: "#A8D0E6" }}>
         <Card.Body>
-          <Button variant="light" type="submit" disabled={!imageUrl} style={{ backgroundColor: '#F76C6C' }}>
-            Create
-          </Button>
+          <h3 style={{ color: "#374785" }}>Organize a Playdate</h3>
         </Card.Body>
-      </Form>
-    </Card>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>
+              Title <br />
+              <Form.Control
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                required
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Details <br />
+              <Form.Control
+                as="textarea"
+                rows={5}
+                name="description"
+                value={description}
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                required
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Location <br />
+              <Form.Control
+                type="text"
+                name="location"
+                value={location}
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
+                required
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Date & Time <br />
+              <Form.Control
+                type="date"
+                name="date"
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+                required
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              <Form.Control
+                type="time"
+                name="time"
+                value={time}
+                onChange={(e) => {
+                  setTime(e.target.value);
+                }}
+                required
+              />
+            </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Image
+              <br />
+              <Form.Control type="file" onChange={(e) => handleFileUpload(e)} />
+              {uploading && (
+                <>
+                  Image uploading <Spinner />
+                </>
+              )}
+              {imageUrl && <BsCheckCircle color="green" />}
+            </Form.Label>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>
+              Pets Attending?
+              <br />
+              
+              <Form.Select
+                multiple
+                value={pets}
+                onChange={handlePetSelect}
+                isValid={pets.length > 0}
+              >
+                {userPets.map((pet) => (
+                  <option key={pet._id} value={JSON.stringify(pet)}>
+                    {pet.name}
+                  </option>
+                ))}
+              </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                Please select at least one pet.
+              </Form.Control.Feedback>
+            </Form.Label>
+          </Form.Group>
+
+          <Card.Body>
+            <Button
+              variant="light"
+              type="submit"
+              disabled={!imageUrl}
+              style={{ backgroundColor: "#F76C6C" }}
+            >
+              Create
+            </Button>
+          </Card.Body>
+        </Form>
+      </Card>
     </div>
   );
 }
