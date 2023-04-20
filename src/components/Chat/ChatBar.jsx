@@ -17,16 +17,13 @@ const ChatBar = ({ socket }) => {
 
   return (
     <div className="chat-bar">
-      <h2>Open Chat</h2>
-      <div>
-        <h4 className="chat-header">ACTIVE USERS</h4>
+        <h4 className="chat-header">ONLINE</h4>
         <div className="chat-users">
           {users.map((user) => (
             <p key={user.socketID}>{user.userName}</p>
           ))}
         </div>
         <button className="leaveChat" onClick={handleLeaveChat}>Leave</button>
-      </div>
     </div>
   );
 };

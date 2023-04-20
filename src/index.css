@@ -34,7 +34,7 @@ align-items: center;
 
 /* Styles for the chat sidebar */
 .chat-bar {
-height: 80%;
+height: 100%;
 background-color: #949967;
 flex: 0.2;
 padding: 20px;
