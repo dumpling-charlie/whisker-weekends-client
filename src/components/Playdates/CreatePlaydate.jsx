@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 import { Button, Card, Form } from "react-bootstrap";
-import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 
 function CreatePlaydatePage() {
   const [title, setTitle] = useState("");

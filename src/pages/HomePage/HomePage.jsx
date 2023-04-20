@@ -51,8 +51,9 @@ function HomePage() {
       </Carousel>
       <div
         className="banner container-fluid row text-center text-light"
-        Style="padding: 60px;"
+        Style="padding: 5rem;"
       >
+      
         <div className=" col-md-4 col-lg-4 ">
           <h2>Why?</h2>
           <p>
@@ -80,9 +81,9 @@ function HomePage() {
             organized by other pet owners and join the ones that work for you
             and your furry friend.
           </p>
-        </div>
+        </div>      
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
