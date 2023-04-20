@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import "./PetList.css"
 
 function PetList() {
   const [petList, setPetList] = useState(null);
@@ -37,7 +38,7 @@ function PetList() {
   }, []);
 
   return (
-    <>
+    <div className="pet-list">
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
 
@@ -47,7 +48,7 @@ function PetList() {
 <br/>
       Are your pets lonely?<Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!
 
-    </>
+    </div>
   );
 }
 

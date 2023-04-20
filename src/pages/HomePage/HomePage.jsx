@@ -54,7 +54,7 @@ function HomePage() {
       </Carousel>
       <div
         className="banner container-fluid row text-center text-light"
-        Style="padding: 90px;"
+        Style="padding: 60px;"
       >
         <div className=" col-sm-4 ">
           <h2>Why?</h2>

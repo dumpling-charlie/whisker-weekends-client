@@ -8,6 +8,6 @@ button {
 }
 
 .innerApp {
-   min-height: calc(100vh - 50px); /* set the height to the viewport height minus the height of the footer */
+   min-height: calc(100vh - 80px); /* set the height to the viewport height minus the height of the footer */
 
 }

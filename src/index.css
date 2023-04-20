@@ -25,13 +25,7 @@ border: none;
 border-radius: 5px;
 }
 
-/* Styles for the chat page */
-.chat {
-width: 100%;
-height: 100vh;
-display: flex;
-align-items: center;
-}
+
 
 /* Styles for the chat sidebar */
 .chat-bar {
@@ -39,12 +33,8 @@ height: 100%;
 background-color: #949967;
 flex: 0.2;
 padding: 20px;
-}
-
-/* Styles for the main chat area */
-.chat-main {
-height: 100%;
-flex: 0.8;
+position: fixed;
+top: 0;
 }
 
 /* Styles for the list of online users */
@@ -152,3 +142,10 @@ cursor: pointer;
 .sender-name {
   text-align: right;
 }
+
+
+html,
+body {
+  height: 100%;
+}
+

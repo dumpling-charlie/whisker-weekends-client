@@ -22,7 +22,7 @@
 .banner {
   background-color: #5A625B;
   width: 100%;
-  margin: auto;
+  margin: 0;
 }
 .link-text {
   color: white;
@@ -30,7 +30,7 @@
 }
 
 .home-page {
-  height: auto; /* adjust this value to fit the content */
-  margin: 0;
-  padding: 0;
+  height: 100vh; /* adjust this value to fit the content */
+  overflow: hidden;
+  position: fixed;
 }
