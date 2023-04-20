@@ -28,9 +28,9 @@ function PetList() {
     return (
       <section>
         <div className="row">
-          {petList.map((pet, index) => {
+          {petList.map((pet) => {
             return (
-              <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+              <div key={pet._id} className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
                 <Card style={{ width: "18rem" }}>
                   <Card.Img
                     variant="top"

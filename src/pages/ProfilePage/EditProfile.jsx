@@ -97,7 +97,7 @@ function EditProfile(props) {
 
   return (
     <div className="d-flex justify-content-center">
-    <Card style={{ width: '40rem', backgroundColor: '#A8D0E6' }}>
+    <Card style={{ width: '40rem', backgroundColor: '#A8D0E6', border: "2px solid #374785" }}>
       <h2 className="mt-3">Edit Account Details</h2>
       <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mt-3">

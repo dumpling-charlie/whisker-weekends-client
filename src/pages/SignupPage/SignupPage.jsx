@@ -46,7 +46,7 @@ function SignupPage() {
 
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6" }}>
+      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6", border: "2px solid #374785" }}>
         <h1 className="mt-3" style={{ color: '#374785' }}>Sign Up</h1>
 
         <Form onSubmit={handleSignupSubmit} className="mt-3">

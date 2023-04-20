@@ -40,7 +40,7 @@ function LoginPage() {
 
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6" }}>
+      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6", border: "2px solid #374785" }}>
         <h1 className="mt-3" style={{ color: '#374785' }}>Login</h1>
 
         <Form onSubmit={handleLoginSubmit} className="mt-3">

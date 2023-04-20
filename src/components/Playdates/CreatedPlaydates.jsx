@@ -27,9 +27,9 @@ function CreatedPlaydates() {
     return (
       <div className="row">
         <h3>These are the playdates you've created!</h3>
-        {playdatesList.map((playdate) => (
+        {playdatesList.map((playdate, index) => (
           <div
-            key={playdate._id}
+            key={index}
             className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4"
           >
             <PlaydateCard {...playdate} />

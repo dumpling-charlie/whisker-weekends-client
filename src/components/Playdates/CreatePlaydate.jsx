@@ -92,7 +92,7 @@ function CreatePlaydatePage() {
 
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "50rem", backgroundColor: "#A8D0E6" }}>
+      <Card style={{ width: "50rem", backgroundColor: "#A8D0E6", border: "2px solid #374785" }}>
         <Card.Body>
           <h3 style={{ color: "#374785" }}>Organize a Playdate</h3>
         </Card.Body>

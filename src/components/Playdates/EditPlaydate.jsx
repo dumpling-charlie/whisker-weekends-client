@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import playdateServices from "../../services/playdate.service";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
+import {Button, Card, Form, Image} from "react-bootstrap";
 
 function EditPlaydatePage() {
   const [playdate, setPlaydate] = useState(null);
@@ -101,92 +101,101 @@ function EditPlaydatePage() {
   };
 
   return (
-    <section>
+    <section className="d-flex justify-content-center">
+      <Card style={{ width: "50rem", backgroundColor: "#A8D0E6", border: "2px solid #374785" }}>
       <h1>Edit Playdate Details</h1>
       {playdate && (
-        <form onSubmit={handleFormSubmit}>
-          <label>
+        <Form onSubmit={handleFormSubmit}>
+          <Form.Group>
+            <Form.Label>
             {" "}
             Title:
-            <input
+            <Form.Control
               type="text"
               name="title"
               value={formData.title}
               onChange={handleFormChange}
             />
-          </label>
+          </Form.Label>
+          </Form.Group>
 
-          <label>
+          <Form.Group>
+            <Form.Label>
             {" "}
             Location:
-            <input
+            <Form.Control
               type="string"
               name="location"
               value={formData.location}
               onChange={handleFormChange}
             />
-          </label>
-          <label>
+          </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
             {" "}
             Date:
-            <input
+            <Form.Control
               type="Date"
               name="date"
               value={formData.date}
               onChange={handleFormChange}
             />
-          </label>
-          <label>
+          </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
             {" "}
             Time:
-            <input
+            <Form.Control
               type="string"
               name="time"
               value={formData.time}
               onChange={handleFormChange}
             />
-          </label>
-          <label>
+          </Form.Label>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>
             {" "}
             Description:
-            <input
+            <Form.Control
               type="string"
               name="description"
               value={formData.description}
               onChange={handleFormChange}
             />
-          </label>
+          </Form.Label>
+          </Form.Group>
 
-          <label>
+          <Form.Group>
+            <Form.Label>
             {" "}
-            Image:
-            <img src={newImageFile || imageUrl} alt="current playdate" />
-            <input type="file" onChange={(e) => handleFileUpload(e)} />
+            <Image src={newImageFile || imageUrl} alt="current playdate" className="mx-auto d-block"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    objectFit: "cover",
+                  }}/>
+            <Form.Control type="file" onChange={(e) => handleFileUpload(e)} />
             {uploading && (
               <p>
                 Image uploading <Spinner />
               </p>
             )}
             {newImageFile && <BsCheckCircle color="green" />}
-          </label>
+          </Form.Label>
+          </Form.Group>
 
-          {/*<label>
-            {" "}
-            Pets:
-            <select
-              name="pets"
-              multiple value={formData.pets}
-              onChange={handlePetSelect}
-            >
-            </select>
-              </label> */}
-
-          <Button variant="light" type="submit" disabled={!imageUrl}>
+          <Button variant="light" style={{ backgroundColor: "#F76C6C" }} type="submit" disabled={!imageUrl}>
             Update
           </Button>
-        </form>
+        </Form>
       )}
-      <Button onClick={deletePlaydate}>Delete Playdate</Button>
+      <div className="d-flex justify-content-center">
+      <Button variant="light" className="Button" onClick={deletePlaydate} style={{ width: "10rem", backgroundColor: "#F76C6C" }}>Delete Playdate</Button>
+      </div>
+      </Card>
     </section>
   );
 }

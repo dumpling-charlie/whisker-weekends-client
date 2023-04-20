@@ -40,7 +40,6 @@ function CreatePet() {
       })
       .then((response) => {
         const imageFile = response.data.fileUrl;
-        console.log("Image URL:", imageFile);
         setNewImage(imageFile);
         setNewPet((prevState) => ({
           ...prevState,
@@ -53,14 +52,12 @@ function CreatePet() {
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log("new pet:", newPet);
 
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/api/pets/`, newPet, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("submitted data:", response);
         navigate("/pets");
       })
       .catch((err) => console.error(err));
@@ -68,7 +65,7 @@ function CreatePet() {
 
   return (
     <section className="d-flex justify-content-center">
-      <Card style={{ width: '40rem', backgroundColor: '#A8D0E6' }}>
+      <Card style={{ width: '40rem', backgroundColor: '#A8D0E6', border: "2px solid #374785" }}>
       <h1 className="mt-3" style={{ color: '#374785' }}>Create Pet</h1>
       <Form onSubmit={(event) => {submitForm(event, newImage)}} className='mb-3'>
       <Form.Group>
@@ -178,7 +175,7 @@ function CreatePet() {
         </Form.Label>
         </Form.Group>
 
-        <Button variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
+        <Button onClick={submitForm} variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
           Create
         </Button>
       </Form>

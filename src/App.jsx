@@ -7,7 +7,6 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import EditProfile from "./pages/ProfilePage/EditProfile";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
@@ -72,7 +71,7 @@ function App() {
             </IsAnon>
           }
         />
-        <Route path="/pets/" element={<PetList />} />
+        <Route path="/pets" element={<PetList />} />
         <Route path="/pets/create" element={<CreatePet />}></Route>
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/profile/:userId" element={<UserProfilePage />} />
