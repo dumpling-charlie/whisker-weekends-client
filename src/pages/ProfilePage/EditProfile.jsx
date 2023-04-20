@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { BsCheckCircle } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Image } from "react-bootstrap";
+import "./EditProfile.css";
 
 function EditProfile(props) {
   const storedToken = localStorage.getItem("authToken");
@@ -16,9 +19,9 @@ function EditProfile(props) {
   const [newImageFile, setNewImageFile] = useState(null);
 
   const [formData, setFormData] = useState({
-    location: '',
-    bio: '',
-    imageUrl: ''
+    location: "",
+    bio: "",
+    imageUrl: "",
   });
 
   const fetchData = () => {
@@ -31,11 +34,11 @@ function EditProfile(props) {
         setImageUrl(userInfo.imageUrl);
         setFormData({
           location: userInfo.location,
-          bio: userInfo.bio
+          bio: userInfo.bio,
         });
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   const handleFileUpload = (e) => {
     e.preventDefault();
@@ -57,7 +60,7 @@ function EditProfile(props) {
         }));
       })
       .catch((err) => {
-        console.log("Error while uploading the file: ", err)
+        console.log("Error while uploading the file: ", err);
       })
       .finally(() => setIsLoading(false));
   };
@@ -74,68 +77,93 @@ function EditProfile(props) {
     }
 
     axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/api/profile/${user._id}`, formData, { headers: {Authorization: `Bearer ${storedToken}`}})
-      .then(() => { navigate("/profile") })
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/api/profile/${user._id}`,
+        formData,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(() => {
+        navigate("/profile");
+      })
       .catch((err) => console.error(err));
   };
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({...prevFormData, [name]: value}));
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   useEffect(() => {
     fetchData();
-  }, [user._id])
+  }, [user._id]);
 
   return (
     <div>
-      <h2>Edit your account</h2>
-      <form onSubmit={handleFormSubmit}>
-        <label className="mb-3">
-          {" "}
-          Image:
-          <img
-            src={newImageFile || imageUrl}
-            alt="current profile photo"
-            className="img-fluid mx-auto"
-            Style="max-width: 150px; max-height: 150px"
-          />
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
-          {isLoading && (
-            <p>
-              Image uploading <Spinner />
-            </p>
-          )}
-          {newImageFile && <BsCheckCircle color="green" />}
-        </label>
+      <h2 className="mt-3">Edit Account Details</h2>
+      <Form onSubmit={handleFormSubmit}>
+        <Form.Group className="mb-1 mt-5">
+          <Form.Label>
+            {" "}
+            <Image
+              src={newImageFile || imageUrl}
+              alt="current profile photo"
+              className="mx-auto d-block rounded-circle"
+              style={{ width: "150px", height: "150px", objectFit: "cover" }}
+            />
+            <div className="input-group mt-3">
+              <div className="custom-file">
+                <input
+                  type="file"
+                  className="btn btn-light"
+                  id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01"
+                  onChange={(e) => handleFileUpload(e)}
+                />
+                
+              </div>
+            </div>
+            {isLoading && (
+              <p>
+                Image uploading <Spinner />
+              </p>
+            )}
+            {newImageFile && <BsCheckCircle color="green" />}
+          </Form.Label>
+        </Form.Group>
+
         <br />
-        <label className="mb-3">
-          {" "}
-          Location:
-          <input
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleFormChange}
-          ></input>
-        </label>
+
+        <Form.Group>
+          <Form.Label>
+            {" "}
+            Location:
+            <Form.Control
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleFormChange}
+            ></Form.Control>
+          </Form.Label>
+        </Form.Group>
+
         <br />
-        <label className="mb-3">
-          {" "}
-          Bio:
-          <input
-            type="textarea"
-            name="bio"
-            value={formData.bio}
-            onChange={handleFormChange}
-          ></input>
-        </label>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            {" "}
+            Bio:
+            <Form.Control
+              type="textarea"
+              name="bio"
+              value={formData.bio}
+              onChange={handleFormChange}
+            ></Form.Control>
+          </Form.Label>
+        </Form.Group>
         <br />
         <Button variant="light" type="submit" className="mb-3">
           Update Profile
         </Button>
-      </form>
+      </Form>
     </div>
   );
 }
