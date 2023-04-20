@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+
 .navbar {
     background-color: #ABAEA3;
+}
+
+.navbar-brand {
+    width: 11rem;
 }

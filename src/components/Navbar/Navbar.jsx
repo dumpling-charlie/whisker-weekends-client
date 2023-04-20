@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PlaydatesDropdown from "./PlaydatesDropdown";
@@ -13,9 +13,13 @@ function Navbar() {
 return (
   <nav className="navbar navbar-expand-lg">
     <div className="container-fluid">
-      <NavLink className="navbar-brand" to="/">
-        Whisker Weekends
-      </NavLink>
+      <Link to="/">
+        <img
+          className="navbar-brand"
+          src="/images/logo.jpg"
+          alt="Whisker Weekends"
+        />
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -42,7 +46,7 @@ return (
             <NavLink className="nav-link" to="/chat">
               Chat
             </NavLink>
-          </li>  
+          </li>
         </ul>
 
         {isLoggedIn && (
