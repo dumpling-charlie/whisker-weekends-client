@@ -19,14 +19,13 @@ function ProfilePage() {
     })
     .then(response => {
       setUserFromDb(response.data);
-      console.log(response.data);
     })
     .catch((error) => console.log(error));
   }
 
   useEffect(() => {
     getUserDetails();
-  }, [user._id])
+  }, [])
 
   const handleImgLoadingError = (e) => {
     e.target.src = "/images/default-image.jpg";
