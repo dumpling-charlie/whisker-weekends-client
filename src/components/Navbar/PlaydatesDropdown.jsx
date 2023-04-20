@@ -1,11 +1,20 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Link } from 'react-router-dom';
 
 function PlaydatesDropdown() {
 
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, hasPets, checkForPets, user } = useContext(AuthContext);
+    const [userId, setUserId] = useState(null);
+
+    useEffect(() => {
+      if (user) {
+        setUserId(user._id);
+      }
+      checkForPets(userId);
+      console.log(hasPets);
+    }, [])
 
     return (
       <Dropdown>
