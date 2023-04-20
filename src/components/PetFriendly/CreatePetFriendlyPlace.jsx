@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { Button, Card, Form } from "react-bootstrap";
 
 
 function CreatePetFriendlyPlacePage() {
@@ -44,12 +44,14 @@ function CreatePetFriendlyPlacePage() {
   };
 
   return (
-    <div>
-      <h1>Add a pet friendly place</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
+    <div className="d-flex justify-content-center">
+      <Card style={{ width: '40rem', backgroundColor: '#A8D0E6' }}>
+      <h3 className="mt-3" style={{ color: '#374785' }}>Add a pet friendly place</h3>
+      <Form onSubmit={handleSubmit} className='mb-3'>
+      <Form.Group>
+          <Form.Label>
+          Name
+          <Form.Control
             type="text"
             name="name"
             value={name}
@@ -58,23 +60,31 @@ function CreatePetFriendlyPlacePage() {
             }}
             required
           />
-        </div>
+        </Form.Label>
+        </Form.Group>
+          
 
-        <div>
-          <label htmlFor="details">Details</label>
-          <textarea
+        <Form.Group>
+          <Form.Label>
+          Details
+          <Form.Control
+          as="textarea"
+          rows={5}
             name="details"
             value={details}
             onChange={(e) => {
               setDetails(e.target.value);
             }}
+            placeholder="what makes this place amazing?"
             required
           />
-        </div>
+        </Form.Label>
+        </Form.Group>
 
-        <div>
-          <label htmlFor="location">Location</label>
-          <input
+        <Form.Group>
+          <Form.Label>
+          Location
+          <Form.Control
             type="text"
             name="location"
             value={location}
@@ -83,12 +93,14 @@ function CreatePetFriendlyPlacePage() {
             }}
             required
           />
-        </div>
+        </Form.Label>
+        </Form.Group>
 
-        <Button variant="light" type="submit">
+        <Button variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
           Create
         </Button>
-      </form>
+      </Form>
+      </Card>
     </div>
   );
 }

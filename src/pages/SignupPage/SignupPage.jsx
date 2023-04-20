@@ -2,7 +2,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
-import Button from "react-bootstrap/Button";
+import { Button, Card, Form } from "react-bootstrap";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -24,7 +24,14 @@ function SignupPage() {
     e.preventDefault();
     // Create an object representing the request body
     const defaultImageUrl = "/images/default-image.png";
-    const requestBody = { email, password, name, location, bio, imageUrl: defaultImageUrl };
+    const requestBody = {
+      email,
+      password,
+      name,
+      location,
+      bio,
+      imageUrl: defaultImageUrl,
+    };
 
     authService
       .signup(requestBody)
@@ -40,44 +47,86 @@ function SignupPage() {
   };
 
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
+    <div className="d-flex justify-content-center">
+      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6" }}>
+        <h1 className="mt-3" style={{ color: '#374785' }}>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+        <Form onSubmit={handleSignupSubmit} className="mt-3">
+          <Form.Group>
+            <Form.Label>
+              Email:
+              <Form.Control
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </Form.Label>
+          </Form.Group>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+          <Form.Group>
+            <Form.Label>
+              Password:
+              <Form.Control
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </Form.Label>
+          </Form.Group>
 
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
+          <Form.Group>
+            <Form.Label>
+              Name:
+              <Form.Control
+                type="text"
+                name="name"
+                value={name}
+                onChange={handleName}
+                placeholder="other users will see this"
+              />
+            </Form.Label>
+          </Form.Group>
 
-        <label>Location:</label>
-        <input
-          type="text"
-          name="location"
-          value={location}
-          onChange={handleLocation}
-        />
+          <Form.Group>
+            <Form.Label>
+              Location:
+              <Form.Control
+                type="text"
+                name="location"
+                value={location}
+                onChange={handleLocation}
+                placeholder="where are you located?"
+              />
+            </Form.Label>
+          </Form.Group>
 
-        <label>Bio:</label>
-        <input type="textarea" name="bio" value={bio} onChange={handleBio} />
+          <Form.Group>
+            <Form.Label>
+              Bio:
+              <Form.Control
+                as="textarea"
+                rows={2}
+                name="bio"
+                value={bio}
+                onChange={handleBio}
+                placeholder="tell us about yourself!"
+              />
+            </Form.Label>
+          </Form.Group>
 
-        <Button variant="light" type="submit">
-          submit
-        </Button>
-      </form>
+          <Button variant="light" type="submit" style={{ backgroundColor: '#F76C6C' }}>
+            submit
+          </Button>
+        </Form>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <div className="mt-3 mb-3">
+        <p>Already have account?</p>
+        <Link to={"/login"}> Login</Link>
+        </div>
+      </Card>
     </div>
   );
 }

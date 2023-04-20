@@ -3,8 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner";
 import { BsCheckCircle } from "react-icons/bs";
-import Button from "react-bootstrap/Button";
-
+import { Button, Card, Form, Image } from "react-bootstrap";
 
 function EditPetProfilePage() {
   const storedToken = localStorage.getItem("authToken");
@@ -100,79 +99,113 @@ function EditPetProfilePage() {
   };
 
   return (
-    <section>
-      <h1>Edit Pet Details</h1>
-      {pet && (
-        <form onSubmit={handleFormSubmit}>
-          <label>
-            {" "}
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleFormChange}
-            />
-          </label>
-<br/>
-          <label>
-            {" "}
-            Age:
-            <input
-              type="number"
-              name="age"
-              value={formData.age}
-              onChange={handleFormChange}
-            />
-          </label>
-<br/>
-          <label>
-            {" "}
-            Personality:
-            <select
-              name="personality"
-              value={formData.personality}
-              onChange={handleFormChange}
+    <section className="d-flex justify-content-center">
+      <Card style={{ width: "40rem", backgroundColor: "#A8D0E6" }}>
+        <h1 className="mt-3" style={{ color: "#374785" }}>
+          Edit Pet Details
+        </h1>
+        {pet && (
+          <Form onSubmit={handleFormSubmit}>
+            <Form.Group>
+              <Form.Label>
+                {" "}
+                Name:
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                />
+              </Form.Label>
+            </Form.Group>
+            <br />
+            <Form.Group>
+              <Form.Label>
+                {" "}
+                Age:
+                <Form.Control
+                  type="number"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleFormChange}
+                />
+              </Form.Label>
+            </Form.Group>
+            <br />
+            <Form.Group>
+              <Form.Label>
+                {" "}
+                Personality:
+                <Form.Control
+                  as="select"
+                  name="personality"
+                  value={formData.personality}
+                  onChange={handleFormChange}
+                >
+                  <option value="">select...</option>
+                  {[
+                    "Introvert",
+                    "Outgoing",
+                    "Playful",
+                    "Protective",
+                    "Independent",
+                    "Affectionate",
+                  ].map((personality) => (
+                    <option key={personality} value={personality}>
+                      {personality}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Label>
+            </Form.Group>
+            <br />
+            <Form.Group>
+              <Form.Label>
+                {" "}
+                <Image
+                  src={newImageFile || imageUrl}
+                  alt="current pet image"
+                  className="mx-auto d-block rounded-circle"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    objectFit: "cover",
+                  }}
+                />
+                <Form.Control
+                  type="file"
+                  onChange={(e) => handleFileUpload(e)}
+                />
+                {uploading && (
+                  <p>
+                    Image uploading
+                    <Spinner />
+                  </p>
+                )}
+                {newImageFile && <BsCheckCircle color="green" />}
+              </Form.Label>
+            </Form.Group>
+            <br />
+            <Button
+              variant="light"
+              type="submit"
+              className="mb-3"
+              style={{ backgroundColor: "#F76C6C" }}
             >
-              <option value="">select...</option>
-              {[
-                'Introvert', 'Outgoing', 'Playful', 'Protective', 'Independent', 'Affectionate',
-              ].map((personality) => (
-                <option key={personality} value={personality}>
-                  {personality}
-                </option>
-              ))}
-            </select>
-          </label>
-<br/>
-          <label>
-            {" "}
-            Image:
-            <img
-              src={newImageFile || imageUrl}
-              alt="current pet image"
-              Style="max-width: 150px; max-height: 150px"
-            />
-            
-            <input type="file" onChange={(e) => handleFileUpload(e)} />
-            {uploading && (
-              <p>
-                Image uploading
-                <Spinner />
-              </p>
-            )}
-            {newImageFile && <BsCheckCircle color="green" />}
-          </label>
-<br/>
-          <Button variant="light" type="submit">
-            Update
-          </Button>
-          <br/>
-      <Button variant="light" onClick={deletePet}>
-        Delete Profile
-      </Button>
-      </form>
-      )}
+              Update
+            </Button>
+            <br />
+            <Button
+              onClick={deletePet}
+              variant="light"
+              className="mb-3"
+              style={{ backgroundColor: "#F76C6C" }}
+            >
+              Remove Pet
+            </Button>
+          </Form>
+        )}
+      </Card>
     </section>
   );
 }
