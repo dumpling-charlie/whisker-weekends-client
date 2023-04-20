@@ -99,7 +99,7 @@ function EditProfile(props) {
             src={newImageFile || imageUrl}
             alt="current profile photo"
             className="img-fluid mx-auto"
-            Style="max-width: 200px"
+            Style="max-width: 150px; max-height: 150px"
           />
           <input type="file" onChange={(e) => handleFileUpload(e)} />
           {isLoading && (

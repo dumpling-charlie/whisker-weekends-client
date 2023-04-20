@@ -54,10 +54,14 @@ function ProfilePage() {
       </ListGroup>
       <Card.Body>
         <Link to={`/profile/edit/${user._id}`}>
-          <Button className="m-1">Edit</Button>
+          <Button className="m-1" variant="light">
+            Edit
+          </Button>
         </Link>
         <Link to={"/pets"}>
-          <Button className="m-1">Pets</Button>
+          <Button className="m-1" variant="light">
+            Pets
+          </Button>
         </Link>
       </Card.Body>
     </Card>
