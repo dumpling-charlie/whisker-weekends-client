@@ -1,17 +1,18 @@
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./PlaydateCard.css";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../../context/auth.context";
 
 function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
-  const userId = localStorage.getItem("authToken");
-  const isAuthenticated = !!userId;
+  const { isLoggedIn } = useContext(AuthContext);
 
-  const handleClick =() => {
-    alert("You must be logged in to view playdate details. Please log in or sign up.")
-  }
-  
+  const handleClick = () => {
+    alert(
+      "You must be logged in to view playdate details. Please log in or sign up."
+    );
+  };
 
   return (
     <Card Style={{ width: "18rem" }}>
@@ -24,10 +25,12 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>Details: {description}</Card.Text>
-        {isAuthenticated ? (
-          <Link to={`/playdates/${_id}`}><Button size="sm" variant="outline-secondary"> 
-            More details
-          </Button></Link>
+        {isLoggedIn ? (
+          <Link to={`/playdates/${_id}`}>
+            <Button size="sm" variant="outline-secondary">
+              More details
+            </Button>
+          </Link>
         ) : (
           <Button size="sm" variant="light" onClick={handleClick}>
             More details

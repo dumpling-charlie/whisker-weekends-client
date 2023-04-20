@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PlaydateCard from "../../components/Playdates/PlaydateCard/PlaydateCard";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import Button from "react-bootstrap/Button";
 import "./Playdates.css"
+import { AuthContext } from "../../context/auth.context";
 
 function PlaydatesPage() {
   const [playdates, setPlaydates] = useState([]);
   const [loading, setLoading] = useState(false);
-  const userId = localStorage.getItem("authToken");
-  const isAuthenticated = !!userId;
+const { isLoggedIn } = useContext(AuthContext);
 
   const getAllPlaydates = () => {
     setLoading(true);
@@ -34,14 +34,14 @@ function PlaydatesPage() {
           </div>
         ))}
         <div>
-          {isAuthenticated ? (
+          {isLoggedIn ? (
             <Link to="/playdates/create"><Button className="Button">
               Add playdate
             </Button></Link>
           ) : (
-            <Link to="/playdates/create"><Button className="Button" disabled>
+            <Button className="Button" disabled>
               Add playdate
-            </Button></Link>
+            </Button>
           )}
           <div>
             <Link to="/playdates/safety" className="link">Safety</Link>
