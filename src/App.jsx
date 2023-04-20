@@ -26,7 +26,13 @@ import PlaydateSafetyPage from "./pages/Playdates/PlaydateSafetyPage";
 import ChatHome from "./components/Chat/ChatHome"
 import ChatPage from "./components/Chat/ChatPage";
 import socketIO from "socket.io-client";
-const socket = socketIO.connect("*");
+const socket = socketIO.connect("https://whisker-weekends.netlify.app/");
+        socket.on('notification', data => {
+            this.setState({
+                notifications: data
+            })
+        })
+    
 
 function App() {
   return (
