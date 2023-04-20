@@ -26,7 +26,7 @@ class PlaydateServices {
   };
 
   getAllPlaydates = () => {
-    return this.api.get(`/api/playdates`);
+    return this.api.get(`/api/playdates/`);
   };
 
   editPlaydate = (playdateId, updatedPlaydateData) => {

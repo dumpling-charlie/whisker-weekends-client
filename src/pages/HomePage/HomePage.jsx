@@ -66,7 +66,7 @@ function HomePage() {
         <div className=" col-md-4 col-lg-4">
           <h2>Where?</h2>
           <p>
-            Thanks to Whisker Weekend, you can easily find nearby pet-friendly
+            Thanks to Whisker Weekends, you can easily find nearby pet-friendly
             locations and events where you can connect with other pet owners and
             their furry friends. Whether it's a playdate at the park or a social
             gathering at a local cafe, Whisker Weekend has got you covered.
@@ -75,7 +75,7 @@ function HomePage() {
         <div className="col-md-4 col-lg-4">
           <h2>When?</h2>
           <p>
-            With Whisker Weekend, you can easily organize a playdate that fits
+            With Whisker Weekends, you can easily organize a playdate that fits
             your schedule and preferences, whether it's a one-on-one meetup or a
             group event. Alternatively, you can also browse existing playdates
             organized by other pet owners and join the ones that work for you

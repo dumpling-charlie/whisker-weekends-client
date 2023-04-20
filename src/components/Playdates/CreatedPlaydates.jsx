@@ -26,7 +26,7 @@ function CreatedPlaydates() {
   const renderList = () => {
     return (
       <div className="row">
-        <h3>These are the playdates you've created!</h3>
+        <h3>Created by you:</h3>
         {playdatesList.map((playdate, index) => (
           <div
             key={index}

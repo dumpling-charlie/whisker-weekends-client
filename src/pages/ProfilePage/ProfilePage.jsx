@@ -19,14 +19,13 @@ function ProfilePage() {
     })
     .then(response => {
       setUserFromDb(response.data);
-      console.log(response.data);
     })
     .catch((error) => console.log(error));
   }
 
   useEffect(() => {
     getUserDetails();
-  }, [user._id])
+  }, [])
 
   const handleImgLoadingError = (e) => {
     e.target.src = "/images/default-image.jpg";
@@ -34,6 +33,7 @@ function ProfilePage() {
   
 
   return (
+    <div className="d-flex justify-content-center">
     <Card style={{ width: "18rem" }}>
       {userFromDb && (
         <Card.Img
@@ -70,6 +70,7 @@ function ProfilePage() {
         </Link>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 

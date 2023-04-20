@@ -16,7 +16,7 @@ const { isLoggedIn } = useContext(AuthContext);
     setLoading(true);
 
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/playdates/`)
       .then((response) => setPlaydates(response.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));

@@ -61,18 +61,19 @@ function PlaydatesDetailsPage() {
             <p>Details: <br/> {playdate.description}</p>
           </>
         )}
+        
+        {playdate && <PlaydateLike playdate={playdate} />}
 
         <Link to="/playdates">
-          <Button variant="light">Back to playdates</Button>
+          <Button variant="light" style={{ width: "10rem", backgroundColor: "#F76C6C" }}>Back to playdates</Button>
         </Link>
 
         {canEdit && (
-          <Link to={`/playdates/${playdateId}/edit`}>
-            <Button variant="light">Edit Playdate</Button>
+          <Link to={`/playdates/${playdateId}/edit`} className="mb-3">
+            <Button variant="light" style={{ width: "8rem", backgroundColor: "#F76C6C" }}>Edit Playdate</Button>
           </Link>
         )}
 
-        {playdate && <PlaydateLike playdate={playdate} />}
       </Card>
     </div>
   );
