@@ -18,7 +18,7 @@ class PlaydateServices {
   }
 
   createPlaydate = (newPlaydate) => {
-    return this.api.post(`/api/playdates/create`, newPlaydate);
+    return this.api.post(`/api/playdates/`, newPlaydate);
   };
 
   getPlaydate = (playdateId) => {
