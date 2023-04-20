@@ -22,15 +22,7 @@ function AuthProviderWrapper(props) {
 
     // If the token exists in the localStorage
     if (storedToken) {
-      // Send a request to the server using axios
-      /* 
-        axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/auth/verify`,
-          { headers: { Authorization: `Bearer ${storedToken}` } }
-        )
-        .then((response) => {})
-        */
-
+  
       // Or using a service
       authService
         .verify()
@@ -68,9 +60,17 @@ function AuthProviderWrapper(props) {
     navigate("/")
   };
 
-  const checkForPets = () => {
+  const checkForPets = (userId) => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${user._id}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/profile/${userId}`)
+      .then(user => {
+        if (user.pets.length > 0) {
+          setHasPets(true);
+        } else {
+          setHasPets(false);
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   useEffect(() => {
@@ -87,7 +87,9 @@ function AuthProviderWrapper(props) {
         user,
         storeToken,
         authenticateUser,
-        logOutUser
+        logOutUser,
+        checkForPets,
+        hasPets
       }}
     >
       {props.children}
