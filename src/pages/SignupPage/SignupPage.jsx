@@ -22,8 +22,8 @@ function SignupPage() {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name, location, bio };
-console.log(requestBody)
+    const defaultImageUrl = "/images/default-image.png";
+    const requestBody = { email, password, name, location, bio, imageUrl: defaultImageUrl };
 
     authService
       .signup(requestBody)

@@ -136,9 +136,6 @@ function EditProfile(props) {
           Update Profile
         </Button>
       </form>
-      <Button variant="light" className="mb-3">
-        Delete Profile
-      </Button>
     </div>
   );
 }
