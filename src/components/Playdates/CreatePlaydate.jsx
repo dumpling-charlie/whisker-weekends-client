@@ -206,6 +206,7 @@ function CreatePlaydatePage() {
 
           <Card.Body>
             <Button
+            onClick={handleSubmit}
               variant="light"
               type="submit"
               disabled={!imageUrl}
