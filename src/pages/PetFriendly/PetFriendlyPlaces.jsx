@@ -34,13 +34,13 @@ const { isLoggedIn } = useContext(AuthContext);
         <PetFriendlyCard {...petfriendly} />
       </div>))}
         {isLoggedIn ? (
-          <Button variant="light">
-            <Link to="/friendly/create">Add a pet friendly place</Link>
-          </Button>
+          <Link to="/friendly/create"><Button variant="light">
+            Add a pet friendly place
+          </Button></Link>
         ) : (
-          <Button variant="light" disabled>
-            <Link to="/playdates/create">Add a pet friendly place</Link>
-          </Button>
+           <Link to="/playdates/create"><Button variant="light" disabled>
+           Add a pet friendly place
+          </Button></Link>
         )}
         </div>
       </div> 
