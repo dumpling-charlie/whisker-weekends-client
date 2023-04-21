@@ -1,70 +1,67 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Whisker Weekends (Client)
 
-## Available Scripts
+Whisker Weekends is a user-friendly web application designed for pet owners who want to connect with other pet owners and find playdates for their furry friends. The app allows you to create a profile for yourself and your pet, browse the planned playdates, chat to other users and see pet friendly locations recommended by them.
 
-In the project directory, you can run:
+Whisker Weekends is built using MERN (MongoDB, Express, React, Node.js) stack, which makes it fast and responsive. Whether you're a dog lover or a cat person, Whisker Weekends is the perfect tool to help you find new friends for your pets.
 
-### `npm start`
+This is the FRONTEND repository, a repository with the backend code can be found [here](https://github.com/dumpling-charlie/whisker-weekends-server)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Profile creation for you and your pets
+- Live chat
+- Playdate creation
+- Recommend pet-friendly locations
+- View other user profiles and their pets
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run Locally
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Clone the project
 
-### `npm run eject`
+```bash
+  git clone https://github.com/dumpling-charlie/whisker-weekends-client.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Go to the project directory
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+  npm i socket.io-client jwt-decode 
+```
+```bash
+  npm i react-bootstrap react-bootstrap-icons react-icons react-spinners 
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Start the server
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+  npm run start
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Demo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://whisker-weekends.netlify.app/
 
-### Code Splitting
+To test API : https://crypto-link.adaptable.app/
+<img src="/images/demo.jpg" alt="Screenshot of homepage" title="Homepage">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Mattie Barton](https://github.com/maitlandbarton)
+- [Sophie White](https://github.com/SElizaWhi)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Acknowledgements
 
-### Advanced Configuration
+ - [Socket.io chat app code-along](https://novu.co/blog/building-a-chat-app-with-socket-io-and-react/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
+Contributions are always welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
