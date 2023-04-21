@@ -65,8 +65,12 @@ function PetList() {
         <Button variant="light">Add Pets</Button>
       </Link>
       <br />
-      Are your pets lonely?
-      <Link to="https://pethubpet.netlify.app/chat"> Adopt</Link> one now!
+      Are your pets lonely? Adopt from
+      <Link to="https://pethubpet.netlify.app/chat" target="_blank">
+        {" "}
+        PetHub
+      </Link>{" "}
+      today!
     </div>
   );
 }
