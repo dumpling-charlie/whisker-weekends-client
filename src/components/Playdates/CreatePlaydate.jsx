@@ -83,7 +83,7 @@ function CreatePlaydatePage() {
         pets
       })
       .then((res) => {
-        navigate("/playdates");
+        navigate("/playdates/");
       })
       .catch((err) =>
         console.log("Error while adding the new playdate: ", err)
@@ -92,7 +92,13 @@ function CreatePlaydatePage() {
 
   return (
     <div className="d-flex justify-content-center">
-      <Card style={{ width: "50rem", backgroundColor: "#A8D0E6", border: "2px solid #374785" }}>
+      <Card
+        style={{
+          width: "50rem",
+          backgroundColor: "#A8D0E6",
+          border: "2px solid #374785",
+        }}
+      >
         <Card.Body>
           <h3 style={{ color: "#374785" }}>Organize a Playdate</h3>
         </Card.Body>
@@ -185,7 +191,6 @@ function CreatePlaydatePage() {
             <Form.Label>
               Pets Attending?
               <br />
-              
               <Form.Select
                 multiple
                 value={pets}
@@ -206,7 +211,7 @@ function CreatePlaydatePage() {
 
           <Card.Body>
             <Button
-            onClick={handleSubmit}
+              onClick={handleSubmit}
               variant="light"
               type="submit"
               disabled={!imageUrl}
