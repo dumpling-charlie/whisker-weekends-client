@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
 
 .navbar {
-    background-color: #374785;
-      position: sticky;
+  background-color: #374785;
+  position: sticky;
   top: 0;
   z-index: 1;
-
 }
 
 .navbar-brand {
-    width: 11rem;
+  width: 11rem;
 }
 
 .drop-account {
-  background-color: #F76C6C;
+  background-color: #f76c6c;
 }
 
 .nav-link {

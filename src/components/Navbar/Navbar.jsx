@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PlaydatesDropdown from "./PlaydatesDropdown";
 import MyAccountDropdown from "./MyAccountDropdown";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -24,8 +26,8 @@ return (
         className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#navbarText"
-        aria-controls="navbarText"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
