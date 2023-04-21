@@ -24,9 +24,10 @@ border-radius: 5px;
 height: 70%;
 background-color: #374785;
 flex: 0.2;
-padding: 20px;
+padding: 4rem;
 top: 8rem;
-z-index: 0;
+position: absolute;
+left: 0;
 }
 
 /* Styles for the list of online users */
@@ -126,4 +127,8 @@ cursor: pointer;
 }
 .sender-name {
   text-align: right;
+}
+
+.message-chats{
+  text-align: left;
 }
