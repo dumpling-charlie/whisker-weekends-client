@@ -80,7 +80,7 @@ function CreatePlaydatePage() {
         time,
         description,
         imageUrl,
-        pets,
+        pets
       })
       .then((res) => {
         navigate("/playdates");

@@ -57,7 +57,7 @@ function PlaydatesPage() {
 
   return (
     <>
-      {!loading ? (
+      {playdates ? (
         renderPlaydates()
       ) : (
         <h1>
