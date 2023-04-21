@@ -39,7 +39,7 @@ function PlaydatesDetailsPage() {
             <h1>{playdate.title}</h1>
             <p>
               Host:{" "}
-              <Link to={`/profile/${playdate.createdBy._id}`}>
+              <Link to={`/profile/${playdate.createdBy._id}`} className="link">
                 {playdate.createdBy.name}
               </Link>
             </p>
@@ -47,7 +47,7 @@ function PlaydatesDetailsPage() {
               Accompanied By:
               {playdate.pets &&
                 playdate.pets.map((pet) => (
-                  <Link key={pet._id} to={`/pets/${pet._id}`}>
+                  <Link key={pet._id} to={`/pets/${pet._id}`} className="link">
                     {" "}
                     {pet.name}
                   </Link>

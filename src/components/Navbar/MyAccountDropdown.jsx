@@ -17,11 +17,11 @@ function MyAccountDropdown() {
         <Dropdown.Menu>
           <Dropdown.Item>
             {" "}
-            <Link to="/profile">My Account</Link>
+            <Link to="/profile" className="link">My Account</Link>
           </Dropdown.Item>
           <Dropdown.Item>
             {" "}
-            <Link to="/pets">My Pets</Link>
+            <Link to="/pets" className="link">My Pets</Link>
           </Dropdown.Item>
           <button className="dropdown-item" type="button" onClick={logOutUser}>
             Logout
