@@ -32,7 +32,7 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
             </Button>
           </Link>
         ) : (
-          <Button size="sm" variant="light" onClick={handleClick}>
+          <Button size="sm" variant="light" onClick={handleClick} style={{ backgroundColor: "#F76C6C" }}>
             More details
           </Button>
         )}
