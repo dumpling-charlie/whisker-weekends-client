@@ -1,4 +1,3 @@
-import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
@@ -120,9 +119,9 @@ function SignupPage() {
         </Form>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div className="mt-3 mb-3">
+      <div className="mt-2 mb-3">
         <p>Already have account?</p>
-        <Link to={"/login"}> Login</Link>
+        <Link to={"/login"} className="link"> Login</Link>
         </div>
       </Card>
     </div>

@@ -1,4 +1,3 @@
-import "./LoginPage.css";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
@@ -71,9 +70,9 @@ function LoginPage() {
           </Button>
         </Form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-    <div className="mt-3 mb-3">
+    <div className="mt-2 mb-3">
         <p>Don't have an account yet?</p>
-        <Link to={"/signup"}> Sign Up</Link>
+        <Link to={"/signup"} className="link"> Sign Up</Link>
         </div>
       </Card>
     </div>

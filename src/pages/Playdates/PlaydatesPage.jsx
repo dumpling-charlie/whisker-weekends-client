@@ -4,7 +4,7 @@ import PlaydateCard from "../../components/Playdates/PlaydateCard/PlaydateCard";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import Button from "react-bootstrap/Button";
-import "./Playdates.css"
+import "./Playdates.css";
 import { AuthContext } from "../../context/auth.context";
 
 function PlaydatesPage() {
@@ -35,16 +35,20 @@ function PlaydatesPage() {
         ))}
         <div>
           {isLoggedIn ? (
-            <Link to="/playdates/create"><Button className="Button">
-              Add playdate
-            </Button></Link>
+            <Link to="/playdates/create">
+              <Button className="Button">Add playdate</Button>
+            </Link>
           ) : (
-            <Button className="Button" disabled>
-              Add playdate
-            </Button>
+            <Link to="/login">
+              <Button className="Button" disabled>
+                Add playdate
+              </Button>
+            </Link>
           )}
           <div>
-            <Link to="/playdates/safety" className="link">Safety</Link>
+            <Link to="/playdates/safety" className="link">
+              Safety
+            </Link>
           </div>
         </div>
       </div>
