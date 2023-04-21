@@ -76,7 +76,7 @@ function App() {
         <Route path="/pets/:petId" element={<PetProfilePage />} />
         <Route path="/profile/:userId" element={<UserProfilePage />} />
         <Route path="/pets/edit/:petId" element={<EditPetProfilePage />} />
-        <Route path="/playdates" element={<PlaydatesPage />} />
+        <Route path="/playdates/" element={<PlaydatesPage />} />
         <Route path="/playdates/create" element={<CreatePlaydatePage />} />
         <Route path="/playdates/my-playdates" element={<MyPlaydatesPage />} />
         <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />

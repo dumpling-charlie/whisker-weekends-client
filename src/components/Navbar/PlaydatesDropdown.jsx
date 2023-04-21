@@ -15,7 +15,7 @@ function PlaydatesDropdown() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item> <Link to="/playdates">Find</Link></Dropdown.Item>
+          <Dropdown.Item> <Link to="/playdates/">Find</Link></Dropdown.Item>
 
           {isLoggedIn && (
             <>
