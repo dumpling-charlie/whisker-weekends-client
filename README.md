@@ -48,7 +48,7 @@ Start the server
 https://whisker-weekends.netlify.app/
 
 To test API : https://crypto-link.adaptable.app/
-<img src="/images/demo.jpg" alt="Screenshot of homepage" title="Homepage">
+<img src="./public/images/demo.jpg" alt="Screenshot of homepage" title="Homepage">
 
 
 ## Authors
