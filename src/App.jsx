@@ -26,7 +26,7 @@ import PlaydateSafetyPage from "./pages/Playdates/PlaydateSafetyPage";
 import ChatHome from "./components/Chat/ChatHome"
 import ChatPage from "./components/Chat/ChatPage";
 import socketIO from "socket.io-client";
-const socket = socketIO.connect();
+const socket = socketIO.connect(process.env.REACT_APP_SERVER_URL);
 
 function App() {
   return (
