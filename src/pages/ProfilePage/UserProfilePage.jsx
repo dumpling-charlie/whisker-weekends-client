@@ -27,12 +27,13 @@ function UserProfilePage() {
   const renderUserDetails = () => {
     return (
       <div className="d-flex justify-content-center">
-        <Card style={{ width: "20rem", backgroundColor: '#374785', color: 'white'}}>
+        <Card style={{ width: "30rem", backgroundColor: '#374785', color: 'white'}}>
           <Card.Img
             variant="top"
             src={user.imageUrl}
             alt={user.name}
-            style={{ objectFit: "cover", aspectRatio: "1/1" }}
+            className="mx-auto d-block rounded-circle"
+            style={{ height: "20rem", width: "20rem", objectFit: "cover", objectPosition: "center",}}
           />
             <hr/>
           <h1 style={{ color: '#F76C6C' }}>{user.name}</h1>

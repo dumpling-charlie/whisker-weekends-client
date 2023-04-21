@@ -55,7 +55,7 @@ function PlaydatesDetailsPage() {
             </p>
             <p>Where? {playdate.location}</p>
             <p>
-              When? {playdate.date} at {playdate.time}
+              When? {new Date(playdate.date).toLocaleString("en-GB", { dateStyle: "short" })} at {playdate.time}
             </p>
 
             <p>Details: <br/> {playdate.description}</p>
