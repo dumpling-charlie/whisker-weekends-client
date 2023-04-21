@@ -41,7 +41,7 @@ function PetList() {
                   <Card.Body>
                     <Card.Title>{pet.name}</Card.Title>
                     <Link to={`/pets/${pet._id}`}>
-                      <Button variant="light">View Profile</Button>
+                      <Button variant="light" style={{ backgroundColor: '#F76C6C' }}>View Profile</Button>
                     </Link>
                   </Card.Body>
                 </Card>
@@ -62,11 +62,11 @@ function PetList() {
       <h1>My Pets</h1>
       {petList ? renderList() : <h2>still loading</h2>}
       <Link to={"/pets/create"}>
-        <Button variant="light">Add Pets</Button>
+        <Button variant="light" style={{ backgroundColor: '#F76C6C' }}>Add Pets</Button>
       </Link>
       <br />
       Are your pets lonely? Adopt from
-      <Link to="https://pethubpet.netlify.app/chat" target="_blank">
+      <Link to="https://pethubpet.netlify.app/chat" className="link" target="_blank">
         {" "}
         PetHub
       </Link>{" "}

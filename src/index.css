@@ -12,4 +12,6 @@ body {
   height: 100%;
 }
 
-
+.link {
+  text-decoration: none;
+}

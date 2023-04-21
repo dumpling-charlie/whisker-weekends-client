@@ -15,14 +15,14 @@ function PlaydatesDropdown() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item> <Link to="/playdates/">Find</Link></Dropdown.Item>
+          <Dropdown.Item> <Link to="/playdates/" className="link">Find</Link></Dropdown.Item>
 
           {isLoggedIn && (
             <>
-              <Dropdown.Item> <Link to="/playdates/create">
+              <Dropdown.Item> <Link to="/playdates/create" className="link">
                 Organize
               </Link></Dropdown.Item>
-              <Dropdown.Item> <Link to="/playdates/my-playdates">
+              <Dropdown.Item> <Link to="/playdates/my-playdates" className="link">
                 My Playdates
               </Link></Dropdown.Item>
           </>

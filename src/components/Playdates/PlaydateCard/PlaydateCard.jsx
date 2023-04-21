@@ -27,12 +27,12 @@ function PlaydateCard({ _id, imageUrl, title, description, createdBy }) {
         <Card.Text>Details: {description}</Card.Text>
         {isLoggedIn ? (
           <Link to={`/playdates/${_id}`}>
-            <Button size="sm" variant="outline-secondary">
+            <Button size="sm" variant="light" id='button'>
               More details
             </Button>
           </Link>
         ) : (
-          <Button size="sm" variant="light" onClick={handleClick} style={{ backgroundColor: "#F76C6C" }}>
+          <Button size="sm" variant="light" onClick={handleClick} id='button'>
             More details
           </Button>
         )}
