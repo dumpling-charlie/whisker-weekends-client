@@ -23,9 +23,10 @@ import PlaydateLike from "./components/Playdates/PlaydateLike";
 import PetFriendlyPlaces from "./pages/PetFriendly/PetFriendlyPlaces";
 import CreatePetFriendlyPlacePage from "./components/PetFriendly/CreatePetFriendlyPlace";
 import PlaydateSafetyPage from "./pages/Playdates/PlaydateSafetyPage";
-import ChatHome from "./components/Chat/ChatHome"
+import ChatHome from "./components/Chat/ChatHome";
 import ChatPage from "./components/Chat/ChatPage";
 import socketIO from "socket.io-client";
+import CreatedPlaydates from "./components/Playdates/CreatedPlaydates";
 const socket = socketIO.connect(process.env.REACT_APP_SERVER_URL);
 
 function App() {
@@ -33,73 +34,134 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="innerApp">
-      <Routes >
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/profile"
-          element={
-            <IsPrivate>
-              {" "}
-              <ProfilePage />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/profile/edit/:userId"
-          element={
-            <IsPrivate>
-              {" "}
-              <EditProfile />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              {" "}
-              <SignupPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              {" "}
-              <LoginPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route path="/pets" element={<PetList />} />
-        <Route path="/pets/create" element={<CreatePet />}></Route>
-        <Route path="/pets/:petId" element={<PetProfilePage />} />
-        <Route path="/profile/:userId" element={<UserProfilePage />} />
-        <Route path="/pets/edit/:petId" element={<EditPetProfilePage />} />
-        <Route path="/playdates/" element={<PlaydatesPage />} />
-        <Route path="/playdates/create" element={<CreatePlaydatePage />} />
-        <Route path="/playdates/my-playdates" element={<MyPlaydatesPage />} />
-        <Route path="/playdates/:playdateId/like" element={<PlaydateLike />} />
-        <Route
-          path="/playdates/:playdateId/edit"
-          element={<EditPlaydatePage />}
-        />
-        <Route
-          path="/playdates/:playdateId"
-          element={<PlaydateDetailsPage />}
-        />
-        <Route path="/friendly" element={<PetFriendlyPlaces />} />
-        <Route
-          path="/friendly/create"
-          element={<CreatePetFriendlyPlacePage />}
-        />
-        <Route path="/playdates/safety" element={<PlaydateSafetyPage />} />
-        <Route path="/chat" element={<ChatHome socket={socket} />}></Route>
-        <Route path="/chat/live" element={<ChatPage socket={socket} />}>
-          {" "}
-        </Route>
-        <Route path="*" element={null} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/profile"
+            element={
+              <IsPrivate>
+                {" "}
+                <ProfilePage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/profile/edit/:userId"
+            element={
+              <IsPrivate>
+                {" "}
+                <EditProfile />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <IsAnon>
+                {" "}
+                <SignupPage />{" "}
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <IsAnon>
+                {" "}
+                <LoginPage />{" "}
+              </IsAnon>
+            }
+          />
+          <Route path="/pets" element={<PetList />} />
+          <Route
+            path="/pets/create"
+            element={
+              <IsPrivate>
+                {" "}
+                <CreatePet />{" "}
+              </IsPrivate>
+            }
+          ></Route>
+          <Route path="/pets/:petId" element={<PetProfilePage />} />
+          <Route path="/profile/:userId" element={<UserProfilePage />} />
+          <Route
+            path="/pets/edit/:petId"
+            element={
+              <IsPrivate>
+                {" "}
+                <EditPetProfilePage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route path="/playdates/" element={<PlaydatesPage />} />
+          <Route
+            path="/playdates/create"
+            element={
+              <IsPrivate>
+                {" "}
+                <CreatePlaydatePage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/playdates/my-playdates"
+            element={
+              <IsPrivate>
+                {" "}
+                <MyPlaydatesPage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/playdates/:playdateId/like"
+            element={<PlaydateLike />}
+          />
+          <Route
+            path="/playdates/:playdateId/edit"
+            element={
+              <IsPrivate>
+                {" "}
+                <EditPlaydatePage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/playdates/:playdateId"
+            element={<PlaydateDetailsPage />}
+          />
+          <Route path="/friendly" element={<PetFriendlyPlaces />} />
+          <Route
+            path="/friendly/create"
+            element={
+              <IsPrivate>
+                {" "}
+                <CreatePetFriendlyPlacePage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route path="/playdates/safety" element={<PlaydateSafetyPage />} />
+          <Route
+            path="/chat"
+            element={
+              <IsPrivate>
+                {" "}
+                <ChatHome socket={socket} />{" "}
+              </IsPrivate>
+            }
+          ></Route>
+          <Route
+            path="/chat/live"
+            element={
+              <IsPrivate>
+                {" "}
+                <ChatPage socket={socket} />{" "}
+              </IsPrivate>
+            }
+          >
+            {" "}
+          </Route>
+          <Route path="*" element={null} />
+        </Routes>
       </div>
       {/* <Footer /> */}
     </div>
