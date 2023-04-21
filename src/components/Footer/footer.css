@@ -9,3 +9,11 @@ footer {
   height: 4rem;
   color: #374785;
 }
+
+.footer-spacing-r {
+  margin-right: 3rem;
+}
+
+.footer-spacing-l {
+  margin-left: 3rem;
+}
